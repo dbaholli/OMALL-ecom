@@ -4,14 +4,30 @@ import { BsPersonCircle, BsFillCartFill } from "react-icons/bs";
 import "./nav.scss";
 import "../styles/shared-styles.scss";
 import MobileNav from "./MobileNav/MobileNav";
+import Login from "../../Auth/Login";
+import Backdrop from "../Backdrop/Backdrop";
 
 const Nav = () => {
   const [sidebar, setSidebar] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const [modal, setShowModal] = useState(false);
 
   const showSidebar = () => {
     setSidebar(!sidebar);
   };
+
+  // const showModal = () => {
+  //   setShowModal(!modal);
+  // };
+  function backdropClickHandler() {
+    setOpenSideDrawer(false);
+  }
+
+  let backdrop;
+
+  if (modal) {
+    backdrop = <Backdrop click={backdropClickHandler} />;
+  }
 
   useEffect(() => {
     document.querySelector(".navbar");
@@ -61,8 +77,12 @@ const Nav = () => {
             </Link>
           </div>
           <div className='nav-link-actions actions-link '>
-            <BsPersonCircle />
-            <BsFillCartFill />
+            <Link onClick={() => setShowModal(true)}>
+              <BsPersonCircle />
+            </Link>
+            <Link>
+              <BsFillCartFill />
+            </Link>
           </div>
         </div>
         <div onClick={showSidebar} className='hamburger-menu'>
@@ -71,6 +91,7 @@ const Nav = () => {
           <div className='hamburger-line' />
         </div>
       </div>
+      {modal && <Login setShowModal={setShowModal} />}
       <MobileNav sidebarValue={sidebar} click={showSidebar} />
     </div>
   );

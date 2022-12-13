@@ -41,9 +41,9 @@ const Footer = (props) => {
 
         <div className='col2'>
           <div className='second'>
-            {SocialMedia.map((props) => {
+            {SocialMedia.map((props, i) => {
               return (
-                <div>
+                <div key={i}>
                   <Link to={props.to}>{props.icon}</Link>
                 </div>
               );
@@ -52,11 +52,11 @@ const Footer = (props) => {
         </div>
 
         <div className='main-row'>
-          {FooterData.map((props) => {
+          {FooterData.map((props, idx) => {
             return (
               <div className='footer-list'>
                 <h6>{props.category}</h6>
-                <div className='links'>
+                <div className='links' key={idx}>
                   {props.links.map((l) => {
                     return (
                       <Link key={l.to} to={l.to} className='footer-item'>
