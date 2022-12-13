@@ -1,0 +1,79 @@
+#Wagtail-specific files
+*.sublime-workspace
+.DS_Store
+/media/*
+/static/*
+/virtualenvs/*
+
+#Django-specific files
+*.sqlite3
+*.log
+/db.sqlite3
+/staticfiles/
+/mediafiles/
+
+#Postgres-specific files
+*.sql
+*.sql.gz
+
+#Package and module files
+*.egg-info
+*.dist-info
+*.eggs
+.cache
+.eggs
+__pycache__
+
+#IDE and editor files
+.idea/
+.vscode/*
+
+#Ignore files build by Visual Studio
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.dll
+*.lib
+*.sbr
+
+
+#Frontend
+/node_modules
+/.pnp
+.pnp.js
+
+#Testing
+/coverage
+
+#Envrionments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Other files and directories
+.python-version
+__pycache__/
+.tox/
+dist/
+build/
+lib/
+include/
+bin/
