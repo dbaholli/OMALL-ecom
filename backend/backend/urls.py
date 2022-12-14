@@ -8,12 +8,23 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from .api import api_router
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
+    # path("signup/", include("users.urls")),
+    path("/login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("token/refresh/", TokenRefreshView.as_view(), name='token_refresh'),
+
 ]
+
 
 if settings.DEBUG:
     from django.conf.urls.static import static

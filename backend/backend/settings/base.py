@@ -8,8 +8,15 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 INSTALLED_APPS = [
     #Our apps  
+    "cart",
+    "categories",
+    "coupons",
     "home",
+    "orders",
+    "products",
     "search",
+    "users",
+
 
     #Wagtail apps
     "wagtail.api.v2",
@@ -36,8 +43,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    
 
     #others
+    "axes",
     "rest_framework",
     "corsheaders",
     "wagtail.contrib.styleguide",
