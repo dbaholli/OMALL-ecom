@@ -1,13 +1,11 @@
 .log-in-form-container {
   position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 25px 0;
-  margin-top: calc(75px + 45%);
-  gap: 50px;
-  width: 100%;
+  width: 50%;
   .log-in-form-container-content {
     display: flex;
     flex-direction: column;
@@ -15,18 +13,27 @@
     gap: 25px;
     background: #fff;
     box-shadow: 0 0 10px 5px rgba(#000, 0.1);
-    width: clamp(1%, 550px, 90%);
-    border-radius: 15px;
-    padding: 50px 0;
+    width: clamp(1%, 600px, 100%);
+    border-radius: 30px;
+    padding: 30px 0;
     .form-title-description-container {
       border-bottom: 1px solid #d8d8d8;
       width: 80%;
-      text-align: center;
       padding-bottom: 25px;
-      .form-title {
-        font-size: 34px;
-        color: #323e64;
-        font-weight: 500;
+      .login-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .form-title {
+          font-size: 34px;
+          color: #323e64;
+          font-weight: 500;
+        }
+        svg {
+          cursor: pointer;
+          color: #323e64;
+          font-size: 30px;
+        }
       }
       .form-description {
         margin-top: 20px;
@@ -126,42 +133,44 @@
       }
     }
   }
-  .terms-privacy-contact {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    a {
-      color: #323e64;
-      font-size: 18px;
-      position: relative;
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: -2.5px;
-        top: 100%;
-        left: 50%;
-        right: 50%;
-        height: 1px;
-        background-color: #323e64;
-        transition: 0.3s;
+}
+
+@media (max-width: 800px) {
+  .log-in-form-container {
+    width: 65%;
+    .log-in-form-container-content {
+      .form-title-description-container {
+        .login-title {
+          .form-title {
+            font-size: 25px;
+          }
+        }
+        .form-description {
+          font-size: 15px;
+        }
       }
-      &:hover {
-        &::after {
-          left: 0;
-          right: 0;
+      .log-in-form {
+        .login-input-container {
+          .login-input {
+            input {
+              width: 60%;
+            }
+          }
         }
       }
     }
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 550px) {
   .log-in-form-container {
+    width: 80%;
     .log-in-form-container-content {
       .form-title-description-container {
-        .form-title {
-          font-size: 25px;
+        .login-title {
+          .form-title {
+            font-size: 22px;
+          }
         }
         .form-description {
           font-size: 15px;

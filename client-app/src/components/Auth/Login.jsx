@@ -2,23 +2,51 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineMail } from "react-icons/ai";
 import { BiLock } from "react-icons/bi";
+import { CgClose } from "react-icons/cg";
 import "./styles/login.scss";
+import Backdrop from "../shared/Navbar/Backdrop/Backdrop";
+import Register from "./Register";
 
-const Login = () => {
+const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [modal, setShowModal] = useState(false);
+  const [registerModal, setRegisterModal] = useState(false);
+
+  const showModal = () => {
+    setShowModal((prev) => (prev = !modal));
+  };
+
+  // const showRegister = () => {
+  //   setRegisterModal((prev) => (prev = !registerModal));
+  //   setShowModal(!modal)
+  // };
+
+  const zIndex = 5000;
+
+  // const showRegister = () => {
+  //   console.log("Show Register");
+  //   setShowModal(props.click);
+  // };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Login submitted");
+  };
 
   return (
-    <div className='log-in-form-container'>
+    <div style={{ zIndex: props.zIndex }} className='log-in-form-container'>
       <div className='log-in-form-container-content'>
         <div className='form-title-description-container'>
-          <h6 className='form-title'>Login</h6>
+          <div className='login-title'>
+            <h6 className='form-title'>Login</h6>
+            <CgClose onClick={props.click} />
+          </div>
           <p className='form-description'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
-            itaque?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
         </div>
-        <form action='' className='log-in-form'>
+        <form className='log-in-form' onSubmit={handleSubmit}>
           <div className='login-input-container'>
             <label htmlFor='email'>
               <p>Email</p>
@@ -60,13 +88,12 @@ const Login = () => {
           <input type='submit' value='Log In' />
         </form>
         <p className='dont-have-acc'>
-          Dont have an account ? <Link to='/signup'>Register</Link>
+          Dont have an account ?{" "}
+          <Link onClick={() => setRegisterModal(true)}>Register</Link>
         </p>
-      </div>
-      <div className='terms-privacy-contact'>
-        <Link>Terms of Policy</Link>
-        <Link>Privacy Policy</Link>
-        <Link>Contact Us</Link>
+        {modal && (
+          <Backdrop click={() => setShowModal(!modal)} zIndex={zIndex - 1} />
+        )}
       </div>
     </div>
   );

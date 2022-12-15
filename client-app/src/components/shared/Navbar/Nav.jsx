@@ -3,31 +3,25 @@ import { Link } from "react-router-dom";
 import { BsPersonCircle, BsFillCartFill } from "react-icons/bs";
 import "./nav.scss";
 import "../styles/shared-styles.scss";
-import MobileNav from "./MobileNav/MobileNav";
+import Sidebar from "./Sidebar/Sidebar";
 import Login from "../../Auth/Login";
-import Backdrop from "../Backdrop/Backdrop";
+import Backdrop from "./Backdrop/Backdrop";
 
 const Nav = () => {
   const [sidebar, setSidebar] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [modal, setShowModal] = useState(false);
 
+
   const showSidebar = () => {
     setSidebar(!sidebar);
   };
 
-  // const showModal = () => {
-  //   setShowModal(!modal);
-  // };
-  function backdropClickHandler() {
-    setOpenSideDrawer(false);
-  }
+  const showModal = () => {
+    setShowModal((prev) => (prev = !modal));
+  };
 
-  let backdrop;
-
-  if (modal) {
-    backdrop = <Backdrop click={backdropClickHandler} />;
-  }
+  const zIndex = 5000;
 
   useEffect(() => {
     document.querySelector(".navbar");
@@ -91,8 +85,11 @@ const Nav = () => {
           <div className='hamburger-line' />
         </div>
       </div>
-      {modal && <Login setShowModal={setShowModal} />}
-      <MobileNav sidebarValue={sidebar} click={showSidebar} />
+      {modal && <Login click={showModal} zIndex={zIndex} />}
+      {modal && <Backdrop click={() => setShowModal(!modal)} zIndex={zIndex - 1} /> }
+
+      {sidebar && <Sidebar click={showSidebar} zIndex={zIndex} /> }
+      {sidebar && <Backdrop click={showSidebar} zIndex={zIndex - 1} />}
     </div>
   );
 };
