@@ -61,29 +61,44 @@ const Nav = () => {
           </div>
         </div>
         <div className='navigation'>
-          <div className='nav-link-container home-link'>
-            <Link to='/' className='nav-link inline'>
-              Home
-            </Link>
-          </div>
           <div className='nav-link-container services-link'>
             <Link to='/' className='nav-link inline'>
-              Lorem ipsum
+              Pjata
             </Link>
           </div>
           <div className='nav-link-container why-us-link'>
             <Link to='/' className='nav-link inline'>
-              Lorem ipsum
+              Set 
             </Link>
           </div>
           <div className='nav-link-container contact-link'>
             <Link to='/' className='nav-link inline'>
-              Lorem ipsum
+              Jastake
             </Link>
           </div>
           <div className='nav-link-container careers-link'>
             <Link to='/' className='nav-link inline'>
-              Lorem ipsum
+              Peshqira
+            </Link>
+          </div>
+          <div className='nav-link-container careers-link'>
+            <Link to='/' className='nav-link inline'>
+              Banjo
+            </Link>
+          </div>
+          <div className='nav-link-container careers-link'>
+            <Link to='/' className='nav-link inline'>
+              Batanije
+            </Link>
+          </div>
+          <div className='nav-link-container careers-link'>
+            <Link to='/' className='nav-link inline'>
+              Mbulesa
+            </Link>
+          </div>
+          <div className='nav-link-container careers-link'>
+            <Link to='/' className='nav-link inline'>
+              Dysheka
             </Link>
           </div>
           <div className='nav-link-actions actions-link '>
@@ -101,7 +116,7 @@ const Nav = () => {
           <div className='hamburger-line' />
         </div>
       </div>
-      
+
       {modal && <Login setRegisterModal={showRegisterModal} click={showModal} zIndex={zIndex} />}
       {modal && <Backdrop click={() => setShowModal(!modal)} zIndex={zIndex - 1} /> }
 
