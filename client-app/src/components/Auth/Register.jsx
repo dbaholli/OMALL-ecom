@@ -12,7 +12,6 @@ import Backdrop from "../shared/Navbar/Backdrop/Backdrop";
 const Register = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [registerModal, setRegisterModal] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -107,14 +106,8 @@ const Register = (props) => {
           <input type='submit' value='Register' />
         </form>
         <p className='dont-have-acc'>
-          Already have an account ? <Link>Login</Link>
+          Already have an account ? <Link onClick={props.showLoginModal}>Login</Link>
         </p>
-        {registerModal && (
-          <Backdrop
-            click={() => setRegisterModal(!registerModal)}
-            zIndex={zIndex - 1}
-          />
-        )}
       </div>
     </div>
   );

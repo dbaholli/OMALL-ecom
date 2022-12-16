@@ -6,20 +6,36 @@ import "../styles/shared-styles.scss";
 import Sidebar from "./Sidebar/Sidebar";
 import Login from "../../Auth/Login";
 import Backdrop from "./Backdrop/Backdrop";
+import Register from "../../Auth/Register";
 
 const Nav = () => {
   const [sidebar, setSidebar] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [modal, setShowModal] = useState(false);
+  const [register, setRegister] = useState(false);
 
 
   const showSidebar = () => {
     setSidebar(!sidebar);
   };
 
+  const removeRegisterModal = () => {
+    setRegister(false);
+  }
+
   const showModal = () => {
     setShowModal((prev) => (prev = !modal));
   };
+
+  const showRegisterModal = () => {
+    setRegister(true);
+    setShowModal(false);
+  }
+
+  const showLoginModal = () => {
+    setShowModal(true);
+    setRegister(false);
+  }
 
   const zIndex = 5000;
 
@@ -85,11 +101,15 @@ const Nav = () => {
           <div className='hamburger-line' />
         </div>
       </div>
-      {modal && <Login click={showModal} zIndex={zIndex} />}
+      
+      {modal && <Login setRegisterModal={showRegisterModal} click={showModal} zIndex={zIndex} />}
       {modal && <Backdrop click={() => setShowModal(!modal)} zIndex={zIndex - 1} /> }
 
       {sidebar && <Sidebar click={showSidebar} zIndex={zIndex} /> }
       {sidebar && <Backdrop click={showSidebar} zIndex={zIndex - 1} />}
+
+      {register && <Register click={removeRegisterModal} showLoginModal={showLoginModal} zIndex={zIndex} />}
+      {register && <Backdrop click={removeRegisterModal} zIndex={zIndex - 1} /> }
     </div>
   );
 };

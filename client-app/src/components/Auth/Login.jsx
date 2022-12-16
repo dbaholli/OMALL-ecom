@@ -10,25 +10,7 @@ import Register from "./Register";
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [modal, setShowModal] = useState(false);
-  const [registerModal, setRegisterModal] = useState(false);
-
-  const showModal = () => {
-    setShowModal((prev) => (prev = !modal));
-  };
-
-  // const showRegister = () => {
-  //   setRegisterModal((prev) => (prev = !registerModal));
-  //   setShowModal(!modal)
-  // };
-
-  const zIndex = 5000;
-
-  // const showRegister = () => {
-  //   console.log("Show Register");
-  //   setShowModal(props.click);
-  // };
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Login submitted");
@@ -88,12 +70,9 @@ const Login = (props) => {
           <input type='submit' value='Log In' />
         </form>
         <p className='dont-have-acc'>
-          Dont have an account ?{" "}
-          <Link onClick={() => setRegisterModal(true)}>Register</Link>
+          Dont have an account ?
+          <Link onClick={props.setRegisterModal}>Register</Link>
         </p>
-        {modal && (
-          <Backdrop click={() => setShowModal(!modal)} zIndex={zIndex - 1} />
-        )}
       </div>
     </div>
   );
