@@ -32,3 +32,44 @@
     }
   }
 }
+
+@media (max-width: 1000px) {
+  .featuredproduct-component {
+    .featured-products {
+      display: flex;
+      justify-content: space-between;
+      margin: 5% 0;
+      .product-card {
+        display: flex;
+        flex-direction: column;
+        margin: 2% 0;
+        padding: 15px;
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .featuredproduct-component {
+    .header-text {
+        text-align: center;
+    }
+    .featured-products {
+      display: flex;
+      justify-content: center;
+      margin: 5% 0;
+      .product-card {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        .productimage-container {
+          width: 100%;
+          .featuredproduct-image {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
