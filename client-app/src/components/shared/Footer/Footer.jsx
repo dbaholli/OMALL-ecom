@@ -54,12 +54,12 @@ const Footer = (props) => {
         <div className='main-row'>
           {FooterData.map((props, idx) => {
             return (
-              <div className='footer-list'>
+              <div className='footer-list' key={idx}>
                 <h6>{props.category}</h6>
                 <div className='links' key={idx}>
-                  {props.links.map((l) => {
+                  {props.links.map((l, i) => {
                     return (
-                      <Link key={l.to} to={l.to} className='footer-item'>
+                      <Link key={i} to={l.to} className='footer-item'>
                         {l.link}
                       </Link>
                     );

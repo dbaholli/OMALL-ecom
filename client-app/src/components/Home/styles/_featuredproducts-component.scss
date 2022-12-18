@@ -1,0 +1,34 @@
+.featuredproduct-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5%;
+  margin: 2.5% auto 5%;
+  width: 90%;
+  .featured-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 5% 0;
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      margin: 2% 0;
+      padding: 15px;
+      width: 33%;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      .price {
+        color: green;
+        font-weight: 500;
+        font-size: max(1rem, 1.2vw);
+      }
+      .productimage-container {
+        width: 100%;
+        .featuredproduct-image {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

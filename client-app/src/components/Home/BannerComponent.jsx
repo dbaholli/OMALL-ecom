@@ -34,7 +34,7 @@ export const bannerData = [
 const BannerComponent = () => {
   return (
     <div className='bannercomponent'>
-      <h1 className='bannercomponent-title'>
+      <h1 className='bannercomponent-title header-text'>
         Ne ju ofrojme produktet me te mira ne treg dhe garantojme per kualitetin
         e produkteve tona
       </h1>
@@ -43,7 +43,7 @@ const BannerComponent = () => {
           return (
             <div key={i} className='bannercomponent-box'>
               <div className='bannercomponent-icon'>{bData.icon}</div>
-              <div className="bannercard-container">
+              <div className='bannercard-container'>
                 <h6 className='bannercomponent-box-title'>{bData.title}</h6>
                 <p className='bannercomponent-paragraph'>{bData.paragraph}</p>
               </div>

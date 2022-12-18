@@ -17,7 +17,7 @@
   }
   .sidebar-logo {
     padding: 1em 2em;
-    border-bottom: 1px solid #5784ff;
+    border-bottom: 1px solid #222e50;
     .sidebar-icon-title {
       .sidebar-icon {
         width: 50px;
@@ -28,8 +28,9 @@
         }
       }
       .sidebar-title {
-        font-size: 16px;
+        font-size: 22px;
         color: #00081e;
+        font-weight: 600;
       }
     }
     svg {
@@ -41,7 +42,7 @@
   }
   .sidebar-links {
     .navigation-link {
-      border-bottom: 1px solid #5784ff;
+      border-bottom: 1px solid #222e50;
       .main-link {
         padding: 0.75em 2em;
         svg {
@@ -57,13 +58,14 @@
         }
       }
       &:hover {
+        background-color: #5784ff;
         .main-link {
           svg {
             color: #5784ff;
           }
           .mobile-nav-link {
             a {
-              color: #5784ff;
+              color: #fff;
             }
           }
         }

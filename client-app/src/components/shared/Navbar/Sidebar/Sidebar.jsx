@@ -37,28 +37,63 @@ const Sidebar = (props) => {
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/"}>Home</Link>
+              <Link to={"/"}>Ballina</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Categories</Link>
+              <Link to={"/categories"}>Pjata</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>About Us</Link>
+              <Link to={"/categories"}>Sete</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Contact Us</Link>
+              <Link to={"/categories"}>Jastake</Link>
+            </p>
+          </div>
+        </div>
+        <div className='navigation-link '>
+          <div className='main-link inline spread'>
+            <p className='mobile-nav-link'>
+              <Link to={"/categories"}>Peshqira</Link>
+            </p>
+          </div>
+        </div>
+        <div className='navigation-link '>
+          <div className='main-link inline spread'>
+            <p className='mobile-nav-link'>
+              <Link to={"/categories"}>Banjo</Link>
+            </p>
+          </div>
+        </div>
+        <div className='navigation-link '>
+          <div className='main-link inline spread'>
+            <p className='mobile-nav-link'>
+              <Link to={"/categories"}>Batanije</Link>
+            </p>
+          </div>
+        </div>
+        <div className='navigation-link '>
+          <div className='main-link inline spread'>
+            <p className='mobile-nav-link'>
+              <Link to={"/categories"}>Mbulesa</Link>
+            </p>
+          </div>
+        </div>
+        <div className='navigation-link '>
+          <div className='main-link inline spread'>
+            <p className='mobile-nav-link'>
+              <Link to={"/categories"}>Dysheka</Link>
             </p>
           </div>
         </div>

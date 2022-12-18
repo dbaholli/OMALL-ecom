@@ -68,7 +68,7 @@ const Nav = () => {
           </div>
           <div className='nav-link-container why-us-link'>
             <Link to='/' className='nav-link inline'>
-              Set 
+              Sete 
             </Link>
           </div>
           <div className='nav-link-container contact-link'>
