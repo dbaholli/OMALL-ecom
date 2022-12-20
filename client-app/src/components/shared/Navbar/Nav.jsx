@@ -14,14 +14,13 @@ const Nav = () => {
   const [modal, setShowModal] = useState(false);
   const [register, setRegister] = useState(false);
 
-
   const showSidebar = () => {
     setSidebar(!sidebar);
   };
 
   const removeRegisterModal = () => {
     setRegister(false);
-  }
+  };
 
   const showModal = () => {
     setShowModal((prev) => (prev = !modal));
@@ -30,12 +29,12 @@ const Nav = () => {
   const showRegisterModal = () => {
     setRegister(true);
     setShowModal(false);
-  }
+  };
 
   const showLoginModal = () => {
     setShowModal(true);
     setRegister(false);
-  }
+  };
 
   const zIndex = 5000;
 
@@ -56,7 +55,7 @@ const Nav = () => {
           <div className='nav-title inline'>
             <Link to='/' className='inline'>
               {/* <div className='nav-icon' /> */}
-              Othman Mall
+              Othman
             </Link>
           </div>
         </div>
@@ -68,7 +67,7 @@ const Nav = () => {
           </div>
           <div className='nav-link-container why-us-link'>
             <Link to='/' className='nav-link inline'>
-              Sete 
+              Sete
             </Link>
           </div>
           <div className='nav-link-container contact-link'>
@@ -117,14 +116,28 @@ const Nav = () => {
         </div>
       </div>
 
-      {modal && <Login setRegisterModal={showRegisterModal} click={showModal} zIndex={zIndex} />}
-      {modal && <Backdrop click={() => setShowModal(!modal)} zIndex={zIndex - 1} /> }
+      {modal && (
+        <Login
+          setRegisterModal={showRegisterModal}
+          click={showModal}
+          zIndex={zIndex}
+        />
+      )}
+      {modal && (
+        <Backdrop click={() => setShowModal(!modal)} zIndex={zIndex - 1} />
+      )}
 
-      {sidebar && <Sidebar click={showSidebar} zIndex={zIndex} /> }
+      {sidebar && <Sidebar click={showSidebar} zIndex={zIndex} />}
       {sidebar && <Backdrop click={showSidebar} zIndex={zIndex - 1} />}
 
-      {register && <Register click={removeRegisterModal} showLoginModal={showLoginModal} zIndex={zIndex} />}
-      {register && <Backdrop click={removeRegisterModal} zIndex={zIndex - 1} /> }
+      {register && (
+        <Register
+          click={removeRegisterModal}
+          showLoginModal={showLoginModal}
+          zIndex={zIndex}
+        />
+      )}
+      {register && <Backdrop click={removeRegisterModal} zIndex={zIndex - 1} />}
     </div>
   );
 };
