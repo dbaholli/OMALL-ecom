@@ -9,6 +9,7 @@
   z-index: 2000;
   box-shadow: rgba(60, 64, 67, 0.25) 0px 1px 3px 0px,
     rgba(60, 64, 67, 0.125) 0px 2px 6px 2px;
+    background-color: #373435;
   .navbar-content {
     padding: 0 12.5%;
     display: flex;
@@ -20,10 +21,10 @@
       width: max(130px, 8vw);
       .nav-icon {
         width: max(130px, 8vw);
-        // content: url("../../../assets/Nav/whiteLogo.svg");
+        content: url("../../../assets/othmanlogo.png");
       }
       a {
-        color: #000;
+        color: #fff;
         font-size: max(0.85rem, 1.2vw);
         font-weight: 500;
       }
@@ -40,7 +41,7 @@
         }
         .nav-link {
           font-size: max(0.85rem, 1vw);
-          color: #000;
+          color: #fff;
           position: relative;
         }
       }
@@ -54,7 +55,7 @@
         }
         svg {
           font-size: max(0.85rem, 1.5vw);
-          color: #000;
+          color: #fff;
           cursor: pointer;
         }
       }
@@ -69,7 +70,7 @@
         align-self: flex-end;
         width: 100%;
         height: 5px;
-        background-color: #2a3cc7;
+        background-color: #fff;
       }
       &:hover {
         .hamburger-line {
@@ -92,7 +93,7 @@
   }
 }
 .sticky {
-  background-color: #fff;
+  background-color: #373435;
 }
 .sticky-nav-colors {
   color: #153131 !important;
@@ -112,7 +113,7 @@
     left: 0;
     width: 0;
     bottom: 0;
-    background: #2a3cc7;
+    background: #fff;
     height: 4px;
     transition: 0.3s ease-in-out;
     -webkit-transition: 0.3s ease-in-out;

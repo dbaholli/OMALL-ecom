@@ -4,7 +4,7 @@
   background-size: cover;
   background-attachment: fixed;
   width: 100%;
-  padding: 5% 7.5% 2%;
+  padding: 2% 7.5% 2%;
   .row1 {
     display: flex;
     justify-content: space-between;
@@ -19,9 +19,8 @@
         width: fit-content;
         margin: 0 auto 10px;
         .logo {
-        //   content: url("../../../assets/Home/logo.png");
-          height: 30px;
-          margin-right: 15px;
+          content: url("../../../assets/othmanlogo.png");
+          width: max(130px, 8vw);
         }
       }
     }

@@ -8,7 +8,7 @@ import Login from "../../Auth/Login";
 import Backdrop from "./Backdrop/Backdrop";
 import Register from "../../Auth/Register";
 
-const Nav = () => {
+const Nav = (props) => {
   const [sidebar, setSidebar] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [modal, setShowModal] = useState(false);
@@ -54,8 +54,7 @@ const Nav = () => {
         <div className='title-icon inline'>
           <div className='nav-title inline'>
             <Link to='/' className='inline'>
-              {/* <div className='nav-icon' /> */}
-              Othman
+              <div className='nav-icon' />
             </Link>
           </div>
         </div>

@@ -1,11 +1,16 @@
 .contact-component {
   display: flex;
-  flex-direction: column;
   margin: max(12.5vw, 140px) 0 max(35px, 3vw);
   width: 100%;
+  padding: 0 5%;
   .contact-map {
     display: flex;
+    flex-direction: column;
     width: 40%;
+    h1,
+    p {
+      color: #000;
+    }
   }
   .contactform-container {
     display: flex;
@@ -67,6 +72,19 @@
             &::placeholder {
               font-size: 14px;
               color: #7b7b7b;
+            }
+          }
+          textarea {
+            border: 1px solid #fff;
+            background: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            color: #7b7b7b;
+            outline: none;
+            &::placeholder {
+              color: #7b7b7b;
+            }
+            &:focus {
+              border: 1px solid #fff;
             }
           }
         }
