@@ -1,5 +1,6 @@
 import React from "react";
 import { productsData } from "./data";
+import { BsCartPlusFill } from "react-icons/bs";
 import "./styles/_featuredproducts-component.scss";
 
 const FeaturedProductsComponent = () => {
@@ -16,8 +17,13 @@ const FeaturedProductsComponent = () => {
                   style={{ content: `url(${pData.image})` }}
                 ></div>
               </div>
-              <h3 className='paragraph-text'>{pData.title}</h3>
-              <p className='price paragraph-text'>{pData.price}</p>
+              <div className='featuredproduct-info'>
+                <h3 className='paragraph-text'>{pData.title}</h3>
+                <p className='price paragraph-text'>{pData.price}€</p>
+              </div>
+              <div className='addtocart-button'>
+                <BsCartPlusFill />
+              </div>
             </div>
           );
         })}
