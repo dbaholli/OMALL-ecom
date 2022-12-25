@@ -6,9 +6,9 @@ import Nav from "../../components/shared/Navbar/Nav";
 const HomePage = () => {
   return (
     <>
-      <Nav />
-      <Banner />
-      <Footer />
+      <SliderComponent />
+      <FeaturedProductsComponent />
+      <BannerComponent />
     </>
   );
 };
