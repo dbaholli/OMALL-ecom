@@ -1,4 +1,4 @@
-.product-detail-component {
+.product-page .product-detail-component {
   display: flex;
   flex-direction: column;
   margin: max(12.5vw, 140px) 0 max(35px, 3vw);
@@ -6,10 +6,11 @@
   padding: 0 5%;
   .product-detail-container {
     display: flex;
+
     .productimage-container {
       width: 40%;
       .product-image {
-        width: 100%;
+        width: 80%;
       }
     }
     .product-info {
@@ -39,7 +40,7 @@
 }
 
 @media (max-width: 1000px) {
-  .product-detail-component {
+  .product-page .product-detail-component {
     .product-detail-container {
       flex-direction: column;
       .productimage-container {

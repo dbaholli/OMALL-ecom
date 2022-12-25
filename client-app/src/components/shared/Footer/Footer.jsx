@@ -29,7 +29,7 @@ const SocialMedia = [
   },
 ];
 
-const Footer = (props) => {
+const Footer = () => {
   return (
     <div className='shared-footer'>
       <div className='row1'>
@@ -41,9 +41,9 @@ const Footer = (props) => {
 
         <div className='col2'>
           <div className='second'>
-            {SocialMedia.map((props) => {
+            {SocialMedia.map((props, i) => {
               return (
-                <div>
+                <div key={i}>
                   <Link to={props.to}>{props.icon}</Link>
                 </div>
               );
@@ -52,22 +52,40 @@ const Footer = (props) => {
         </div>
 
         <div className='main-row'>
-          {FooterData.map((props) => {
-            return (
-              <div className='footer-list'>
-                <h6>{props.category}</h6>
-                <div className='links'>
-                  {props.links.map((l) => {
-                    return (
-                      <Link key={l.to} to={l.to} className='footer-item'>
-                        {l.link}
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
+          <div className='footer-list'>
+            <h6>Keni pyetje ?</h6>
+            <div className='links'>
+              <Link className='footer-item'>+383 48 55 55 55</Link>
+              <Link className='footer-item'>info@othmanhome.com</Link>
+              <Link className='footer-item'>Prishtine, Kosove</Link>
+              <Link className='footer-item'>Central Park</Link>
+            </div>
+          </div>
+          <div className='footer-list'>
+            <h6>Llogaria</h6>
+            <div className='links'>
+              <Link onClick={() => setShowModal()} className='footer-item'>
+                Kyqu
+              </Link>
+              <Link className='footer-item'>Regjistrohu</Link>
+            </div>
+          </div>
+          <div className='footer-list'>
+            <h6>Sherbimi ndaj klientve</h6>
+            <div className='links'>
+              <Link to={`/llogaria`} className='footer-item'>Llogaria ime</Link>
+              <Link to={`/porosite`} className='footer-item'>Porosite</Link>
+              <Link to={`/kontakto`} className='footer-item'>Kontakti</Link>
+            </div>
+          </div>
+          <div className='footer-list'>
+            <h6>Ndihma</h6>
+            <div className='links'>
+              <Link to={`/siguria`} className='footer-item'>Siguria dhe Privatesia</Link>
+              <Link to={`/termat`} className='footer-item'>Termat dhe Kushtet</Link>
+              <Link to={`/faq`} className='footer-item'>FAQ</Link>
+            </div>
+          </div>
         </div>
 
         <div className='last-row'>
@@ -76,12 +94,8 @@ const Footer = (props) => {
           </div> 
           <div className='select-container'>
             <p>
-              <HiOutlineMail /> loremipsum@email.com
+              <HiOutlineMail /> info@othmanhome.com
             </p>
-            {/* <SelectLanguage
-            setLanguage={props.setLanguage}
-            language={props.language}
-          /> */}
           </div>
         </div>
       </div>
