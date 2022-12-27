@@ -91,7 +91,7 @@ const Footer = () => {
         <div className='last-row'>
           <div className='copyright'>
             <p>Copyright © 2023 othmanhome.com | All rights reserved </p>
-          </div>
+          </div> 
           <div className='select-container'>
             <p>
               <HiOutlineMail /> info@othmanhome.com

@@ -18,15 +18,10 @@
     width: 100%;
     .title-icon {
       width: fit-content;
-      width: max(130px, 8vw);
+      width: max(100px, 5vw);
       .nav-icon {
-        width: max(130px, 8vw);
+        width: max(110px, 5vw);
         content: url("../../../assets/othmanlogo.png");
-      }
-      a {
-        color: #fff;
-        font-size: max(0.85rem, 1.2vw);
-        font-weight: 500;
       }
     }
     .navigation {
@@ -146,16 +141,11 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
   .navbar {
     .navbar-content {
-      width: 100%;
-      padding: 11px 30px;
       .title-icon {
         width: 140px;
-        .nav-icon {
-          width: 140px;
-        }
       }
       .navigation {
         display: none;

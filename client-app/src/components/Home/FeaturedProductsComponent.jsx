@@ -2,6 +2,7 @@ import React from "react";
 import { productsData } from "./data";
 import { BsCartPlusFill } from "react-icons/bs";
 import "./styles/_featuredproducts-component.scss";
+import { Link } from "react-router-dom";
 
 const FeaturedProductsComponent = () => {
   return (
@@ -10,7 +11,7 @@ const FeaturedProductsComponent = () => {
       <div className='featured-products'>
         {productsData.map((pData, i) => {
           return (
-            <div className='product-card' key={i}>
+            <Link className='product-card' key={i} to={`/produkti/${pData.id}`}>
               <div className='productimage-container'>
                 <div
                   className='featuredproduct-image'
@@ -24,7 +25,7 @@ const FeaturedProductsComponent = () => {
               <div className='addtocart-button'>
                 <BsCartPlusFill />
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

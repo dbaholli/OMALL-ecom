@@ -1,18 +1,16 @@
 import React from "react";
 import BannerComponent from "../../components/Home/BannerComponent";
+import BannerComponent2 from "../../components/Home/BannerComponent2";
 import FeaturedProductsComponent from "../../components/Home/FeaturedProductsComponent";
 import SliderComponent from "../../components/Home/SliderComponent";
-import Footer from "../../components/shared/Footer/Footer";
-import Nav from "../../components/shared/Navbar/Nav";
 
 const HomePage = () => {
   return (
     <div className="home-page">
-      <Nav />
       <SliderComponent />
       <FeaturedProductsComponent />
-      <BannerComponent />
-      <Footer />
+      {/* <BannerComponent /> */}
+      <BannerComponent2 />
     </div>
   );
 };

@@ -48,15 +48,14 @@ const Nav = (props) => {
 
     window.addEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <div className={`navbar ${isSticky ? "sticky" : ""}`}>
       <div className='navbar-content'>
         <div className='title-icon inline'>
-          <div className='nav-title inline'>
-            <Link to='/' className='inline'>
-              <div className='nav-icon' />
-            </Link>
-          </div>
+          <Link to='/' className='inline'>
+            <div className='nav-icon' />
+          </Link>
         </div>
         <div className='navigation'>
           <div className='nav-link-container services-link'>
