@@ -141,16 +141,11 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
   .navbar {
     .navbar-content {
-      width: 100%;
-      padding: 11px 30px;
       .title-icon {
         width: 140px;
-        .nav-icon {
-          width: 140px;
-        }
       }
       .navigation {
         display: none;

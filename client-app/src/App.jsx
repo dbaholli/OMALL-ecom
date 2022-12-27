@@ -6,6 +6,7 @@ import ContactPage from "./pages/ContactUs/Contact";
 import "./App.scss";
 import Nav from "./components/shared/Navbar/Nav";
 import Footer from "./components/shared/Footer/Footer";
+import Footer3 from "./components/shared/Footer/Footer3";
 
 const App = () => {
   return (
@@ -17,7 +18,8 @@ const App = () => {
           <Route exact path='/produkti/:id' element={<ProductPage />} />
           <Route exact path='/kontakto' element={<ContactPage />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
+        <Footer3 />
       </Router>
     </div>
   );
