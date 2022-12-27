@@ -1,16 +1,16 @@
-.shared-footer {
-  background-color: #001733;
+.shared-footer2 {
+  background-color: #076ae3;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   width: 100%;
   padding: 2% 7.5% 2%;
   .row1 {
+    border-bottom: 1px solid rgb(255, 255, 255);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    border-bottom: 1px solid rgb(95, 95, 95);
     width: 100%;
     .col1 {
       .logo-container {
@@ -58,6 +58,15 @@
     flex-wrap: wrap;
     margin: 85px 0 50px;
     width: 100%;
+    .logo-container {
+      display: flex;
+      align-items: center;
+      width: fit-content;
+      .logo {
+        content: url("../../../assets/othmanlogo.png");
+        width: max(130px, 8vw);
+      }
+    }
     .footer-list {
       margin: 20px 10px;
       width: fit-content;
@@ -65,6 +74,9 @@
         font-size: 18px;
         color: #fff;
         margin-bottom: 7.5%;
+        &:hover {
+          color: #001733;
+        }
       }
       .links {
         display: flex;
@@ -74,7 +86,7 @@
           color: #eee;
           margin: 7.5px 0;
           &:hover {
-            color: #ccc;
+            color: #001733;
           }
         }
       }
@@ -87,6 +99,33 @@
     justify-content: space-between;
     border-bottom: 1px solid rgb(95, 95, 95);
     width: 100%;
+    .second {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      .second {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        div a {
+          backdrop-filter: blur(30px);
+          width: 55px;
+          height: 55px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 25px;
+          color: #fff;
+          border-radius: 5px;
+          &:hover {
+            background: linear-gradient(
+              rgba(255, 255, 255, 0.1),
+              rgba(255, 255, 255, 0.1)
+            );
+          }
+        }
+      }
+    }
     .copyright {
       color: #fff;
       p {
@@ -112,7 +151,7 @@
 }
 
 @media (max-width: 1600px) {
-  .shared-footer {
+  .shared-footer2 {
     .main-row {
       margin: 80px 0 45px;
       .footer-list {
@@ -131,7 +170,7 @@
 }
 
 @media (max-width: 1450px) {
-  .shared-footer {
+  .shared-footer2 {
     background-attachment: fixed;
     padding: 5% 7.5% 2%;
 
@@ -188,42 +227,17 @@
   }
 }
 
-@media (max-width: 1050px) {
-  .shared-footer {
-    background-attachment: unset;
-    padding: 10% 5% 20px;
-
+@media (max-width: 1000px) {
+  .shared-footer2 {
     .row1 {
-      .col1 {
-        width: 100%;
+      .main-row {
+        display: flex;
         .logo-container {
-          justify-content: center;
+          flex-direction: column;
         }
-      }
-    }
-
-    .main-row {
-      margin: 45px 0 25px;
-      justify-content: center;
-      .footer-list {
-        margin: 20px 2%;
-        width: 46%;
-        text-align: center;
-        .links {
-          a {
-            font-size: 13.5px;
-            margin: 5px 0;
-          }
-        }
-      }
-    }
-
-    .last-row {
-      .select-container {
-        p {
-          svg {
-            font-size: 17px;
-          }
+        .footer-list {
+          display: flex;
+          flex-direction: column;
         }
       }
     }
@@ -231,13 +245,10 @@
 }
 
 @media (max-width: 625px) {
-  .shared-footer {
+  .shared-footer2 {
     padding: 20% 5% 20px;
     .row1 {
       flex-direction: column;
-      .col2 {
-        margin-top: 10px;
-      }
     }
 
     .main-row {
@@ -245,7 +256,7 @@
       justify-content: center;
       .footer-list {
         margin: 20px 2%;
-        width: 46%;
+        width: 75%;
         text-align: center;
         .links {
           a {
@@ -271,7 +282,7 @@
 }
 
 @media (max-width: 400px) {
-  .shared-footer {
+  .shared-footer2 {
     .row1 {
       .col1 {
         width: fit-content;

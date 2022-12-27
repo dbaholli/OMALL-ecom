@@ -1,0 +1,110 @@
+.contact-component {
+  display: flex;
+  margin: max(12.5vw, 140px) 0 max(35px, 3vw);
+  width: 100%;
+  padding: 0 5%;
+  .contact-map {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    h1,
+    p {
+      color: #000;
+    }
+  }
+  .contactform-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    background: #fff;
+    width: clamp(1%, 600px, 100%);
+    border-radius: 5px;
+    padding: 30px 0;
+    width: 60%;
+    .contact-form {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      .contact-name-inputs {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        .contactname-container {
+          flex: 0 0 50%;
+          & > * + * {
+            margin-top: 10px;
+          }
+          p {
+            font-size: 14px;
+            color: #323e64;
+          }
+        }
+      }
+      .contact-input-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        p {
+          font-size: 14px;
+          color: #323e64;
+        }
+        .contact-input {
+          width: 100%;
+          border: 1px solid #d8d8d8;
+          display: flex;
+          padding: 7.5px 5px 7.5px 15px;
+          gap: 10px;
+          border-radius: 5px;
+          svg {
+            flex-shrink: 0;
+            font-size: 25px;
+            fill: #7b7b7b;
+            align-self: center;
+          }
+          input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 0 0 0 5px;
+            &::placeholder {
+              font-size: 14px;
+              color: #7b7b7b;
+            }
+          }
+          textarea {
+            border: 1px solid #fff;
+            background: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            color: #7b7b7b;
+            outline: none;
+            &::placeholder {
+              color: #7b7b7b;
+            }
+            &:focus {
+              border: 1px solid #fff;
+            }
+          }
+        }
+        &:focus-within {
+          .contact-input {
+            outline: 2px solid #122e82;
+          }
+        }
+      }
+      input[type="submit"] {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 10px;
+        background-color: #122e82;
+        color: #fff;
+        font-size: 17px;
+        font-weight: 700;
+        padding: 12.5px 0;
+      }
+    }
+  }
+}
