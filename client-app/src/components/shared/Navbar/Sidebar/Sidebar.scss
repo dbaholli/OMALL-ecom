@@ -1,0 +1,127 @@
+.side-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 325px;
+  padding-top: 15px;
+  max-width: 80%;
+  height: 100vh;
+  min-height: 100%;
+  background-color: #fff;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  animation: show 0.3s ease-in-out;
+  &::-webkit-scrollbar {
+    width: 5px !important;
+  }
+  .sidebar-logo {
+    padding: 1em 2em;
+    border-bottom: 1px solid #222e50;
+    .sidebar-icon-title {
+      .sidebar-icon {
+        width: 50px;
+        svg {
+          path {
+            fill: #5784ff;
+          }
+        }
+      }
+      .sidebar-title {
+        font-size: 22px;
+        color: #00081e;
+        font-weight: 600;
+      }
+    }
+    svg {
+      font-size: 25px;
+      color: #5784ff;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+  }
+  .sidebar-links {
+    .navigation-link {
+      border-bottom: 1px solid #222e50;
+      .main-link {
+        padding: 0.75em 2em;
+        svg {
+          color: #00081e;
+          transition: 0.3s;
+        }
+        .mobile-nav-link {
+          a {
+            color: #00081e;
+            transition: 0.3s;
+          }
+          flex: 1;
+        }
+      }
+      &:hover {
+        background-color: #5784ff;
+        .main-link {
+          svg {
+            color: #5784ff;
+          }
+          .mobile-nav-link {
+            a {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+  .sidebar-auth {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 2em;
+    gap: 25px;
+    .auth-navigations {
+      display: flex;
+      justify-content: space-between;
+      .login-link-container {
+        .mobile-login-link {
+          border-radius: 10px;
+          background-color: #5784ff;
+          padding: 0.75em 1.5em;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .side-bar {
+    max-width: unset;
+    width: 100%;
+    .sidebar-logo {
+      .sidebar-icon-title {
+        .sidebar-title {
+          font-size: 13px;
+        }
+      }
+    }
+    .sidebar-auth {
+      .auth-navigations {
+        flex-wrap: wrap;
+        // flex-direction: column;
+        gap: 25px;
+        .login-link-container {
+          align-self: center;
+          width: fit-content;
+        }
+      }
+    }
+  }
+}
+
+@keyframes show {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

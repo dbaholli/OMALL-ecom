@@ -1,53 +1,30 @@
-import React from "react";
-import { FaPinterestSquare } from "react-icons/fa";
-
 export const FooterData = [
   {
-    category: "Category 1",
+    category: "Keni pyetje ?",
     links: [
       {
-        link: "Lorem Ipsum 1",
+        link: "+383 48 05 55 55",
         to: "/",
       },
       {
-        link: "Lorem Ipsum 1",
+        link: "info@othmanhome.com",
         to: "/",
       },
       {
-        link: "Lorem Ipsum 1",
-        to: "/",
-      },
-      {
-        link: "Lorem Ipsum 1",
-        to: "/",
-      },
-      {
-        link: "Lorem Ipsum 1",
+        link: "Central Park, Prishtine",
         to: "/",
       },
     ],
   },
   {
-    category: "Category 1",
+    category: "Llogaria juaj",
     links: [
       {
-        link: "Lorem Ipsum 1",
+        link: "Regjistrohu",
         to: "/",
       },
       {
-        link: "Lorem Ipsum 1",
-        to: "/",
-      },
-      {
-        link: "Lorem Ipsum 1",
-        to: "/",
-      },
-      {
-        link: "Lorem Ipsum 1",
-        to: "/",
-      },
-      {
-        link: "Lorem Ipsum 1",
+        link: "Kyqu",
         to: "/",
       },
     ],
