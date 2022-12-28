@@ -11,6 +11,7 @@ import Footer3 from "./components/shared/Footer/Footer3";
 const App = () => {
   return (
     <div className='app'>
+      <Nav />
       <Router>
         <Nav />
         <Routes>
@@ -21,6 +22,7 @@ const App = () => {
         {/* <Footer /> */}
         <Footer3 />
       </Router>
+      <Footer />
     </div>
   );
 };
