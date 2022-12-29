@@ -8,6 +8,7 @@ import Nav from "./components/shared/Navbar/Nav";
 import Footer from "./components/shared/Footer/Footer";
 import Footer3 from "./components/shared/Footer/Footer3";
 import FaqPage from "./pages/FAQ/FaqPage";
+import TermsPage from "./pages/Terms/TermsPage";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route exact path='/produkti/:id' element={<ProductPage />} />
           <Route exact path='/kontakto' element={<ContactPage />} />
           <Route exact path='/faq' element={<FaqPage />} />
+          <Route exact path='/termat' element={<TermsPage />} />
         </Routes>
         {/* <Footer /> */}
         <Footer3 />

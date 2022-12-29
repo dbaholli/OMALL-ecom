@@ -1,0 +1,13 @@
+.terms-page .terms-component {
+  display: flex;
+  flex-direction: column;
+  .terms-header {
+    margin: 2.5% 0;
+    font-weight: 500;
+  }
+  .terms-paragraph {
+    font-weight: 500;
+    font-size: max(0.8rem, 0.9vw);
+    line-height: 1.7;
+  }
+}

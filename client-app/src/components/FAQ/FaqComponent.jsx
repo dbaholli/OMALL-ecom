@@ -5,7 +5,7 @@ import "./styles/_faq-style.scss";
 
 const FaqComponent = () => {
   return (
-    <div className='faq-component'>
+    <div className='component-layout faq-component'>
       <h1 className='header-text'>Pyetjet e shpeshta</h1>
       <div className='faq-container'>
         {faqData.map((fData, i) => {
