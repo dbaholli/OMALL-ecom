@@ -14,7 +14,7 @@
       }
     }
     .product-info {
-      border: 1px solid black;
+      // border: 1px solid black;
       padding: 20px 30px;
       width: 60%;
       display: flex;
@@ -22,19 +22,28 @@
       align-items: flex-start;
       flex-wrap: wrap;
       gap: 10px;
-      .product-title {
-        font-weight: unset;
-      }
       .product-desc {
         line-height: 1.6;
         font-weight: unset;
       }
       .product-price {
+        border-radius: 10px;
+        padding: 10px 15px;
+        background-color: hsl(225, 100%, 98%);
         span {
-          color: #000;
+          color: hsl(224, 23%, 55%);
+          font-weight: 500;
         }
         color: green;
       }
+    }
+    .pay-btn {
+      outline: none;
+      border: none;
+      color: hsl(0, 0%, 100%);
+      background-color: hsl(158, 36%, 37%);
+      border-radius: 10px;
+      padding: 15px 40px;
     }
   }
 }
