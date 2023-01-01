@@ -9,6 +9,7 @@ import Footer from "./components/shared/Footer/Footer";
 import Footer3 from "./components/shared/Footer/Footer3";
 import FaqPage from "./pages/FAQ/FaqPage";
 import TermsPage from "./pages/Terms/TermsPage";
+import SecurityPage from "./pages/Security/SecurityPage";
 
 const App = () => {
   return (
@@ -21,12 +22,13 @@ const App = () => {
           <Route exact path='/kontakto' element={<ContactPage />} />
           <Route exact path='/faq' element={<FaqPage />} />
           <Route exact path='/termat' element={<TermsPage />} />
+          <Route exact path='/siguria' element={<SecurityPage />} />
         </Routes>
-        {/* <Footer /> */}
-        <Footer3 />
+        <Footer />
+        {/* <Footer3 /> */}
       </Router>
     </div>
   );
-};
+};  
 
 export default App;
