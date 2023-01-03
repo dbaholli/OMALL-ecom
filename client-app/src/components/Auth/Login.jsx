@@ -1,19 +1,32 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { AiOutlineMail } from "react-icons/ai";
 import { BiLock } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import "./styles/login.scss";
-import Backdrop from "../shared/Navbar/Backdrop/Backdrop";
-import Register from "./Register";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
-  const handleSubmit = (event) => {
+
+  let navigate = useNavigate();
+
+  const handleLogin = async (event) => {
     event.preventDefault();
-    console.log("Login submitted");
+    const response = await axios
+      .post("http://127.0.0.1:8000/token/", {
+        username: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response.data);
+        localStorage.setItem("user", response.data.access);
+        navigate("/llogaria");
+      })
+      .catch((error) => {
+        console.log("handleLogin error: ", error);
+      });
   };
 
   return (
@@ -25,18 +38,18 @@ const Login = (props) => {
             <CgClose onClick={props.click} />
           </div>
         </div>
-        <form className='log-in-form' onSubmit={handleSubmit}>
+        <form className='log-in-form' onSubmit={handleLogin}>
           <div className='login-input-container'>
-            <label htmlFor='email'>
+            <label htmlFor='name'>
               <p>Email</p>
             </label>
             <div className='login-input'>
-              <label htmlFor='email'>
+              <label htmlFor='name'>
                 <AiOutlineMail />
               </label>
               <input
-                id='email'
-                type='email'
+                id='name'
+                type='name'
                 placeholder='Enter your email address'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
