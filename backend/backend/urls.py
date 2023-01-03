@@ -5,6 +5,7 @@ from search import views as search_views
 from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
+import users
 
 from .api import api_router
 
@@ -18,11 +19,9 @@ urlpatterns = [
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
-    # path("signup/", include("users.urls")),
-    path("/login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("token/refresh/", TokenRefreshView.as_view(), name='token_refresh'),
-
+    path("register/", include("users.urls")),
+    path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ]
 
 
@@ -35,6 +34,6 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns = urlpatterns + [
-    path('api/v2/', api_router.urls),
+    path("api/v2/", api_router.urls),
     path("", include(wagtailadmin_urls)),
 ]
