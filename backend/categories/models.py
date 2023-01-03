@@ -12,14 +12,14 @@ class Categories(Page):
     updated_at = models.DateTimeField(auto_now=True)
 
     name = models.TextField()
-    icon = models.ImageField(default='')
+    icon = models.ImageField(default="")
 
     content_panels = Page.content_panels + [
         FieldPanel("name"),
         FieldPanel("icon"),
     ]
 
-    apifields = [
+    api_fields = [
         APIField("uuid_category"),
         APIField("created_at"),
         APIField("updated_at"),
