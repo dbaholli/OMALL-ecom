@@ -10,9 +10,7 @@ from wagtail.images.api.v2.views import ImagesAPIViewSet
 
 
 class CustomAPIEndpoint(PagesAPIViewSet):
-    """
-    Our custom Pages API endpoint that allows finding pages by pk or slug
-    """
+    """Our custom Pages API endpoint that allows finding pages by pk or slug"""
 
     def detail_view(self, request, pk=None, slug=None):
         param = pk
@@ -31,9 +29,7 @@ class CustomAPIEndpoint(PagesAPIViewSet):
 
     @classmethod
     def get_urlpatterns(cls):
-        """
-        This returns a list of URL patterns for the endpoint
-        """
+        """ This returns a list of URL patterns for the endpoint"""
         return [
             path('', cls.as_view({'get': 'listing_view'}), name='listing'),
             path('<slug:slug>/', cls.as_view({'get': 'detail_view'}), name='detail'),

@@ -6,5 +6,6 @@ from rest_framework_simplejwt.views import (
 from users.views import *
 
 urlpatterns = [
-    path('', user_get_or_create, name='user_get_create'),
+    path('', user_create, name='user_get_create'),
+    path("edit/<pk>",  user_update_or_delete, name='user_get_create')
 ]
