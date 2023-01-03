@@ -10,6 +10,7 @@ import Footer3 from "./components/shared/Footer/Footer3";
 import FaqPage from "./pages/FAQ/FaqPage";
 import TermsPage from "./pages/Terms/TermsPage";
 import SecurityPage from "./pages/Security/SecurityPage";
+import ProfilePage from "./pages/Profile/ProfilePage";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Nav />
         <Routes>
           <Route exact path='/' element={<HomePage />} />
+          <Route exact path='/llogaria' element={<ProfilePage />} />
           <Route exact path='/produkti/:id' element={<ProductPage />} />
           <Route exact path='/kontakto' element={<ContactPage />} />
           <Route exact path='/faq' element={<FaqPage />} />
@@ -29,6 +31,6 @@ const App = () => {
       </Router>
     </div>
   );
-};  
+};
 
 export default App;
