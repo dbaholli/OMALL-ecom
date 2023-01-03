@@ -2,71 +2,94 @@ import random
 import time
 import uuid
 
-# Create your models here.
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.urls import reverse
-from django.utils import timezone
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.api import APIField
 from wagtail.snippets.models import register_snippet
 
 
-# Create your models here.
+class UserManager(UserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        """Creates and saves a User with the given email and password."""
+        if not email:
+            raise ValueError("Users must have an email address")
+        email = email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        extra_fields.setdefault("username", email)
+        user.set_password(password)
+        user.save()
+        return user
+
+    def create_staffuser(self, email, password, **extra_fields):
+        """Creates and saves a staff user with the given email and password."""
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_active", True)
+        extra_fields.setdefault("username", email)
+        return self.create_user(email, password, **extra_fields)
+
+    def create_superuser(self, email, password, **extra_fields):
+        """Creates and saves a superuser with the given email and password."""
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("is_active", True)
+        extra_fields.setdefault("username", email)
+        return self.create_user(email, password, **extra_fields)
+
+
 @register_snippet
-class UserProfiles(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    userid = models.BigAutoField(primary_key=True)
-    uuiduser = models.UUIDField(default=uuid.uuid4, editable=False)
+class CustomUser(AbstractUser):
+    user_id = models.BigAutoField(primary_key=True)
+    uuid_user = models.UUIDField(default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
-    name = models.TextField()
-    surname = models.TextField()
-    email = models.TextField()
-    address = models.TextField()
-    city = models.TextField()
-    state = models.TextField()
-    phone_number = models.CharField(max_length=15)
+    email = models.TextField(verbose_name="email address", max_length=255, unique=True)
+    address = models.TextField( blank=True)
+    city = models.TextField( blank=True)
+    state = models.TextField (blank=True)
+    phone_number = models.CharField(max_length=15, blank=True)
 
-    active = models.BooleanField(editable=False, null=True)
+    is_active = models.BooleanField(null=True)
+    is_superuser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+
+    USERNAME_FIELD = "email"
+    EMAIL_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    objects = UserManager()
 
     panels = [
-        FieldPanel('user'),
-        FieldPanel('userid'),
-        FieldPanel('name'),
-        FieldPanel('surname'),
-        FieldPanel('email'),
-        FieldPanel('address'),
-        FieldPanel('city'),
-        FieldPanel('state'),
-        FieldPanel('phone_number')
-
+        FieldPanel("user_id"),
+        FieldPanel("first_name"),
+        FieldPanel("last_name"),
+        FieldPanel("email"),
+        FieldPanel("address"),
+        FieldPanel("city"),
+        FieldPanel("state"),
+        FieldPanel("phone_number"),
+        FieldPanel("is_active"),
+        FieldPanel("is_superuser"),
+        FieldPanel("is_staff"),
     ]
 
     apifields = [
-        APIField('user'),
-        APIField('userid'),
-        APIField('name'),
-        APIField('surname'),
-        APIField('email'),
-        APIField('address'),
-        APIField('city'),
-        APIField('state'),
-        APIField('phone_number')
+        APIField("first_name"),
+        APIField("last_name"),
+        APIField("email"),
+        APIField("address"),
+        APIField("city"),
+        APIField("state"),
+        APIField("phone_number"),
+        APIField("is_active"),
+        APIField("is_superuser"),
+        APIField("is_staff"),
     ]
 
     class Meta:
-        verbose_name = "profile"
-        verbose_name_plural = "profiles"
-        
+        verbose_name = "user"
+        verbose_name_plural = "users"
+
     def __str__(self):
-        return str(self.user)
-
-    def get_absolute_url(self):
-        return reverse("profiles_detail", args=(self.userid))
-
-    def get_absolute_url(self):
-        return reverse("profiles_update", args=(self.userid))
+        return str(self.email)
