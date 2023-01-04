@@ -9,7 +9,7 @@
   z-index: 2000;
   box-shadow: rgba(60, 64, 67, 0.25) 0px 1px 3px 0px,
     rgba(60, 64, 67, 0.125) 0px 2px 6px 2px;
-    background-color: #373435;
+  background-color: #373435;
   .navbar-content {
     padding: 0 12.5%;
     display: flex;
@@ -38,6 +38,11 @@
           font-size: max(0.85rem, 1vw);
           color: #fff;
           position: relative;
+        }
+        &:hover {
+          .navbar-megamenu {
+            display: block;
+          }
         }
       }
       .nav-link-actions {
