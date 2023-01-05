@@ -1,32 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { AiOutlineMail } from "react-icons/ai";
 import { BiLock } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
+import { login } from "../../actions/userAction";
 import "./styles/login.scss";
 
 const Login = (props) => {
+  console.log("props: ", props);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { error, loading, userInfo } = userLogin;
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    const response = await axios
-      .post("http://127.0.0.1:8000/token/", {
-        username: email,
-        password: password,
-      })
-      .then((response) => {
-        console.log(response.data);
-        localStorage.setItem("user", response.data.access);
-        navigate("/llogaria");
-      })
-      .catch((error) => {
-        console.log("handleLogin error: ", error);
-      });
+    dispatch(login(email, password))
   };
 
   return (

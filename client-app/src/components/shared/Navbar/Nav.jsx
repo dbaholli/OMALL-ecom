@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BsPersonCircle, BsFillCartFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import "./nav.scss";
 import "../styles/shared-styles.scss";
 import "./Megamenus/_megamenu-style.scss";
@@ -18,6 +19,9 @@ const Nav = (props) => {
   const [isSticky, setIsSticky] = useState(false);
   const [modal, setShowModal] = useState(false);
   const [register, setRegister] = useState(false);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  console.log("USER: ", userLogin)
 
   const showSidebar = () => {
     setSidebar(!sidebar);

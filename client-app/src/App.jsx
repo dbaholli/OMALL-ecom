@@ -6,7 +6,6 @@ import ContactPage from "./pages/ContactUs/Contact";
 import "./App.scss";
 import Nav from "./components/shared/Navbar/Nav";
 import Footer from "./components/shared/Footer/Footer";
-import Footer3 from "./components/shared/Footer/Footer3";
 import FaqPage from "./pages/FAQ/FaqPage";
 import TermsPage from "./pages/Terms/TermsPage";
 import SecurityPage from "./pages/Security/SecurityPage";
