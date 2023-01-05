@@ -16,6 +16,7 @@
     width: 5px !important;
   }
   .sidebar-logo {
+<<<<<<< HEAD
     border-bottom: 1px solid #222e50;
     padding: 15px 25px;
     .sidebar-icon-title {
@@ -28,6 +29,30 @@
         width: max(75px, 1vw);
         content: url("../../../../assets/othmanlogo.png");
       }
+=======
+    padding: 1em 2em;
+    border-bottom: 1px solid #222e50;
+    .sidebar-icon-title {
+      .sidebar-icon {
+        width: 50px;
+        svg {
+          path {
+            fill: #5784ff;
+          }
+        }
+      }
+      .sidebar-title {
+        font-size: 22px;
+        color: #00081e;
+        font-weight: 600;
+      }
+    }
+    svg {
+      font-size: 25px;
+      color: #5784ff;
+      cursor: pointer;
+      flex-shrink: 0;
+>>>>>>> 9b428a5 (Merge branch 'main' into feature/productdetails-frontend-15)
     }
   }
   .sidebar-links {
@@ -48,7 +73,11 @@
         }
       }
       &:hover {
+<<<<<<< HEAD
         background-color: #222e50;
+=======
+        background-color: #5784ff;
+>>>>>>> 9b428a5 (Merge branch 'main' into feature/productdetails-frontend-15)
         .main-link {
           svg {
             color: #5784ff;
@@ -73,7 +102,11 @@
       .login-link-container {
         .mobile-login-link {
           border-radius: 10px;
+<<<<<<< HEAD
           background-color: #222e50;
+=======
+          background-color: #5784ff;
+>>>>>>> 9b428a5 (Merge branch 'main' into feature/productdetails-frontend-15)
           padding: 0.75em 1.5em;
           color: #fff;
         }

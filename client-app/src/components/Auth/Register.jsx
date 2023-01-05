@@ -7,6 +7,10 @@ import {
 } from "react-icons/ai";
 import { BiLock } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
+<<<<<<< HEAD
+=======
+import Backdrop from "../shared/Navbar/Backdrop/Backdrop";
+>>>>>>> 9b428a5 (Merge branch 'main' into feature/productdetails-frontend-15)
 
 const Register = (props) => {
   const [email, setEmail] = useState("");
@@ -22,9 +26,18 @@ const Register = (props) => {
       <div className='log-in-form-container-content'>
         <div className='form-title-description-container'>
           <div className='login-title'>
+<<<<<<< HEAD
             <h6 className='form-title'>Regjistrohu</h6>
             <CgClose onClick={props.click} />
           </div>
+=======
+            <h6 className='form-title'>Register</h6>
+            <CgClose onClick={props.click} />
+          </div>
+          <p className='form-description'>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </p>
+>>>>>>> 9b428a5 (Merge branch 'main' into feature/productdetails-frontend-15)
         </div>
         <form className='log-in-form' onSubmit={handleSubmit}>
           <div className='login-input-container'>

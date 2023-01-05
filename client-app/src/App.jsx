@@ -15,7 +15,6 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 const App = () => {
   return (
     <div className='app'>
-      <Nav />
       <Router>
         <Nav />
         <Routes>
@@ -30,7 +29,6 @@ const App = () => {
         <Footer />
         {/* <Footer3 /> */}
       </Router>
-      <Footer />
     </div>
   );
 };
