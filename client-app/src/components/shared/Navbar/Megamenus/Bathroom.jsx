@@ -27,7 +27,7 @@ const BathroomData = [
 
 const BathroomMegamenu = () => {
   return (
-    <div className='navbar-megamenu hotelline-megamenu'>
+    <div className='navbar-megamenu bathroom-megamenu'>
       <div className='menu-links'>
         <h1 className='paragraph-text megamenu-title'>Banjo</h1>
         {BathroomData.map((bData) => {

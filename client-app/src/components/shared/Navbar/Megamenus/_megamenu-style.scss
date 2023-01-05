@@ -23,6 +23,7 @@
     justify-content: center;
     margin-right: 15px;
     .icon {
+      height: 20px;
       span {
         svg {
           fill: red;
@@ -39,13 +40,14 @@
   }
 }
 .navbar .hotelline-megamenu {
-  width: 600px;
-  left: -50px;
+  width: 500px;
+  left: 0px;
   .menu-links {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     width: 100%;
     padding: 10px;
+
     .megamenu-title {
       width: 25%;
       grid-column: 1 / -1;
@@ -54,7 +56,7 @@
       position: relative;
       display: flex;
       align-items: center;
-      
+      justify-content: center;
       &:hover {
         &::after {
           right: 0;
@@ -74,53 +76,29 @@
       }
       .megamenu-item-title {
         font-size: max(1rem, 1vw);
-      }
-      .icon-container {
-        .icon {
-          svg {
-            path,
-            rect,
-            circle {
-              transition: 0.3s;
-            }
-          }
-        }
-      }
-      &:hover {
-        .icon-container {
-          .icon {
-            svg {
-              path,
-              rect,
-              circle {
-                fill: #323e64;
-              }
-            }
-          }
-        }
+        font-weight: 500;
       }
     }
   }
 }
 
-.navbar .business-megamenu {
-  width: 850px;
-  left: -100px;
+.navbar .bathroom-megamenu {
+  width: 600px;
+  left: -150px;
   .menu-links {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     width: 100%;
-    h1 {
-      display: flex;
-      font-size: 17px;
-      font-weight: 600;
-      color: #999fb1;
+    padding: 10px;
+    .megamenu-title {
+      width: 25%;
       grid-column: 1 / -1;
-      padding: 10px 25px;
     }
     .megamenu-link {
       position: relative;
-      margin: 3% 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       &:hover {
         &::after {
           right: 0;
@@ -138,303 +116,10 @@
         transition: all 0.3s;
         border-radius: 100vh;
       }
-      .icon-container {
-        .icon {
-          svg {
-            path,
-            rect,
-            circle {
-              transition: 0.3s;
-            }
-          }
-        }
-      }
-      &:hover {
-        .icon-container {
-          .icon {
-            svg {
-              path,
-              rect,
-              circle {
-                fill: #323e64;
-              }
-            }
-          }
-        }
+      .megamenu-item-title {
+        font-size: max(1rem, 1vw);
+        font-weight: 500;
       }
     }
-    .megamenu-button {
-      grid-column: 1 / -1;
-      margin: 10px auto;
-      color: white;
-      background-color: #416aff;
-      padding: 12.5px 32.5px;
-      border-radius: 18px;
-      cursor: pointer;
-      &:hover {
-        animation: pulse-white 0.8s ease-in-out;
-      }
-      font-weight: 600;
-    }
-  }
-  .link-cont1 {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0 15px;
-    a {
-      color: #315dfc;
-      text-decoration: underline;
-      font-size: 17px;
-      font-weight: 600;
-    }
-  }
-}
-
-.navbar .apps-megamenu {
-  width: 850px;
-  left: -250px;
-  .menu-links {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    width: 100%;
-    h1 {
-      display: flex;
-      font-size: 17px;
-      font-weight: 600;
-      color: #999fb1;
-      grid-column: 1 / -1;
-      padding: 10px 25px;
-    }
-    .megamenu-link {
-      position: relative;
-      margin: 3% 0;
-      &:hover {
-        &::after {
-          right: 0;
-          left: 0;
-        }
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        right: 50%;
-        height: 4px;
-        background-color: #323e64;
-        transition: all 0.3s;
-        border-radius: 100vh;
-      }
-      .icon-container {
-        .icon {
-          svg {
-            path,
-            rect,
-            circle {
-              transition: 0.3s;
-            }
-          }
-        }
-      }
-      &:hover {
-        .icon-container {
-          .icon {
-            svg {
-              path,
-              rect,
-              circle {
-                fill: #323e64;
-              }
-            }
-          }
-        }
-      }
-    }
-    .megamenu-button {
-      grid-column: 1 / -1;
-      margin: 10px auto;
-      color: white;
-      background-color: #416aff;
-      padding: 12.5px 32.5px;
-      border-radius: 18px;
-      cursor: pointer;
-      &:hover {
-        animation: pulse-white 0.8s ease-in-out;
-      }
-      font-weight: 600;
-    }
-  }
-  .link-cont1 {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0 15px;
-    a {
-      color: #315dfc;
-      text-decoration: underline;
-      font-size: 17px;
-      font-weight: 600;
-    }
-  }
-}
-
-.navbar .about-megamenu {
-  width: 850px;
-  left: -250px;
-  .menu-links {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    width: 100%;
-    h1 {
-      display: flex;
-      font-size: 17px;
-      font-weight: 600;
-      color: #999fb1;
-      grid-column: 1 / -1;
-      padding: 10px 25px;
-    }
-    .megamenu-link {
-      position: relative;
-      margin: 3% 0;
-      &:hover {
-        &::after {
-          right: 0;
-          left: 0;
-        }
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        right: 50%;
-        height: 4px;
-        background-color: #323e64;
-        transition: all 0.3s;
-        border-radius: 100vh;
-      }
-      .icon-container {
-        .icon {
-          svg {
-            path,
-            rect,
-            circle {
-              transition: 0.3s;
-            }
-          }
-        }
-      }
-      &:hover {
-        .icon-container {
-          .icon {
-            svg {
-              path,
-              rect,
-              circle {
-                fill: #323e64;
-              }
-            }
-          }
-        }
-      }
-    }
-    .megamenu-button {
-      grid-column: 1 / -1;
-      margin: 10px auto;
-      color: white;
-      background-color: #416aff;
-      padding: 12.5px 32.5px;
-      border-radius: 18px;
-      cursor: pointer;
-      &:hover {
-        animation: pulse-white 0.8s ease-in-out;
-      }
-      font-weight: 600;
-    }
-  }
-  .link-cont1 {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0 15px;
-    a {
-      color: #315dfc;
-      text-decoration: underline;
-      font-size: 17px;
-      font-weight: 600;
-    }
-  }
-}
-
-//consumer megamenu mediaqueries
-@media (max-width: 1620px) {
-  .navbar .consumer-megamenu {
-    width: 1300px;
-    left: -255px;
-  }
-}
-
-@media (max-width: 1420px) {
-  .navbar .consumer-megamenu {
-    left: -315px;
-  }
-}
-
-@media (max-width: 1310px) {
-  .navbar .consumer-megamenu {
-    width: 1200px;
-    left: -250px;
-    .menu-links {
-      .megamenu-link {
-        .block {
-          h6 {
-            font-size: 15px;
-          }
-          p {
-            font-size: 14px;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 1235px) {
-  .navbar .consumer-megamenu {
-    width: 1150px;
-    left: -240px;
-  }
-}
-
-//business megamenu mediaqueries
-@media (max-width: 1495px) {
-  .navbar .business-megamenu {
-    width: 800px;
-  }
-}
-
-//apps megamenu mediaqueries
-@media (max-width: 1400px) {
-  .navbar .apps-megamenu {
-    width: 750px;
-  }
-}
-
-//about megamenu mediaqueries
-@media (max-width: 1790px) {
-  .navbar .about-megamenu {
-    left: -300px;
-  }
-}
-
-@media (max-width: 1615px) {
-  .navbar .about-megamenu {
-    width: 800px;
-    left: -350px;
-  }
-}
-
-@media (max-width: 1380px) {
-  .navbar .about-megamenu {
-    width: 750px;
-    left: -420px;
   }
 }

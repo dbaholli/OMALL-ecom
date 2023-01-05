@@ -21,65 +21,62 @@ const Sidebar = (props) => {
   return (
     <div style={{ zIndex: props.zIndex }} className='side-bar'>
       <div className='sidebar-logo inline spread'>
-          <Link className='sidebar-title' to='/'>
-            Othman Home
+        <div className='sidebar-icon-title'>
+          <Link to='/' className='inline'>
+            {/* <div className='sidebar-icon' />
+             */}
+            <p className='paragraph-text sidebar-text'>Othman Home</p>
           </Link>
+        </div>
         <CgClose onClick={props.click} />
       </div>
       <div className='sidebar-links'>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Pjata</Link>
+              <Link to={"/hotel-line"}>Hotel Line</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Sete</Link>
+              <Link to={"/sete"}>Sete</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Jastake</Link>
+              <Link to={"/jastake"}>Jastake</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Peshqira</Link>
+              <Link to={"/banjo"}>Banjo</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Banjo</Link>
+              <Link to={"/cajniket"}>Cajniket</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Batanije</Link>
+              <Link to={"/mbulesa"}>Mbulesa</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Mbulesa</Link>
-            </p>
-          </div>
-        </div>
-        <div className='navigation-link '>
-          <div className='main-link inline spread'>
-            <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Dysheka</Link>
+              <Link to={"/dysheka"}>Dysheka</Link>
             </p>
           </div>
         </div>
