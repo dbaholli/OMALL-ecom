@@ -124,7 +124,7 @@ const Nav = (props) => {
             <Link>
               <BsPersonCircle />
               {userInfo ? (
-                <Link onClick={() => setDropdown(true)}>{userInfo}</Link>
+                <Link onClick={() => setDropdown(true)}>{userInfo.access}</Link>
               ) : (
                 <Link onClick={() => setShowModal(true)}>Kyqu</Link>
               )}
