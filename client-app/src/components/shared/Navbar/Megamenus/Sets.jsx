@@ -24,10 +24,10 @@ const SetMegamenu = () => {
   return (
     <div className='navbar-megamenu hotelline-megamenu'>
       <div className='menu-links'>
-        <h1 className="paragraph-text megamenu-title">Seti</h1>
-        {SetsData.map((sData) => {
+        <h1 className='paragraph-text megamenu-title'>Seti</h1>
+        {SetsData.map((sData, i) => {
           return (
-            <Link to={sData.to} className='megamenu-link'>
+            <Link to={sData.to} key={i} className='megamenu-link'>
               <div className='icon-container'>
                 <div className='icon'>{sData.icon}</div>
               </div>

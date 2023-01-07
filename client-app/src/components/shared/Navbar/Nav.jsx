@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsPersonCircle, BsFillCartFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import "./nav.scss";
@@ -13,15 +13,24 @@ import HotelLineMegamenu from "./Megamenus/HotelLine";
 import SetMegamenu from "./Megamenus/Sets";
 import BathroomMegamenu from "./Megamenus/Bathroom";
 import PotsMegamenu from "./Megamenus/Pots";
+import Dropdown from "../Dropdown/Dropdown";
 
 const Nav = (props) => {
   const [sidebar, setSidebar] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [modal, setShowModal] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
   const [register, setRegister] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
-  console.log("USER: ", userLogin)
+  const { userInfo } = userLogin;
+  console.log("USER: ", userLogin);
+
+  let navigate = useNavigate();
+
+  const showDropdown = () => {
+    setDropdown(!dropdown);
+  };
 
   const showSidebar = () => {
     setSidebar(!sidebar);
@@ -112,11 +121,17 @@ const Nav = (props) => {
             </Link>
           </div>
           <div className='nav-link-actions actions-link '>
-            <Link onClick={() => setShowModal(true)}>
+            <Link>
               <BsPersonCircle />
+              {userInfo ? (
+                <Link onClick={() => setDropdown(true)}>{userInfo}</Link>
+              ) : (
+                <Link onClick={() => setShowModal(true)}>Kyqu</Link>
+              )}
             </Link>
             <Link>
               <BsFillCartFill />
+              <p>Shporta</p>
             </Link>
           </div>
         </div>
@@ -127,6 +142,12 @@ const Nav = (props) => {
         </div>
       </div>
 
+      {dropdown && <Dropdown setDropdown={showDropdown} zIndex={zIndex} />}
+
+      {modal && (
+        <Backdrop click={() => setDropdown(!dropdown)} zIndex={zIndex - 1} />
+      )}
+
       {modal && (
         <Login
           setRegisterModal={showRegisterModal}
@@ -134,6 +155,7 @@ const Nav = (props) => {
           zIndex={zIndex}
         />
       )}
+
       {modal && (
         <Backdrop click={() => setShowModal(!modal)} zIndex={zIndex - 1} />
       )}

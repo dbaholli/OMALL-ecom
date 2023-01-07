@@ -30,9 +30,9 @@ const BathroomMegamenu = () => {
     <div className='navbar-megamenu bathroom-megamenu'>
       <div className='menu-links'>
         <h1 className='paragraph-text megamenu-title'>Banjo</h1>
-        {BathroomData.map((bData) => {
+        {BathroomData.map((bData, i) => {
           return (
-            <Link to={bData.to} className='megamenu-link'>
+            <Link to={bData.to} key={i} className='megamenu-link'>
               <div className='icon-container'>
                 <div className='icon'>{bData.icon}</div>
               </div>

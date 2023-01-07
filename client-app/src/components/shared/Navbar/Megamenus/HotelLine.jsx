@@ -24,10 +24,10 @@ const HotelLineMegamenu = () => {
   return (
     <div className='navbar-megamenu hotelline-megamenu'>
       <div className='menu-links'>
-        <h1 className="paragraph-text megamenu-title">Hotel Line</h1>
-        {HotelLineData.map((hData) => {
+        <h1 className='paragraph-text megamenu-title'>Hotel Line</h1>
+        {HotelLineData.map((hData, i) => {
           return (
-            <Link to={hData.to} className='megamenu-link'>
+            <Link to={hData.to} key={i} className='megamenu-link'>
               <div className='icon-container'>
                 <div className='icon'>{hData.icon}</div>
               </div>

@@ -9,7 +9,6 @@ import { login } from "../../actions/userAction";
 import "./styles/login.scss";
 
 const Login = (props) => {
-  console.log("props: ", props);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
