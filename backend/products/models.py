@@ -50,6 +50,7 @@ class Product(Page):
         APIField("created_at"),
         APIField("updated_at"),
         APIField("description"),
+        APIField("image"),
         APIField("price"),
         APIField("currency"),
         APIField("category"),
