@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from users.serializer import UserProfileSerializer
-from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from users.serializer import UserProfileSerializer
+
 from .models import CustomUser
 
-# # Create your views here.
 
 @api_view(['POST'])
 def user_create(request):
@@ -18,7 +18,6 @@ def user_create(request):
     
 @api_view(['GET', 'PUT', 'DELETE'])
 def user_update_or_delete(request, pk):
-    print(CustomUser.objects.get(pk=pk))
     try:
         user = CustomUser.objects.get(pk=pk)
     except CustomUser.DoesNotExist:
@@ -26,12 +25,12 @@ def user_update_or_delete(request, pk):
 
     if request.method == 'GET':
         serializer = UserProfileSerializer(user)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'PUT':
         serializer = UserProfileSerializer(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
         user.delete()
