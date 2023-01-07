@@ -45,15 +45,9 @@ class CustomUser(AbstractUser):
     updated_at = models.DateTimeField(auto_now=True)
 
     email = models.TextField(verbose_name="email address", max_length=255, unique=True)
-<<<<<<< HEAD
     address = models.TextField(blank=True)
     city = models.TextField(blank=True)
     state = models.TextField(blank=True)
-=======
-    address = models.TextField( blank=True)
-    city = models.TextField( blank=True)
-    state = models.TextField (blank=True)
->>>>>>> main
     phone_number = models.CharField(max_length=15, blank=True)
 
     is_active = models.BooleanField(null=True)
@@ -80,11 +74,7 @@ class CustomUser(AbstractUser):
         FieldPanel("is_staff"),
     ]
 
-<<<<<<< HEAD
     api_fields = [
-=======
-    apifields = [
->>>>>>> main
         APIField("first_name"),
         APIField("last_name"),
         APIField("email"),

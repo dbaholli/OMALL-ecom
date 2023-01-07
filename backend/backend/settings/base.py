@@ -16,6 +16,8 @@ INSTALLED_APPS = [
     "products",
     "search",
     "users",
+    "contact_us",
+    
     # Wagtail apps
     'wagtail.api.v2',
     "wagtail.contrib.modeladmin",
