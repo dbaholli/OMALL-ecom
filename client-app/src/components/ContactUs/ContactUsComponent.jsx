@@ -48,7 +48,7 @@ const ContactUsComponent = () => {
                     required
                     type='text'
                     id='first-name'
-                    placeholder='Enter your first name'
+                    placeholder='Shkruani emrin tuaj'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
@@ -67,7 +67,7 @@ const ContactUsComponent = () => {
                   required
                   type='text'
                   id='last-name'
-                  placeholder='Enter your last name'
+                  placeholder='Shkruani mbiemrin tuaj'
                   value={lastname}
                   onChange={(e) => setLastName(e.target.value)}
                 />
@@ -86,7 +86,7 @@ const ContactUsComponent = () => {
                 required
                 id='email'
                 type='email'
-                placeholder='Shkruaj email adresen tuaj'
+                placeholder='Shkruani email adresen tuaj'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -104,7 +104,7 @@ const ContactUsComponent = () => {
                 required
                 id='number'
                 type='tel'
-                placeholder='Shkruaj numrin tuaj mobil'
+                placeholder='Shkruani numrin tuaj mobil'
                 value={mobileNumber}
                 onChange={(e) => setMobileNumber(e.target.value)}
               />
@@ -122,13 +122,13 @@ const ContactUsComponent = () => {
                 required
                 id='message'
                 type='text'
-                placeholder='Shkruaj mesazhin tuaj'
+                placeholder='Shkruani mesazhin tuaj'
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               ></textarea>
             </div>
           </div>
-          <input type='submit' value='Dergo mesazhin' />
+          <input type='submit' value='DERGO MESAZHIN' />
         </form>
       </div>
     </div>

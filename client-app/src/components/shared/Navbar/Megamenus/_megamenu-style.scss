@@ -1,0 +1,125 @@
+.navbar .navbar-megamenu {
+  position: absolute;
+  background: #fff;
+  display: block;
+  border: 1px solid #eee;
+  box-shadow: 0 0 15px 3px rgba(#707070, 0.4);
+  overflow: hidden;
+  top: 55px;
+  padding: 15px 10px;
+  display: none;
+}
+
+.navbar .megamenu-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 12.5px;
+  border-radius: 7.5px;
+  .icon-container {
+    border-radius: 50%;
+    border: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    .icon {
+      height: 20px;
+      span {
+        svg {
+          fill: red;
+          color: red;
+        }
+      }
+    }
+  }
+  .block {
+    flex: 1;
+  }
+  h6 {
+    color: #14213d;
+  }
+}
+.navbar .hotelline-megamenu {
+  width: 500px;
+  left: 0px;
+  .menu-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    padding: 10px;
+
+    .megamenu-title {
+      width: 25%;
+      grid-column: 1 / -1;
+    }
+    .megamenu-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        &::after {
+          right: 0;
+          left: 0;
+        }
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        right: 50%;
+        height: 4px;
+        background-color: #323e64;
+        transition: all 0.3s;
+        border-radius: 100vh;
+      }
+      .megamenu-item-title {
+        font-size: max(1rem, 1vw);
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.navbar .bathroom-megamenu {
+  width: 600px;
+  left: -150px;
+  .menu-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    padding: 10px;
+    .megamenu-title {
+      width: 25%;
+      grid-column: 1 / -1;
+    }
+    .megamenu-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        &::after {
+          right: 0;
+          left: 0;
+        }
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        right: 50%;
+        height: 4px;
+        background-color: #323e64;
+        transition: all 0.3s;
+        border-radius: 100vh;
+      }
+      .megamenu-item-title {
+        font-size: max(1rem, 1vw);
+        font-weight: 500;
+      }
+    }
+  }
+}

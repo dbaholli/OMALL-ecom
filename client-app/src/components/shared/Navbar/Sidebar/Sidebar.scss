@@ -16,28 +16,18 @@
     width: 5px !important;
   }
   .sidebar-logo {
-    padding: 1em 2em;
     border-bottom: 1px solid #222e50;
+    padding: 15px 25px;
     .sidebar-icon-title {
-      .sidebar-icon {
-        width: 50px;
-        svg {
-          path {
-            fill: #5784ff;
-          }
-        }
-      }
-      .sidebar-title {
-        font-size: 22px;
-        color: #00081e;
+      display: flex;
+      .sidebar-text {
         font-weight: 600;
+        color: #222e50;
       }
-    }
-    svg {
-      font-size: 25px;
-      color: #5784ff;
-      cursor: pointer;
-      flex-shrink: 0;
+      .sidebar-icon {
+        width: max(75px, 1vw);
+        content: url("../../../../assets/othmanlogo.png");
+      }
     }
   }
   .sidebar-links {
@@ -58,7 +48,7 @@
         }
       }
       &:hover {
-        background-color: #5784ff;
+        background-color: #222e50;
         .main-link {
           svg {
             color: #5784ff;
@@ -83,7 +73,7 @@
       .login-link-container {
         .mobile-login-link {
           border-radius: 10px;
-          background-color: #5784ff;
+          background-color: #222e50;
           padding: 0.75em 1.5em;
           color: #fff;
         }

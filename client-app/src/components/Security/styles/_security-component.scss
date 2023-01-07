@@ -1,0 +1,9 @@
+.security-page .security-component {
+  display: flex;
+  flex-direction: column;
+  .security-paragraph {
+    font-weight: 500;
+    font-size: max(0.8rem, 0.9vw);
+    line-height: 1.7;
+  }
+}

@@ -1,19 +1,26 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import { AiOutlineMail } from "react-icons/ai";
 import { BiLock } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
+import { login } from "../../actions/userAction";
 import "./styles/login.scss";
-import Backdrop from "../shared/Navbar/Backdrop/Backdrop";
-import Register from "./Register";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
-  const handleSubmit = (event) => {
+
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { error, loading, userInfo } = userLogin;
+
+  const handleLogin = async (event) => {
     event.preventDefault();
-    console.log("Login submitted");
+    dispatch(login(email, password))
   };
 
   return (
@@ -21,25 +28,22 @@ const Login = (props) => {
       <div className='log-in-form-container-content'>
         <div className='form-title-description-container'>
           <div className='login-title'>
-            <h6 className='form-title'>Login</h6>
+            <h6 className='form-title'>Kyqu</h6>
             <CgClose onClick={props.click} />
           </div>
-          <p className='form-description'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </p>
         </div>
-        <form className='log-in-form' onSubmit={handleSubmit}>
+        <form className='log-in-form' onSubmit={handleLogin}>
           <div className='login-input-container'>
-            <label htmlFor='email'>
+            <label htmlFor='name'>
               <p>Email</p>
             </label>
             <div className='login-input'>
-              <label htmlFor='email'>
+              <label htmlFor='name'>
                 <AiOutlineMail />
               </label>
               <input
-                id='email'
-                type='email'
+                id='name'
+                type='name'
                 placeholder='Enter your email address'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}

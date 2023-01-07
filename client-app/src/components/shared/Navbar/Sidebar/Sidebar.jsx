@@ -21,15 +21,12 @@ const Sidebar = (props) => {
   return (
     <div style={{ zIndex: props.zIndex }} className='side-bar'>
       <div className='sidebar-logo inline spread'>
-        <div className='sidebar-icon-title inline spread'>
-          {/* <div className='sidebar-icon'>
-            Othman Mall
-          </div> */}
-          <div>
-            <Link className='sidebar-title' to='/'>
-              Othman Mall
-            </Link>
-          </div>
+        <div className='sidebar-icon-title'>
+          <Link to='/' className='inline'>
+            {/* <div className='sidebar-icon' />
+             */}
+            <p className='paragraph-text sidebar-text'>Othman Home</p>
+          </Link>
         </div>
         <CgClose onClick={props.click} />
       </div>
@@ -37,63 +34,49 @@ const Sidebar = (props) => {
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/"}>Ballina</Link>
+              <Link to={"/hotel-line"}>Hotel Line</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Pjata</Link>
+              <Link to={"/sete"}>Sete</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Sete</Link>
+              <Link to={"/jastake"}>Jastake</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Jastake</Link>
+              <Link to={"/banjo"}>Banjo</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Peshqira</Link>
+              <Link to={"/cajniket"}>Cajniket</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Banjo</Link>
+              <Link to={"/mbulesa"}>Mbulesa</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Batanije</Link>
-            </p>
-          </div>
-        </div>
-        <div className='navigation-link '>
-          <div className='main-link inline spread'>
-            <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Mbulesa</Link>
-            </p>
-          </div>
-        </div>
-        <div className='navigation-link '>
-          <div className='main-link inline spread'>
-            <p className='mobile-nav-link'>
-              <Link to={"/categories"}>Dysheka</Link>
+              <Link to={"/dysheka"}>Dysheka</Link>
             </p>
           </div>
         </div>
@@ -103,19 +86,19 @@ const Sidebar = (props) => {
         <div className='login-link-container'>
           <Link to='/user' className='login-link signup  inline '>
             <AiOutlineUser />
-            <p>Account</p>
+            <p>Profile Name</p>
           </Link>
         </div>
         {/* ) : ( */}
         <div className='auth-navigations'>
           <div className='login-link-container'>
             <Link onClick={showModal} className='mobile-login-link'>
-              Log In
+              Kyqu
             </Link>
           </div>
           <div className='login-link-container'>
             <Link to='/register' className='mobile-login-link'>
-              Register
+              Regjistrohu
             </Link>
           </div>
         </div>

@@ -6,7 +6,10 @@ import ContactPage from "./pages/ContactUs/Contact";
 import "./App.scss";
 import Nav from "./components/shared/Navbar/Nav";
 import Footer from "./components/shared/Footer/Footer";
-import Footer3 from "./components/shared/Footer/Footer3";
+import FaqPage from "./pages/FAQ/FaqPage";
+import TermsPage from "./pages/Terms/TermsPage";
+import SecurityPage from "./pages/Security/SecurityPage";
+import ProfilePage from "./pages/Profile/ProfilePage";
 
 const App = () => {
   return (
@@ -15,11 +18,15 @@ const App = () => {
         <Nav />
         <Routes>
           <Route exact path='/' element={<HomePage />} />
+          <Route exact path='/llogaria' element={<ProfilePage />} />
           <Route exact path='/produkti/:id' element={<ProductPage />} />
           <Route exact path='/kontakto' element={<ContactPage />} />
+          <Route exact path='/faq' element={<FaqPage />} />
+          <Route exact path='/termat' element={<TermsPage />} />
+          <Route exact path='/siguria' element={<SecurityPage />} />
         </Routes>
-        {/* <Footer /> */}
-        <Footer3 />
+        <Footer />
+        {/* <Footer3 /> */}
       </Router>
     </div>
   );

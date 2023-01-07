@@ -7,7 +7,6 @@ import {
 } from "react-icons/ai";
 import { BiLock } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
-import Backdrop from "../shared/Navbar/Backdrop/Backdrop";
 
 const Register = (props) => {
   const [email, setEmail] = useState("");
@@ -23,12 +22,9 @@ const Register = (props) => {
       <div className='log-in-form-container-content'>
         <div className='form-title-description-container'>
           <div className='login-title'>
-            <h6 className='form-title'>Register</h6>
+            <h6 className='form-title'>Regjistrohu</h6>
             <CgClose onClick={props.click} />
           </div>
-          <p className='form-description'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </p>
         </div>
         <form className='log-in-form' onSubmit={handleSubmit}>
           <div className='login-input-container'>

@@ -23,7 +23,7 @@ body::-webkit-scrollbar-track {
   border-radius: 2px;
 }
 body::-webkit-scrollbar-thumb {
-  background-color: #001eff;
+  background-color: #14213d;
   border-radius: 2px;
 }
 
@@ -51,4 +51,9 @@ body {
   color: #fff;
   cursor: pointer;
   text-transform: uppercase;
+}
+
+.component-layout {
+  padding: 0 5%;
+  margin: max(10vw, 140px) 0 max(35px, 3vw);
 }

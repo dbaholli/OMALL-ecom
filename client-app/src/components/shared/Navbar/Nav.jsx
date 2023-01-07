@@ -1,18 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsPersonCircle, BsFillCartFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import "./nav.scss";
 import "../styles/shared-styles.scss";
+import "./Megamenus/_megamenu-style.scss";
 import Sidebar from "./Sidebar/Sidebar";
 import Login from "../../Auth/Login";
 import Backdrop from "./Backdrop/Backdrop";
 import Register from "../../Auth/Register";
+import HotelLineMegamenu from "./Megamenus/HotelLine";
+import SetMegamenu from "./Megamenus/Sets";
+import BathroomMegamenu from "./Megamenus/Bathroom";
+import PotsMegamenu from "./Megamenus/Pots";
+import Dropdown from "../Dropdown/Dropdown";
 
 const Nav = (props) => {
   const [sidebar, setSidebar] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [modal, setShowModal] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
   const [register, setRegister] = useState(false);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  console.log("USER: ", userLogin);
+
+  let navigate = useNavigate();
+
+  const showDropdown = () => {
+    setDropdown(!dropdown);
+  };
 
   const showSidebar = () => {
     setSidebar(!sidebar);
@@ -60,13 +78,15 @@ const Nav = (props) => {
         <div className='navigation'>
           <div className='nav-link-container services-link'>
             <Link to='/' className='nav-link inline'>
-              Pjata
+              Hotel Line
             </Link>
+            <HotelLineMegamenu />
           </div>
           <div className='nav-link-container why-us-link'>
             <Link to='/' className='nav-link inline'>
               Sete
             </Link>
+            <SetMegamenu />
           </div>
           <div className='nav-link-container contact-link'>
             <Link to='/' className='nav-link inline'>
@@ -82,11 +102,13 @@ const Nav = (props) => {
             <Link to='/' className='nav-link inline'>
               Banjo
             </Link>
+            <BathroomMegamenu />
           </div>
           <div className='nav-link-container careers-link'>
             <Link to='/' className='nav-link inline'>
-              Batanije
+              Cajniket
             </Link>
+            <PotsMegamenu />
           </div>
           <div className='nav-link-container careers-link'>
             <Link to='/' className='nav-link inline'>
@@ -99,11 +121,17 @@ const Nav = (props) => {
             </Link>
           </div>
           <div className='nav-link-actions actions-link '>
-            <Link onClick={() => setShowModal(true)}>
+            <Link>
               <BsPersonCircle />
+              {userInfo ? (
+                <Link onClick={() => setDropdown(true)}>{userInfo}</Link>
+              ) : (
+                <Link onClick={() => setShowModal(true)}>Kyqu</Link>
+              )}
             </Link>
             <Link>
               <BsFillCartFill />
+              <p>Shporta</p>
             </Link>
           </div>
         </div>
@@ -113,6 +141,12 @@ const Nav = (props) => {
           <div className='hamburger-line' />
         </div>
       </div>
+
+      {dropdown && <Dropdown setDropdown={showDropdown} zIndex={zIndex} />}
+
+      {modal && (
+        <Backdrop click={() => setDropdown(!dropdown)} zIndex={zIndex - 1} />
+      )}
 
       {modal && (
         <Login
