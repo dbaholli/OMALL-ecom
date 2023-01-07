@@ -155,7 +155,6 @@ const Nav = (props) => {
           zIndex={zIndex}
         />
       )}
-
       {modal && (
         <Backdrop click={() => setShowModal(!modal)} zIndex={zIndex - 1} />
       )}
