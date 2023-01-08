@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { AiOutlineMail } from "react-icons/ai";
 import { BiLock } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
@@ -11,6 +10,7 @@ import "./styles/login.scss";
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [validateError, setValidateError] = useState(false);
 
   let navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,17 +20,19 @@ const Login = (props) => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    dispatch(login(email, password))
+    if (!email && !password) {
+      console.log("validate");
+      setValidateError(true);
+    }
+    dispatch(login(email, password));
   };
 
   return (
     <div style={{ zIndex: props.zIndex }} className='log-in-form-container'>
       <div className='log-in-form-container-content'>
-        <div className='form-title-description-container'>
-          <div className='login-title'>
-            <h6 className='form-title'>Kyqu</h6>
-            <CgClose onClick={props.click} />
-          </div>
+        <div className='login-title'>
+          <h6 className='form-title'>Kyqu</h6>
+          <CgClose onClick={props.click} />
         </div>
         <form className='log-in-form' onSubmit={handleLogin}>
           <div className='login-input-container'>
@@ -38,13 +40,13 @@ const Login = (props) => {
               <p>Email</p>
             </label>
             <div className='login-input'>
-              <label htmlFor='name'>
+              <label htmlFor='email'>
                 <AiOutlineMail />
               </label>
               <input
-                id='name'
+                id='email'
                 type='name'
-                placeholder='Enter your email address'
+                placeholder='Shkruaj email adresen tuaj'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -52,7 +54,7 @@ const Login = (props) => {
           </div>
           <div className='login-input-container'>
             <label htmlFor='password'>
-              <p>Password</p>
+              <p>Fjalekalimi</p>
             </label>
             <div className='login-input'>
               <label htmlFor='password'>
@@ -61,7 +63,7 @@ const Login = (props) => {
               <input
                 id='password'
                 type='password'
-                placeholder='Enter your password'
+                placeholder='Shkruaj fjalekalimin tuaj'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -71,11 +73,16 @@ const Login = (props) => {
             <input type='checkbox' id='remember-checkbox' />
             <label htmlFor='remember-checkbox'>Remember Me</label>
           </div>
-          <input type='submit' value='Log In' />
+
+          {validateError ? (
+            <p className='error-text'>Ju lutem plotesoni te gjitha fushat!</p>
+          ) : null}
+
+          <input type='submit' value='Kyqu' />
         </form>
         <p className='dont-have-acc'>
-          Dont have an account ?
-          <Link onClick={props.setRegisterModal}>Register</Link>
+          Nuk keni llogari ?
+          <Link onClick={props.setRegisterModal}> Regjistrohu</Link>
         </p>
       </div>
     </div>
