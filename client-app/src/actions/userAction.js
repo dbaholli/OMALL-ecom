@@ -108,7 +108,7 @@ export const logout = () => (dispatch) => {
 };
 
 export const contact =
-  (email, fullname, message, mobileNumber) => async (dispatch) => {
+  (email, fullName, message, mobileNumber) => async (dispatch) => {
     try {
       dispatch({
         type: USER_CONTACT_REQUEST,
@@ -116,7 +116,7 @@ export const contact =
 
       const { data } = await axios.post("http://127.0.0.1:8000/contactus/", {
         email: email,
-        full_name: fullname,
+        full_name: fullName,
         message: message,
         phone_number: mobileNumber,
       });

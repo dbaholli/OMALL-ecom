@@ -5,6 +5,8 @@ import {
   AiOutlinePhone,
 } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { contact } from "../../actions/userAction";
 import "./styles/_contact-component.scss";
 
 const ContactUsComponent = () => {
@@ -12,11 +14,22 @@ const ContactUsComponent = () => {
   const [fullName, setFullName] = useState("");
   const [message, setMessage] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
+  const [validateError, setValidateError] = useState(false);
+
+  const dispatch = useDispatch();
+
+  // const userContact = useSelector((state) => state.userContact);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Contact us submitted");
-    // clear states when request 200 ok
+    if (!email && !fullName && !message && !mobileNumber) {
+      console.log("validate");
+      setValidateError(true);
+    }
+    if ((email, fullName, message, mobileNumber)) {
+      dispatch(contact(email, fullName, message, mobileNumber));
+    }
   };
   return (
     <div className='contact-component'>
@@ -44,7 +57,6 @@ const ContactUsComponent = () => {
                     <BsPerson />
                   </label>
                   <input
-                    required
                     type='text'
                     id='fullname'
                     placeholder='Shkruani emrin dhe mbiemrin tuaj'
@@ -64,7 +76,6 @@ const ContactUsComponent = () => {
                 <AiOutlineMail />
               </label>
               <input
-                required
                 id='email'
                 type='email'
                 placeholder='Shkruani email adresen tuaj'
@@ -82,7 +93,6 @@ const ContactUsComponent = () => {
                 <AiOutlinePhone />
               </label>
               <input
-                required
                 id='number'
                 type='tel'
                 placeholder='Shkruani numrin tuaj mobil'
@@ -100,7 +110,6 @@ const ContactUsComponent = () => {
                 <AiOutlineMessage />
               </label>
               <textarea
-                required
                 id='message'
                 type='text'
                 placeholder='Shkruani mesazhin tuaj'
@@ -109,6 +118,10 @@ const ContactUsComponent = () => {
               ></textarea>
             </div>
           </div>
+          {validateError ? (
+            <p className='error-text'>Ju lutem plotesoni te gjitha fushat!</p>
+          ) : null}
+
           <input type='submit' value='DERGO MESAZHIN' />
         </form>
       </div>
