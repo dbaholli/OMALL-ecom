@@ -5,11 +5,13 @@ import "./styles/_productdetail.scss";
 
 const ProductDetail = () => {
   let productParam = useParams();
-  const product = productsData.find((p) => p.id == productParam.id);
+  // const product = productsData.find((p) => p.id == productParam.id);
+
+  console.log(productParam);
 
   return (
     <div className='product-detail-component'>
-      <div className='product-detail-container'>
+      {/* <div className='product-detail-container'>
         <div className='productimage-container'>
           <div
             className='product-image'
@@ -27,7 +29,7 @@ const ProductDetail = () => {
           <h2 className='product-desc paragraph-text'>{product.description}</h2>
           <Link className='shared-button pay-btn'>Paguaj</Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

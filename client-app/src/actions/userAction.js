@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import {
   USER_REGISTER_REQUEST,
   USER_LOGIN_REQUEST,
