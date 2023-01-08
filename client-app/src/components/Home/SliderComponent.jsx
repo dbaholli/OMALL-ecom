@@ -35,7 +35,6 @@ const SliderComponent = () => {
           return (
             <div className='img-cont' key={i}>
               <div className='img' style={{ content: `url(${img.img})` }}></div>
-              <div className='bg'></div>
             </div>
           );
         })}
