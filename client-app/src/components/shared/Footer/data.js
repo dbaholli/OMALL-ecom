@@ -17,7 +17,7 @@ export const FooterData = [
     ],
   },
   {
-    category: "Llogaria juaj",
+    category: "Profili juaj",
     links: [
       {
         link: "Regjistrohu",
