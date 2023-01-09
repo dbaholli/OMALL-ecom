@@ -33,7 +33,6 @@ class UserManager(UserManager):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
         extra_fields.setdefault("is_active", True)
-        extra_fields.setdefault("username", email)
         return self.create_user(email, password, **extra_fields)
 
 
@@ -44,6 +43,7 @@ class CustomUser(AbstractUser):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
+    username = None
     email = models.TextField(verbose_name="email address", max_length=255, unique=True)
     address = models.TextField(blank=True)
     city = models.TextField(blank=True)
