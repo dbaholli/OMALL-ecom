@@ -48,7 +48,7 @@ const Footer3 = () => {
             </div>
           </div>
           <div className='footer-list'>
-            <h6>Llogaria</h6>
+            <h6>Profili</h6>
             <div className='links'>
               <Link onClick={() => setShowModal()} className='footer-item'>
                 Kyqu
@@ -59,8 +59,8 @@ const Footer3 = () => {
           <div className='footer-list'>
             <h6>Sherbimi ndaj klientve</h6>
             <div className='links'>
-              <Link to={`/llogaria`} className='footer-item'>
-                Llogaria ime
+              <Link to={`/profili`} className='footer-item'>
+                Profili im
               </Link>
               <Link to={`/porosite`} className='footer-item'>
                 Porosite

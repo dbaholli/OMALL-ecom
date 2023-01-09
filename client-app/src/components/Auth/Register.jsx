@@ -12,7 +12,6 @@ import { register } from "../../actions/userAction";
 import "./styles/register.scss";
 
 const Register = (props) => {
-  const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -31,7 +30,6 @@ const Register = (props) => {
     event.preventDefault();
 
     if (
-      !username ||
       !name ||
       !lastName ||
       !email ||
@@ -47,7 +45,6 @@ const Register = (props) => {
 
     dispatch(
       register(
-        username,
         name,
         lastName,
         email,
@@ -98,21 +95,6 @@ const Register = (props) => {
           <CgClose onClick={props.click} />
         </div>
         <form className='register-form' onSubmit={handleRegister}>
-          <div className='register-input-container'>
-            <label htmlFor='email'>
-              <p>Username</p>
-            </label>
-            <div className='register-input'>
-              <AiOutlineProfile />
-              <input
-                id='username'
-                type='text'
-                placeholder='Shkruaj username tuaj'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-          </div>
           <div className='inline-inputs'>
             <div className='register-input-container'>
               <label htmlFor='name'>
@@ -249,8 +231,7 @@ const Register = (props) => {
           <input type='submit' value='Regjistrohu' />
         </form>
         <p className='dont-have-acc'>
-          Keni llogari ?
-          <Link onClick={props.showLoginModal}> Kyqu</Link>
+          Keni llogari ?<Link onClick={props.showLoginModal}> Kyqu</Link>
         </p>
       </div>
     </div>
