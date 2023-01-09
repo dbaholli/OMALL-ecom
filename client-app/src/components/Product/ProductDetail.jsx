@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { productsData } from "../Home/data";
 import "./styles/_productdetail.scss";
 
 const ProductDetail = () => {
@@ -11,6 +10,7 @@ const ProductDetail = () => {
 
   return (
     <div className='product-detail-component'>
+      {/* WIP NEXT ISSUE */}
       {/* <div className='product-detail-container'>
         <div className='productimage-container'>
           <div

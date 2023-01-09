@@ -11,7 +11,7 @@ export const listProducts = () => async (dispatch) => {
 
     const { data } = await axios.get("http://127.0.0.1:8000/products/list/");
     if (data) {
-      console.log("Produktet:", data);
+      console.log("listProducts", data);
     }
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
