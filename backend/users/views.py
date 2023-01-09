@@ -19,19 +19,20 @@ def user_create(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def user_update_or_delete(request, pk):
     try:
-        user = CustomUser.objects.get(pk=pk)
+        queryset = CustomUser.objects.get(pk=pk)
     except CustomUser.DoesNotExist:
         return Response({"error": "User does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = UserProfileSerializer(user)
+        serializer = UserProfileSerializer(queryset)
         return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'PUT':
-        serializer = UserProfileSerializer(user, data=request.data)
+        partial = True
+        serializer = UserProfileSerializer(queryset, data=request.data, partial=partial)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
-        user.delete()
+        queryset.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
