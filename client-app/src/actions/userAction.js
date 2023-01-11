@@ -7,10 +7,23 @@ import {
   USER_REGISTER_FAIL,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
+  USER_GETPROFILE_REQUEST,
+  USER_GETPROFILE_SUCCESS,
+  USER_GETPROFILE_FAIL,
 } from "../constants/userConstants";
 
 export const register =
-  (username, name, lastName, email, address, cityDropdown, stateDropdown, phone, password) =>
+  (
+    username,
+    name,
+    lastName,
+    email,
+    address,
+    cityDropdown,
+    stateDropdown,
+    phone,
+    password
+  ) =>
   async (dispatch) => {
     try {
       dispatch({
@@ -62,6 +75,30 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({
       type: USER_LOGIN_FAIL,
       payload: error.message,
+    });
+  }
+};
+
+export const getLoggedInUser = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: USER_GETPROFILE_REQUEST });
+
+    const { data } = await axios.get(`http://127.0.0.1:8000/profile/${id}`);
+    if (data) {
+      console.log("Profile:", data);
+    }
+
+    dispatch({
+      type: USER_GETPROFILE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_GETPROFILE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };

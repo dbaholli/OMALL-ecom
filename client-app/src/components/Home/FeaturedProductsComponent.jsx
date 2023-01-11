@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { productsData } from "./data";
 import { BsCartPlusFill } from "react-icons/bs";
 import "./styles/_featuredproducts-component.scss";
 import { Link } from "react-router-dom";

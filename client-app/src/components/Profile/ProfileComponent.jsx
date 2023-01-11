@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
 import {
   AiOutlineMail,
   AiOutlinePhone,
@@ -9,8 +7,11 @@ import {
 import { BiLock } from "react-icons/bi";
 import "./styles/_profile-component.scss";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getLoggedInUser } from "../../actions/userAction";
+import jwt_decode from "jwt-decode";
 
-const user = localStorage.getItem("user");
+const user = localStorage.getItem("userInfo");
 
 const ProfileComponent = () => {
   const [name, setName] = useState("");
@@ -23,18 +24,14 @@ const ProfileComponent = () => {
   const [stateDropdown, setStateDropdown] = useState([]);
   const [validateError, setValidateError] = useState(false);
 
-  const [user, setUser] = useState({});
+  const dispatch = useDispatch();
 
-  async function getUser() {
-    const data = axios.get("http://127.0.0.1:8000/profile/2").then((data) => {
-      console.log(data.data);
-      setUser(data.data);
-    });
-  }
+  const currentUser = useSelector((state) => state.currentUser);
+  const { error, loading, loggedInUser } = currentUser;
 
   useEffect(() => {
-    getUser();
-  }, []);
+    dispatch(getLoggedInUser(jwt_decode(user).user_id));
+  }, [dispatch]);
 
   const handleProfileUpdate = async (event) => {
     event.preventDefault();
@@ -90,7 +87,19 @@ const ProfileComponent = () => {
         <h1 className='profile-header header-text'>
           Te dhenat e profilit tuaj
         </h1>
-        <h1 className='profile-header header-text'>{JSON.stringify(user.first_name)}</h1>
+
+        {error ? (
+          <h1 className='error-text header-text'>
+            Ju lutem provoni te kyceni perseri!
+          </h1>
+        ) : loading ? (
+          <p className='paragraph-text'>Loading...</p>
+        ) : (
+          <h1 className='profile-header header-text'>
+            {JSON.stringify(loggedInUser.email)}
+          </h1>
+        )}
+
         <form className='profile-form' onSubmit={handleProfileUpdate}>
           <div className='inline-inputs'>
             <div className='profileupdate-input-container'>

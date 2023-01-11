@@ -125,7 +125,7 @@ const Nav = (props) => {
             <Link>
               <BsPersonCircle />
               {userInfo ? (
-                <Link onClick={() => setDropdown(true)}>{jwt_decode(userInfo.access).first_name}</Link>
+                <Link onClick={() => setDropdown(true)}>{jwt_decode(userInfo.access).email}</Link>
               ) : (
                 <Link onClick={() => setShowModal(true)}>Kyqu</Link>
               )}
