@@ -15,7 +15,6 @@ const Product = (product, i) => {
         </div>
         <div className='featuredproduct-info'>
           <h3 className='paragraph-text'>{product.product.title}</h3>
-          <p className='paragraph-text'>{product.product.description}</p>
           <p className='price paragraph-text'>{product.product.price}€</p>
           <p className='paragraph-text'>Vlersimet: {product.product.rating}</p>
         </div>
