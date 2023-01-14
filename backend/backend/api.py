@@ -34,7 +34,7 @@ class CustomAPIEndpoint(PagesAPIViewSet):
             path('', cls.as_view({'get': 'listing_view'}), name='listing'),
             path('<slug:slug>/', cls.as_view({'get': 'detail_view'}), name='detail'),
             path('<int:pk>/', cls.as_view({'get': 'detail_view'}), name='detail'),
-            path('find/', cls.as_view({'get': 'find_view'}), name='find1'),
+            path('find/', cls.as_view({'get': 'find_view'}), name='find'),
         ]
 
 api_router = WagtailAPIRouter('wagtailapi')

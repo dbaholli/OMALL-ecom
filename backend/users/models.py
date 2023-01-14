@@ -2,6 +2,7 @@ import random
 import time
 import uuid
 
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
 from wagtail.admin.edit_handlers import FieldPanel
@@ -15,6 +16,7 @@ class UserManager(UserManager):
         if not email:
             raise ValueError("Users must have an email address")
         email = email = self.normalize_email(email)
+        self.model = get_user_model()
         user = self.model(email=email, **extra_fields)
         extra_fields.setdefault("username", email)
         user.set_password(password)
