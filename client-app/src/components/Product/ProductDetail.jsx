@@ -18,7 +18,6 @@ const ProductDetail = () => {
 
   return (
     <div className='product-detail-component'>
-      {/* <h1 className="header-text">sss{JSON.stringify(product)}</h1> */}
       <div className='product-detail-container'>
         {loading ? (
           <h1 className='header-text'>Loading ...</h1>
@@ -38,8 +37,6 @@ const ProductDetail = () => {
             </div>
             <div className='product-info'>
               <h1 className='product-title header-text'>{product?.title}</h1>
-              {/* `navbar ${isSticky ? "sticky" : ""}`} */}
-              {/* <p className='product-price paragraph-text'> */}
               <p
                 className={`product-price paragraph-text ${
                   product.price_with_sale != "" ? "active-sale" : ""
