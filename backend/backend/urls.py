@@ -16,11 +16,12 @@ urlpatterns = [
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
     path("register/", include("users.urls")),
+    path("profile/", include("users.profile_urls")),
     path("products/", include("products.urls")),
+    path("contactus/", include("contact_us.urls")),
+    path("coupon/", include("coupons.urls")),
     path("token/", MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    path("contactus/", include("contact_us.urls")),
-
 ]
 
 
