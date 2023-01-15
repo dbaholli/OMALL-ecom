@@ -3,15 +3,20 @@ import { Link } from "react-router-dom";
 import { BsCartPlusFill } from "react-icons/bs";
 
 const Product = (product, i) => {
-    // use the props from the featured product component to display product data
+  // use the props from the featured product component to display product data
   return (
     <>
-      <Link className='product-card' key={i} to={`/produkti/${product.product.slug}`}>
+      <Link
+        className='product-card'
+        key={i}
+        to={`/produkti/${product.product.slug}`}
+      >
         <div className='productimage-container'>
-          <div
+          <img
             className='featuredproduct-image'
-            style={{ content: `url(${product.product.image})` }}
-          ></div>
+            height='350px'
+            src={`http://127.0.0.1:8000/${product.product.image.url}`}
+          ></img>
         </div>
         <div className='featuredproduct-info'>
           <h3 className='paragraph-text'>{product.product.title}</h3>

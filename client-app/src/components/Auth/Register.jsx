@@ -41,20 +41,20 @@ const Register = (props) => {
     ) {
       console.log("validate");
       setValidateError(true);
+    } else {
+      dispatch(
+        register(
+          address,
+          cityDropdown,
+          email,
+          name,
+          lastName,
+          phone,
+          stateDropdown,
+          password
+        )
+      );
     }
-
-    dispatch(
-      register(
-        name,
-        lastName,
-        email,
-        address,
-        cityDropdown,
-        stateDropdown,
-        phone,
-        password
-      )
-    );
   };
 
   const [cities] = useState([
@@ -127,21 +127,7 @@ const Register = (props) => {
               </div>
             </div>
           </div>
-          <div className='register-input-container'>
-            <label htmlFor='adresa'>
-              <p>Adresa</p>
-            </label>
-            <div className='register-input'>
-              <AiOutlineProfile />
-              <input
-                id='adress'
-                type='text'
-                placeholder='Shkruaj adresen tuaj'
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-            </div>
-          </div>
+
           <div className='register-input-container'>
             <label htmlFor='email'>
               <p>E-maili</p>
@@ -154,6 +140,21 @@ const Register = (props) => {
                 placeholder='Shkruaj email adresen tuaj'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className='register-input-container'>
+            <label htmlFor='adresa'>
+              <p>Adresa</p>
+            </label>
+            <div className='register-input'>
+              <AiOutlineProfile />
+              <input
+                id='adress'
+                type='text'
+                placeholder='Shkruaj adresen tuaj'
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
               />
             </div>
           </div>
@@ -174,7 +175,7 @@ const Register = (props) => {
           </div>
           <div className='register-input-container'>
             <label htmlFor='email'>
-              <p>Mobile Number</p>
+              <p>Numri Telefonit</p>
             </label>
             <div className='register-input'>
               <AiOutlinePhone />
@@ -186,21 +187,6 @@ const Register = (props) => {
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>
-          </div>
-          <div className='select-input'>
-            <select
-              defaultValue={"default"}
-              onChange={(e) => setCityDropdown(e.target.value)}
-            >
-              <option value={"default"} disabled>
-                Qyteti
-              </option>
-              {cities.map((city) => (
-                <option key={city.value} value={city.value}>
-                  {city.label}
-                </option>
-              ))}
-            </select>
           </div>
 
           <div className='select-input'>
@@ -214,6 +200,22 @@ const Register = (props) => {
               {states.map((state) => (
                 <option key={state.value} value={state.value}>
                   {state.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className='select-input'>
+            <select
+              defaultValue={"default"}
+              onChange={(e) => setCityDropdown(e.target.value)}
+            >
+              <option value={"default"} disabled>
+                Qyteti
+              </option>
+              {cities.map((city) => (
+                <option key={city.value} value={city.value}>
+                  {city.label}
                 </option>
               ))}
             </select>
