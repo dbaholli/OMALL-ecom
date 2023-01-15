@@ -15,6 +15,7 @@ const ContactUsComponent = () => {
   const [message, setMessage] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [validateError, setValidateError] = useState(false);
+  const [successMsg, setSuccessMsg] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -29,6 +30,11 @@ const ContactUsComponent = () => {
     }
     if ((email, fullName, message, mobileNumber)) {
       dispatch(contact(email, fullName, message, mobileNumber));
+      setEmail("");
+      setFullName("");
+      setMessage("");
+      setMobileNumber("");
+      setSuccessMsg("Faleminderit per kontaktin, ju kontaktojme se shpejti!");
     }
   };
   return (
@@ -121,7 +127,7 @@ const ContactUsComponent = () => {
           {validateError ? (
             <p className='error-text'>Ju lutem plotesoni te gjitha fushat!</p>
           ) : null}
-
+          {successMsg ? <p className='success-text'>{successMsg}</p> : null}
           <input type='submit' value='DERGO MESAZHIN' />
         </form>
       </div>
