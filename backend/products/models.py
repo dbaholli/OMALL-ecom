@@ -24,14 +24,14 @@ class Product(Page):
 
     description = models.CharField(max_length=1000)
     price = models.FloatField()
-    price_with_sale = models.FloatField(blank=True)
+    price_with_sale = models.FloatField(blank=True, null=True)
     currency = models.CharField(max_length=20)
     category = models.ForeignKey("categories.categories", on_delete=models.PROTECT)
     quanitity = models.IntegerField(default=1)
     shipping = models.BooleanField()
-    color = models.CharField(max_length=50, blank=True)
-    brand = models.CharField(max_length=200, blank=True)
-    rating = models.FloatField(blank=True)
+    color = models.CharField(max_length=50, blank=True, null=True)
+    brand = models.CharField(max_length=200, blank=True, null=True)
+    rating = models.FloatField(blank=True, null=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("image"),
