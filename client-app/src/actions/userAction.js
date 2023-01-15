@@ -17,14 +17,13 @@ import {
 
 export const register =
   (
-    username,
-    name,
-    lastName,
-    email,
     address,
     cityDropdown,
-    stateDropdown,
+    email,
+    name,
+    lastName,
     phone,
+    stateDropdown,
     password
   ) =>
   async (dispatch) => {
