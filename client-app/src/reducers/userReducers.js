@@ -59,8 +59,11 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
 
     case USER_DETAILS_FAIL:
       return { loading: true, error: action.payload };
+
+    default:
+      return state;
   }
-}
+};
 
 export const userContactReducer = (state = {}, action) => {
   switch (action.type) {
