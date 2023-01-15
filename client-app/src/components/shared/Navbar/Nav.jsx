@@ -14,7 +14,7 @@ import SetMegamenu from "./Megamenus/Sets";
 import BathroomMegamenu from "./Megamenus/Bathroom";
 import PotsMegamenu from "./Megamenus/Pots";
 import Dropdown from "../Dropdown/Dropdown";
-import jwt_decode from 'jwt-decode'
+import jwt_decode from "jwt-decode";
 
 const Nav = (props) => {
   const [sidebar, setSidebar] = useState(false);
@@ -125,9 +125,11 @@ const Nav = (props) => {
             <Link>
               <BsPersonCircle />
               {userInfo ? (
-                <Link onClick={() => setDropdown(true)}>{jwt_decode(userInfo.access).first_name}</Link>
+                <Link onClick={() => setDropdown(true)}>
+                  {jwt_decode(userInfo.access).first_name}
+                </Link>
               ) : (
-                <Link onClick={() => setShowModal(true)}>Kyqu</Link>
+                <Link onClick={() => setShowModal(true)}>Profili</Link>
               )}
             </Link>
             <Link>

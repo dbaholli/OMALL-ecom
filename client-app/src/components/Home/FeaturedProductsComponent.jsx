@@ -13,6 +13,7 @@ const FeaturedProductsComponent = () => {
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);
+  
 
   return (
     <div className='featuredproduct-component'>
