@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   AiOutlineMail,
   AiOutlinePhone,
   AiOutlineProfile,
 } from "react-icons/ai";
 import { BiLock } from "react-icons/bi";
+import jwt_decode from "jwt-decode";
+import { getUserDetails } from "../../actions/userAction";
 import "./styles/_profile-component.scss";
-import { useEffect } from "react";
+import axios from "axios";
 
-const user = localStorage.getItem("user");
+const profile = localStorage.getItem("userInfo");
 
 const ProfileComponent = () => {
   const [name, setName] = useState("");
@@ -23,18 +24,31 @@ const ProfileComponent = () => {
   const [stateDropdown, setStateDropdown] = useState([]);
   const [validateError, setValidateError] = useState(false);
 
-  const [user, setUser] = useState({});
+  const dispatch = useDispatch();
 
-  async function getUser() {
-    const data = axios.get("http://127.0.0.1:8000/profile/2").then((data) => {
-      console.log(data.data);
-      setUser(data.data);
-    });
-  }
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user } = userDetails;
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   useEffect(() => {
-    getUser();
-  }, []);
+    // if (!userInfo) {
+    //   dispatch(getUserDetails(jwt_decode(userInfo.access).user_id));
+    // } else {
+    //   console.log(user.email);
+    //   setEmail(user.email);
+    // }
+    if (userInfo) {
+      dispatch(getUserDetails(jwt_decode(userInfo.access).user_id));
+      console.log("1");
+      setName(user.first_name);
+      setLastName(user.last_name);
+      setAddress(user.address);
+      setPhone(user.phone_number);
+      setEmail(user.email);
+      // console.log(number);
+    }
+  }, [dispatch]);
 
   const handleProfileUpdate = async (event) => {
     event.preventDefault();
@@ -90,7 +104,6 @@ const ProfileComponent = () => {
         <h1 className='profile-header header-text'>
           Te dhenat e profilit tuaj
         </h1>
-        <h1 className='profile-header header-text'>{JSON.stringify(user.first_name)}</h1>
         <form className='profile-form' onSubmit={handleProfileUpdate}>
           <div className='inline-inputs'>
             <div className='profileupdate-input-container'>

@@ -17,6 +17,15 @@
       padding: 15px;
       width: 33%;
       box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      .productimage-container {
+        width: 100%;
+        .featuredproduct-image {
+          width: 100%;
+          background-repeat: no-repeat !important;
+          background-size: cover !important;
+          background-position: center !important;
+        }
+      }
       .featuredproduct-info {
         display: flex;
         flex-direction: column;
@@ -35,12 +44,6 @@
           font-size: 20px;
           color: #000;
           cursor: pointer;
-        }
-      }
-      .productimage-container {
-        width: 100%;
-        .featuredproduct-image {
-          width: 100%;
         }
       }
     }
