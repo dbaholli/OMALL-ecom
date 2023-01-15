@@ -7,10 +7,23 @@ import {
   USER_REGISTER_FAIL,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
+  USER_CONTACT_REQUEST,
+  USER_CONTACT_FAIL,
+  USER_CONTACT_SUCCESS,
 } from "../constants/userConstants";
 
 export const register =
-  (username, name, lastName, email, address, cityDropdown, stateDropdown, phone, password) =>
+  (
+    username,
+    name,
+    lastName,
+    email,
+    address,
+    cityDropdown,
+    stateDropdown,
+    phone,
+    password
+  ) =>
   async (dispatch) => {
     try {
       dispatch({
@@ -70,3 +83,29 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   dispatch({ type: USER_LOGOUT });
 };
+
+export const contact =
+  (email, fullName, message, mobileNumber) => async (dispatch) => {
+    try {
+      dispatch({
+        type: USER_CONTACT_REQUEST,
+      });
+
+      const { data } = await axios.post("http://127.0.0.1:8000/contactus/", {
+        email: email,
+        full_name: fullName,
+        message: message,
+        phone_number: mobileNumber,
+      });
+
+      dispatch({
+        type: USER_CONTACT_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_CONTACT_FAIL,
+        payload: error.message,
+      });
+    }
+  };

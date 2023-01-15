@@ -59,5 +59,10 @@ body {
 }
 
 .error-text {
-  color: red !important;
+  color: red;
+}
+
+.success-text {
+  color: green;
+  font-weight: 500;
 }
