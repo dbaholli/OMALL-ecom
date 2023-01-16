@@ -23,8 +23,9 @@ const Login = (props) => {
     if (!email && !password) {
       console.log("validate");
       setValidateError(true);
+    } else {
+      dispatch(login(email, password));
     }
-    dispatch(login(email, password));
   };
 
   return (

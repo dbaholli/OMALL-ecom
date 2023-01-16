@@ -6,7 +6,6 @@ import "./_dropdown.scss";
 
 const Dropdown = (props) => {
   const dispatch = useDispatch();
-
   const handleLogout = () => {
     dispatch(logout());
   };

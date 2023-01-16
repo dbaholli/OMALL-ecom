@@ -44,13 +44,13 @@ const Register = (props) => {
     } else {
       dispatch(
         register(
-          address,
-          cityDropdown,
-          email,
           name,
           lastName,
-          phone,
+          email,
+          address,
+          cityDropdown,
           stateDropdown,
+          phone,
           password
         )
       );
@@ -106,7 +106,7 @@ const Register = (props) => {
                   id='name'
                   type='text'
                   placeholder='Shkruaj emrin tuaj'
-                  value={name}
+                  defaultValue={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
@@ -121,7 +121,7 @@ const Register = (props) => {
                   id='lastname'
                   type='text'
                   placeholder='Shkruaj mbiemrin tuaj'
-                  value={lastName}
+                  defaultValue={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
@@ -138,7 +138,7 @@ const Register = (props) => {
                 id='email'
                 type='text'
                 placeholder='Shkruaj email adresen tuaj'
-                value={email}
+                defaultValue={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -153,7 +153,7 @@ const Register = (props) => {
                 id='adress'
                 type='text'
                 placeholder='Shkruaj adresen tuaj'
-                value={address}
+                defaultValue={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
             </div>
@@ -168,7 +168,7 @@ const Register = (props) => {
                 id='password'
                 type='password'
                 placeholder='Shkruaj fjalekalimin tuaj'
-                value={password}
+                defaultValue={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
@@ -183,7 +183,7 @@ const Register = (props) => {
                 id='number'
                 type='number'
                 placeholder='Shkruani numrin e telefonit tuaj'
-                value={phone}
+                defaultValue={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>

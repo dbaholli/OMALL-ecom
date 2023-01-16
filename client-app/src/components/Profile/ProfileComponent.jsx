@@ -7,11 +7,9 @@ import {
 } from "react-icons/ai";
 import { BiLock } from "react-icons/bi";
 import jwt_decode from "jwt-decode";
-import { getUserDetails } from "../../actions/userAction";
+import { getUserDetails, updateUserDetails } from "../../actions/userAction";
+import { USER_UPDATE_RESET } from "../../constants/userConstants";
 import "./styles/_profile-component.scss";
-import axios from "axios";
-
-const profile = localStorage.getItem("userInfo");
 
 const ProfileComponent = () => {
   const [name, setName] = useState("");
@@ -28,44 +26,41 @@ const ProfileComponent = () => {
 
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
+
   useEffect(() => {
-    // if (!userInfo) {
-    //   dispatch(getUserDetails(jwt_decode(userInfo.access).user_id));
-    // } else {
-    //   console.log(user.email);
-    //   setEmail(user.email);
-    // }
-    if (userInfo) {
+    if (userInfo || success) {
+      dispatch({ type: USER_UPDATE_RESET });
       dispatch(getUserDetails(jwt_decode(userInfo.access).user_id));
-      console.log("1");
       setName(user.first_name);
       setLastName(user.last_name);
       setAddress(user.address);
       setPhone(user.phone_number);
       setEmail(user.email);
-      // console.log(number);
+      setCityDropdown(user.city);
+      setStateDropdown(user.state);
     }
-  }, [dispatch]);
+  }, [dispatch, userInfo, success]);
 
   const handleProfileUpdate = async (event) => {
     event.preventDefault();
-
-    if (
-      !name ||
-      !lastName ||
-      !email ||
-      !address ||
-      !phone ||
-      !password ||
-      !cityDropdown ||
-      !stateDropdown
-    ) {
-      console.log("validate");
-      setValidateError(true);
-    }
+    dispatch(
+      updateUserDetails(
+        jwt_decode(userInfo.access).user_id,
+        name,
+        lastName,
+        email,
+        address,
+        phone,
+        cityDropdown,
+        stateDropdown
+      )
+    );
   };
 
   const [cities] = useState([
@@ -116,7 +111,7 @@ const ProfileComponent = () => {
                   id='name'
                   type='text'
                   placeholder='Shkruaj emrin tuaj'
-                  value={name}
+                  defaultValue={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
