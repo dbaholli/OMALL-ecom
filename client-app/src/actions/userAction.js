@@ -55,7 +55,7 @@ export const register =
         payload: data,
       });
 
-      // localStorage.setItem("userInfo", JSON.stringify(data));
+      localStorage.setItem("userInfo", JSON.stringify(data));
       console.log("Register success: ", data);
     } catch (error) {
       dispatch({
