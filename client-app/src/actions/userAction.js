@@ -145,7 +145,8 @@ export const updateUserDetails =
         payload: data,
       });
 
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      // localStorage.setItem("userInfo", JSON.stringify(data));
+      console.log(data)
     } catch (error) {
       dispatch({
         type: USER_UPDATE_FAIL,

@@ -33,19 +33,38 @@ const ProfileComponent = () => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
+  // useEffect(() => {
+  //   if (userInfo || success) {
+  //     dispatch({ type: USER_UPDATE_RESET });
+  //     dispatch(getUserDetails(jwt_decode(userInfo.access).user_id));
+  //     setName(user.first_name);
+  //     setLastName(user.last_name);
+  //     setAddress(user.address);
+  //     setPhone(user.phone_number);
+  //     setEmail(user.email);
+  //     setCityDropdown(user.city);
+  //     setStateDropdown(user.state);
+  //   }
+  // }, [dispatch, userInfo, success]);
+
   useEffect(() => {
-    if (userInfo || success) {
-      dispatch({ type: USER_UPDATE_RESET });
-      dispatch(getUserDetails(jwt_decode(userInfo.access).user_id));
-      setName(user.first_name);
-      setLastName(user.last_name);
-      setAddress(user.address);
-      setPhone(user.phone_number);
-      setEmail(user.email);
-      setCityDropdown(user.city);
-      setStateDropdown(user.state);
+    if (!userInfo) {
+      console.log("You need to login");
+    } else {
+      if (!user || !user.first_name || success) {
+        dispatch({ type: USER_UPDATE_RESET });
+        dispatch(getUserDetails(jwt_decode(userInfo.access).user_id));
+      } else {
+        setName(user.first_name);
+        setLastName(user.last_name);
+        setAddress(user.address);
+        setPhone(user.phone_number);
+        setEmail(user.email);
+        setCityDropdown(user.city);
+        setStateDropdown(user.state);
+      }
     }
-  }, [dispatch, userInfo, success]);
+  }, [dispatch, userInfo, user, success]);
 
   const handleProfileUpdate = async (event) => {
     event.preventDefault();
