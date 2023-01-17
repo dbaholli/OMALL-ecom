@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { listProductDetails } from "../../actions/productActions";
 import "./styles/_productdetail.scss";
 
 const ProductDetail = () => {
   // const product = productsData.find((p) => p.id == productParam.id);
+  const [qty, setQty] = useState(1);
+
   let productParam = useParams();
   const dispatch = useDispatch();
+  let navigate = useNavigate();
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
@@ -15,6 +18,12 @@ const ProductDetail = () => {
   useEffect(() => {
     dispatch(listProductDetails(productParam.slug));
   }, [dispatch]);
+
+  const addToCartHandler = (e) => {
+    e.preventDefault();
+    // console.log("add to cart", productParam.slug);
+    navigate(`/shporta/${productParam.slug}?qty=${qty}`);
+  };
 
   return (
     <div className='product-detail-component'>
@@ -73,8 +82,30 @@ const ProductDetail = () => {
               <p className='product-quantity paragraph-text'>
                 Sasia: <span>{product?.quanitity}</span>
               </p>
+              <select
+                name='quantity'
+                value={qty}
+                onChange={(e) => setQty(e.target.value)}
+                className='product-quantity paragraph-text'
+              >
+                <option value='default' disabled>
+                  Sasia
+                </option>
+                {[...Array(product?.quanitity).keys()].map((opt, i) => {
+                  return (
+                    <option key={i} value={opt}>
+                      {opt}
+                    </option>
+                  );
+                })}
+              </select>
 
-              <Link className='shared-button pay-btn'>Shto ne shporte</Link>
+              <Link
+                className='shared-button pay-btn'
+                onClick={addToCartHandler}
+              >
+                Shto ne shporte
+              </Link>
             </div>
           </>
         )}

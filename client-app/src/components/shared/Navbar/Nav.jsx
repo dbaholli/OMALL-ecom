@@ -132,7 +132,7 @@ const Nav = (props) => {
                 <Link onClick={() => setShowModal(true)}>Profili</Link>
               )}
             </Link>
-            <Link>
+            <Link to={`/shporta/`}>
               <BsFillCartFill />
               <p>Shporta</p>
             </Link>
