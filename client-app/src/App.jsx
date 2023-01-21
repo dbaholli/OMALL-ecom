@@ -22,12 +22,14 @@ const App = () => {
           <Route exact path='/profili' element={<ProfilePage />} />
           <Route exact path='/produkti/:slug' element={<ProductPage />} />
           <Route exact path='/shporta/:slug' element={<CartPage />} />
+          <Route exact path='/shporta' element={<CartPage />} />
+          <Route exact path='/pagesa' element={<CartPage />} />
           <Route exact path='/kontakto' element={<ContactPage />} />
           <Route exact path='/faq' element={<FaqPage />} />
           <Route exact path='/termat' element={<TermsPage />} />
           <Route exact path='/siguria' element={<SecurityPage />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
         {/* <Footer3 /> */}
       </Router>
     </div>

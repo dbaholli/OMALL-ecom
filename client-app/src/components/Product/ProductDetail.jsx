@@ -17,7 +17,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     dispatch(listProductDetails(productParam.slug));
-  }, [dispatch]);
+  }, [dispatch, productParam.slug]);
 
   const addToCartHandler = (e) => {
     e.preventDefault();
@@ -82,30 +82,33 @@ const ProductDetail = () => {
               <p className='product-quantity paragraph-text'>
                 Sasia: <span>{product?.quanitity}</span>
               </p>
-              <select
-                name='quantity'
-                value={qty}
-                onChange={(e) => setQty(e.target.value)}
-                className='product-quantity paragraph-text'
-              >
-                <option value='default' disabled>
-                  Sasia
-                </option>
-                {[...Array(product?.quanitity).keys()].map((opt, i) => {
-                  return (
-                    <option key={i} value={opt}>
-                      {opt}
-                    </option>
-                  );
-                })}
-              </select>
+              {product.quanitity > 0 && (
+                <select
+                  name='quantity'
+                  defaultValue={qty}
+                  onChange={(e) => setQty(e.target.value)}
+                  className='product-quantity paragraph-text'
+                >
+                  <option defaultValue='default' disabled>
+                    Sasia
+                  </option>
+                  {[...Array(product?.quanitity).keys()].map((opt, i) => {
+                    return (
+                      <option key={i} defaultValue={opt + 1}>
+                        {opt + 1}
+                      </option>
+                    );
+                  })}
+                </select>
+              )}
 
-              <Link
+              <button
                 className='shared-button pay-btn'
                 onClick={addToCartHandler}
+                disabled={product.quanitity === 0}
               >
                 Shto ne shporte
-              </Link>
+              </button>
             </div>
           </>
         )}
