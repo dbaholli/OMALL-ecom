@@ -12,6 +12,10 @@ import {
   USER_CONTACT_REQUEST,
   USER_CONTACT_SUCCESS,
   USER_CONTACT_FAIL,
+  USER_UPDATE_REQUEST,
+  USER_UPDATE_SUCCESS,
+  USER_UPDATE_RESET,
+  USER_UPDATE_FAIL,
 } from "../constants/userConstants";
 
 export const userRegisterReducer = (state = {}, action) => {
@@ -23,7 +27,7 @@ export const userRegisterReducer = (state = {}, action) => {
       return { loading: false, userInfo: action.payload };
 
     case USER_REGISTER_FAIL:
-      return { loading: true, error: action.payload };
+      return { loading: false, error: action.payload };
 
     default:
       return state;
@@ -55,10 +59,29 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       return { ...state, loading: true };
 
     case USER_DETAILS_SUCCESS:
-      return { loading: true, user: action.payload };
+      return { loading: false, user: action.payload };
 
     case USER_DETAILS_FAIL:
       return { loading: true, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const userUpdateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_UPDATE_REQUEST:
+      return { loading: true };
+
+    case USER_UPDATE_SUCCESS:
+      return { loading: false, success: true, userInfo: action.payload };
+
+    case USER_UPDATE_FAIL:
+      return { loading: false, error: action.payload };
+
+    case USER_UPDATE_RESET:
+      return {};
 
     default:
       return state;
@@ -71,7 +94,7 @@ export const userContactReducer = (state = {}, action) => {
       return { loading: true };
 
     case USER_CONTACT_SUCCESS:
-      return { loading: true, userInfo: action.payload };
+      return { loading: false, userInfo: action.payload };
 
     case USER_CONTACT_FAIL:
       return { loading: true };

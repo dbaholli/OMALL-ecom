@@ -6,15 +6,18 @@ import "./_dropdown.scss";
 
 const Dropdown = (props) => {
   const dispatch = useDispatch();
-
   const handleLogout = () => {
     dispatch(logout());
   };
   return (
     <div style={{ zIndex: props.zIndex }} className='profile-dropdown'>
       <div className='dropdown-links'>
-        <Link to={`/profili`}>Profili im</Link>
-        <Link to={`/porosite`}>Porosite</Link>
+        <Link onClick={() => props.setDropdown(false)} to={`/profili`}>
+          Profili im
+        </Link>
+        <Link onClick={() => props.setDropdown(false)} to={`/porosite`}>
+          Porosite
+        </Link>
         <Link className='logout-button' onClick={handleLogout}>
           Ç'kyçu
         </Link>

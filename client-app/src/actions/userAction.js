@@ -13,17 +13,21 @@ import {
   USER_CONTACT_REQUEST,
   USER_CONTACT_FAIL,
   USER_CONTACT_SUCCESS,
+  USER_UPDATE_REQUEST,
+  USER_UPDATE_SUCCESS,
+  USER_UPDATE_RESET,
+  USER_UPDATE_FAIL,
 } from "../constants/userConstants";
 
 export const register =
   (
-    address,
-    cityDropdown,
-    email,
     name,
     lastName,
-    phone,
+    email,
+    address,
+    cityDropdown,
     stateDropdown,
+    phone,
     password
   ) =>
   async (dispatch) => {
@@ -46,7 +50,12 @@ export const register =
         type: USER_REGISTER_SUCCESS,
         payload: data,
       });
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: data,
+      });
 
+      localStorage.setItem("userInfo", JSON.stringify(data));
       console.log("Register success: ", data);
     } catch (error) {
       dispatch({
@@ -100,6 +109,54 @@ export const getUserDetails = (id) => async (dispatch) => {
     });
   }
 };
+
+export const updateUserDetails =
+  (
+    id,
+    name,
+    lastName,
+    email,
+    address,
+    phone,
+    cityDropdown,
+    stateDropdown,
+  ) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: USER_UPDATE_REQUEST });
+
+      const { data } = await axios.put(`http://127.0.0.1:8000/profile/${id}`, {
+        address: address,
+        city: cityDropdown,
+        email: email,
+        first_name: name,
+        last_name: lastName,
+        phone_number: phone,
+        state: stateDropdown,
+      });
+
+      dispatch({
+        type: USER_UPDATE_SUCCESS,
+        payload: data,
+      });
+
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: data,
+      });
+
+      // localStorage.setItem("userInfo", JSON.stringify(data));
+      console.log(data)
+    } catch (error) {
+      dispatch({
+        type: USER_UPDATE_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
