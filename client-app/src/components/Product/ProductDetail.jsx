@@ -1,20 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { listProductDetails } from "../../actions/productActions";
 import "./styles/_productdetail.scss";
 
 const ProductDetail = () => {
   // const product = productsData.find((p) => p.id == productParam.id);
+  const [qty, setQty] = useState(1);
+
   let productParam = useParams();
   const dispatch = useDispatch();
+  let navigate = useNavigate();
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
   useEffect(() => {
     dispatch(listProductDetails(productParam.slug));
-  }, [dispatch]);
+  }, [dispatch, productParam.slug]);
+
+  const addToCartHandler = (e) => {
+    e.preventDefault();
+    // console.log("add to cart", productParam.slug);
+    navigate(`/shporta/${productParam.slug}?qty=${qty}`);
+  };
 
   return (
     <div className='product-detail-component'>
@@ -73,8 +82,33 @@ const ProductDetail = () => {
               <p className='product-quantity paragraph-text'>
                 Sasia: <span>{product?.quanitity}</span>
               </p>
+              {product.quanitity > 0 && (
+                <select
+                  name='quantity'
+                  defaultValue={qty}
+                  onChange={(e) => setQty(e.target.value)}
+                  className='product-quantity paragraph-text'
+                >
+                  <option defaultValue='default' disabled>
+                    Sasia
+                  </option>
+                  {[...Array(product?.quanitity).keys()].map((opt, i) => {
+                    return (
+                      <option key={i} defaultValue={opt + 1}>
+                        {opt + 1}
+                      </option>
+                    );
+                  })}
+                </select>
+              )}
 
-              <Link className='shared-button pay-btn'>Shto ne shporte</Link>
+              <button
+                className='shared-button pay-btn'
+                onClick={addToCartHandler}
+                disabled={product.quanitity === 0}
+              >
+                Shto ne shporte
+              </button>
             </div>
           </>
         )}
