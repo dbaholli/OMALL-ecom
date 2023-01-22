@@ -3,8 +3,10 @@ import json
 from django.http import HttpResponse
 from django.shortcuts import render
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from users.serializer import UserProfileSerializer
 
 from .models import CustomUser, UserManager
@@ -39,6 +41,7 @@ def user_create(request):
     return Response(status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def user_update_or_delete(request, pk):
     try:
         queryset = CustomUser.objects.get(pk=pk)
