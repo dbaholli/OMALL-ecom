@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { BsCartPlusFill } from "react-icons/bs";
-import "./styles/_category-component.scss";
 import { useDispatch, useSelector } from "react-redux";
+import { BsCartPlusFill } from "react-icons/bs";
 import { listCategory } from "../../actions/categoryActions";
+import "./styles/_category-component.scss";
 
 const CategoryComponent = () => {
   let categoryParam = useParams();

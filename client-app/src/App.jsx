@@ -23,7 +23,6 @@ const App = () => {
           <Route exact path='/profili' element={<ProfilePage />} />
           <Route exact path='/produkti/:slug' element={<ProductPage />} />
           <Route exact path='/kategoria/:slug' element={<CategoryPage />} />
-          <Route exact path='/kategoria/:slug' element={<CategoryPage />} />
           <Route exact path='/shporta/:slug' element={<CartPage />} />
           <Route exact path='/shporta' element={<CartPage />} />
           <Route exact path='/pagesa' element={<CartPage />} />
