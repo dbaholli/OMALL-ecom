@@ -78,46 +78,46 @@ const Nav = (props) => {
         </div>
         <div className='navigation'>
           <div className='nav-link-container services-link'>
-            <Link to='/' className='nav-link inline'>
+            <Link to='kategoria/hotel-line' className='nav-link inline'>
               Hotel Line
             </Link>
             <HotelLineMegamenu />
           </div>
           <div className='nav-link-container why-us-link'>
-            <Link to='/' className='nav-link inline'>
+            <Link to='kategoria/setet' className='nav-link inline'>
               Sete
             </Link>
             <SetMegamenu />
           </div>
           <div className='nav-link-container contact-link'>
-            <Link to='/' className='nav-link inline'>
+            <Link to='kategoria/jastake' className='nav-link inline'>
               Jastake
             </Link>
           </div>
           <div className='nav-link-container careers-link'>
-            <Link to='/' className='nav-link inline'>
+            <Link to='kategoria/peshqira' className='nav-link inline'>
               Peshqira
             </Link>
           </div>
           <div className='nav-link-container careers-link'>
-            <Link to='/' className='nav-link inline'>
+            <Link to='kategoria/banjo' className='nav-link inline'>
               Banjo
             </Link>
             <BathroomMegamenu />
           </div>
           <div className='nav-link-container careers-link'>
-            <Link to='/' className='nav-link inline'>
+            <Link to='kategoria/cajniket' className='nav-link inline'>
               Cajniket
             </Link>
             <PotsMegamenu />
           </div>
           <div className='nav-link-container careers-link'>
-            <Link to='/' className='nav-link inline'>
+            <Link to='kategoria/mbulesa' className='nav-link inline'>
               Mbulesa
             </Link>
           </div>
           <div className='nav-link-container careers-link'>
-            <Link to='/' className='nav-link inline'>
+            <Link to='kategoria/dysheka' className='nav-link inline'>
               Dysheka
             </Link>
           </div>

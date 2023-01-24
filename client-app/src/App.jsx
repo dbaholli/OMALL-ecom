@@ -11,6 +11,7 @@ import TermsPage from "./pages/Terms/TermsPage";
 import SecurityPage from "./pages/Security/SecurityPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import CartPage from "./pages/Cart/CartPage";
+import CategoryPage from "./pages/Category/CategoryPage";
 
 const App = () => {
   return (
@@ -21,6 +22,8 @@ const App = () => {
           <Route exact path='/' element={<HomePage />} />
           <Route exact path='/profili' element={<ProfilePage />} />
           <Route exact path='/produkti/:slug' element={<ProductPage />} />
+          <Route exact path='/kategoria/:slug' element={<CategoryPage />} />
+          <Route exact path='/kategoria/:slug' element={<CategoryPage />} />
           <Route exact path='/shporta/:slug' element={<CartPage />} />
           <Route exact path='/shporta' element={<CartPage />} />
           <Route exact path='/pagesa' element={<CartPage />} />
@@ -29,7 +32,7 @@ const App = () => {
           <Route exact path='/termat' element={<TermsPage />} />
           <Route exact path='/siguria' element={<SecurityPage />} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
         {/* <Footer3 /> */}
       </Router>
     </div>
