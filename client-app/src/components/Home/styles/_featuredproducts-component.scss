@@ -30,11 +30,6 @@
         display: flex;
         flex-direction: column;
         width: 80%;
-        .price {
-          color: green;
-          font-weight: 500;
-          font-size: max(1rem, 1.2vw);
-        }
       }
       .addtocart-button {
         display: flex;

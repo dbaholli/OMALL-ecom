@@ -58,6 +58,12 @@ body {
   margin: max(10vw, 140px) 0 max(35px, 3vw);
 }
 
+.price {
+  color: green;
+  font-weight: 500;
+  font-size: max(1rem, 1.2vw);
+}
+
 .error-text {
   color: red !important;
 }
