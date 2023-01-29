@@ -69,7 +69,7 @@ class Orders(models.Model):
         ('finished', 'Finished'),
         ('cancelled', 'Cancelled'),
     ]
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    order_status = models.CharField(max_length=20, choices=STATUS_CHOICES)
 
     panels = [
         FieldPanel("products"),
@@ -77,7 +77,7 @@ class Orders(models.Model):
         FieldPanel("ordered_date"),
         FieldPanel("ordered"),
         FieldPanel("total_price"),
-        FieldPanel("status")
+        FieldPanel("order_status")
     ]
 
     api_fields = [
@@ -86,7 +86,9 @@ class Orders(models.Model):
         APIField("start_date"),
         APIField("ordered_date"),
         APIField("ordered"),
-        APIField("total_price")
+        APIField("total_price"),
+        APIField("order_status")
+
     ]
 
     class Meta:

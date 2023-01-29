@@ -18,7 +18,7 @@ def get_product(request):
     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 @api_view(['GET'])
-def get_product_by_category(request,slug):
+def get_product_by_category(request, slug):
     if request.method == 'GET':
         category = Categories.objects.filter(slug=slug).values('id').get()
         id = category['id']

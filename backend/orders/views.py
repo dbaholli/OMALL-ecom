@@ -51,7 +51,6 @@ def remove_from_order(request, pk):
    
     if order_product.quantity > 1:
         order_product.quantity -= 1
-        print(order_product.quantity)
         order_product.price = order_product.get_final_price(order_product.quantity)
         order_product.save() 
         order.total_price = order.get_total_price()
@@ -69,3 +68,21 @@ def remove_from_order(request, pk):
 
     order_serializer = OrderSerializer(order)
     return Response({"Order":order_serializer.data}, status=status.HTTP_200_OK)
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_order(request, pk):  
+    if request.method == 'GET':
+        order = Orders.objects.filter(user=request.user, pk=pk)
+        serializer = OrderSerializer(order, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_all_orders(request):  
+    if request.method == 'GET':
+        order = Orders.objects.filter(user=request.user)
+        serializer = OrderSerializer(order, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
