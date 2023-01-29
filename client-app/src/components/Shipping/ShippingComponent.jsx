@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   AiOutlineMail,
   AiOutlineMessage,
@@ -7,13 +8,16 @@ import {
   AiOutlineProfile,
 } from "react-icons/ai";
 import "./styles/_shipping-component.scss";
+import { saveShippingAddress } from "../../actions/cartActions";
 
 const ShippingComponent = () => {
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [postalCode, setPostalCode] = useState();
-  const [cityDropdown, setCityDropdown] = useState([]);
-  const [stateDropdown, setStateDropdown] = useState([]);
+  const cart = useSelector((state) => state.cart);
+  const { shippingAddress } = cart;
+
+  const [address, setAddress] = useState(shippingAddress.address);
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
+  const [cityDropdown, setCityDropdown] = useState(shippingAddress.cityDropdown);
+  const [stateDropdown, setStateDropdown] = useState(shippingAddress.stateDropdown);
   const [message, setMessage] = useState("");
   const [validateError, setValidateError] = useState(false);
   const [cities] = useState([
@@ -46,13 +50,20 @@ const ShippingComponent = () => {
     },
   ]);
 
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleOrderDetails = (e) => {
     e.preventDefault();
     console.log("handle order details function");
-    if (!email && !fullName && !message && !mobileNumber) {
+    if (!address && !cityDropdown && !postalCode && !stateDropdown) {
       console.log("validate");
       setValidateError(true);
     }
+    dispatch(
+      saveShippingAddress({ address, cityDropdown, postalCode, stateDropdown })
+    );
+    navigate('/pagesaa')
   };
 
   return (

@@ -41,13 +41,16 @@ const CartComponent = () => {
   };
 
   const checkoutHandler = () => {
-    navigate("/pagesa");
+    navigate("/detajet-e-porosise");
   };
 
   return (
     <div className='component-layout cart-component'>
       <div className='products-layout'>
         <h1 className='cart-title header-text'>Produktet ne shporte</h1>
+        <h2 className='cart-title paragraph-text'>
+          Deshironi ende produkte ? <Link to='/'>Shko te produktet</Link>
+        </h2>
         {cartItems.length === 0 ? (
           <h2 className='paragraph-text'>
             Shporta eshte e zbrazet. <Link to='/'>Shko te produktet</Link>
@@ -103,7 +106,7 @@ const CartComponent = () => {
       <div className='cart-layout'>
         <h1 className='header-text'>Shporta</h1>
         <p className='cart-text paragraph-text'>
-          Subtotal: ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+          Sasia: ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
         </p>
         <p className='cart-text paragraph-text'>Transporti: 2.5€</p>
         <p className='cart-total paragraph-text'>
