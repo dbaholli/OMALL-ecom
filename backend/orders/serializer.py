@@ -9,7 +9,16 @@ from .models import OrderProduct, Orders
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Orders
-        fields = "__all__"
+        fields = [
+            "id",
+            "products", 
+            "user", 
+            "start_date", 
+            "ordered_date",
+            "ordered" ,
+            "total_price",
+            "order_status",
+        ]
 
 class OrderProductSerializer(serializers.ModelSerializer):
     class Meta:

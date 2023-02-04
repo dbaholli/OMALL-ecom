@@ -72,8 +72,6 @@ REST_FRAMEWORK = {
 }
 
 # Django backend authentication & Axes
-
-
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",

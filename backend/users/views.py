@@ -1,5 +1,6 @@
 import json
 
+import jwt
 from django.http import HttpResponse
 from django.shortcuts import render
 from rest_framework import status
@@ -8,11 +9,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from users.serializer import UserProfileSerializer
-
 from .models import CustomUser, UserManager
-
+from django.views.decorators.csrf import csrf_exempt
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def user_create(request):
     if request.method == 'POST':
         data = json.loads(request.body)

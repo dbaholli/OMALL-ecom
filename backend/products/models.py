@@ -18,15 +18,13 @@ class Product(Page):
             ("Image", ImageBlock()),
         ],
         use_json_field=True,
-        null=True,
-        blank=True,
     )
 
     description = models.CharField(max_length=1000)
     price = models.FloatField()
     price_with_sale = models.FloatField(blank=True, null=True)
     currency = models.CharField(max_length=20)
-    category = models.ForeignKey("categories.categories", on_delete=models.PROTECT)
+    category = models.ForeignKey("categories.categories", on_delete=models.SET_NULL, null=True )
     quanitity = models.IntegerField(default=1)
     shipping = models.BooleanField()
     color = models.CharField(max_length=50, blank=True, null=True)
