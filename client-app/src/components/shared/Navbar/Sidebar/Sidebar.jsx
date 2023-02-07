@@ -8,9 +8,14 @@ import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import Login from "../../../Auth/Login";
 import Backdrop from "../Backdrop/Backdrop";
+import jwt_decode from "jwt-decode";
+import { useSelector } from "react-redux";
 
 const Sidebar = (props) => {
   const [modal, setShowModal] = useState(false);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const showModal = () => {
     setShowModal((prev) => (prev = !modal));
@@ -34,74 +39,77 @@ const Sidebar = (props) => {
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/hotel-line"}>Hotel Line</Link>
+              <Link to={"kategoria/hotel-line"}>Hotel Line</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/sete"}>Sete</Link>
+              <Link to={"kategoria/sete"}>Sete</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/jastake"}>Jastake</Link>
+              <Link to={"kategoria/jastake"}>Jastake</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/banjo"}>Banjo</Link>
+              <Link to={"kategoria/banjo"}>Banjo</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/cajniket"}>Cajniket</Link>
+              <Link to={"kategoria/cajniket"}>Cajniket</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/mbulesa"}>Mbulesa</Link>
+              <Link to={"kategoria/mbulesa"}>Mbulesa</Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"/dysheka"}>Dysheka</Link>
+              <Link to={"kategoria/dysheka"}>Dysheka</Link>
             </p>
           </div>
         </div>
       </div>
       <div className='sidebar-auth'>
-        {/* {context.data.isLoggedIn ? ( */}
-        <div className='login-link-container'>
-          <Link to='/user' className='login-link signup  inline '>
-            <AiOutlineUser />
-            <p>Profile Name</p>
-          </Link>
-        </div>
-        {/* ) : ( */}
-        <div className='auth-navigations'>
+        {userInfo ? (
           <div className='login-link-container'>
-            <Link onClick={showModal} className='mobile-login-link'>
-              Kyqu
+            <Link to='/profili' className='login-link inline '>
+              <AiOutlineUser />
+              <p className='user-nav paragraph-text'>
+                {jwt_decode(userInfo.access).first_name}
+              </p>
             </Link>
           </div>
-          <div className='login-link-container'>
-            <Link to='/register' className='mobile-login-link'>
-              Regjistrohu
-            </Link>
+        ) : (
+          <div className='auth-navigations'>
+            <div className='login-link-container'>
+              <Link onClick={showModal} className='mobile-login-link'>
+                Kyqu
+              </Link>
+            </div>
+            <div className='login-link-container'>
+              <Link to='/register' className='mobile-login-link'>
+                Regjistrohu
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
         {modal && <Login click={showModal} zIndex={zIndex} />}
         {modal && (
           <Backdrop click={() => setShowModal(!modal)} zIndex={zIndex - 1} />

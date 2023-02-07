@@ -67,6 +67,17 @@
     flex-direction: column;
     padding: 1em 2em;
     gap: 25px;
+    .login-link {
+      svg {
+        color: #222e50;
+        font-size: 20px;
+      }
+      .user-nav {
+        color: #222e50;
+        font-weight: 500;
+        text-transform: capitalize;
+      }
+    }
     .auth-navigations {
       display: flex;
       justify-content: space-between;
