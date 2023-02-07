@@ -8,6 +8,7 @@ const Dropdown = (props) => {
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logout());
+    props.setDropdown(false);
   };
   return (
     <div style={{ zIndex: props.zIndex }} className='profile-dropdown'>
