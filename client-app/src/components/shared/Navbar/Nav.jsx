@@ -154,6 +154,7 @@ const Nav = (props) => {
       {modal && (
         <Login
           setRegisterModal={showRegisterModal}
+          setLoginModal={showModal}
           click={showModal}
           zIndex={zIndex}
         />
@@ -169,6 +170,7 @@ const Nav = (props) => {
         <Register
           click={removeRegisterModal}
           showLoginModal={showLoginModal}
+          setRegisterModal={showModal}
           zIndex={zIndex}
         />
       )}

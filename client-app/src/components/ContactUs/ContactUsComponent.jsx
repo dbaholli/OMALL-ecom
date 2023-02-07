@@ -112,7 +112,7 @@ const ContactUsComponent = () => {
               <p>Mesazhi</p>
             </label>
             <div className='contact-input'>
-              <label htmlFor='email'>
+              <label htmlFor='message'>
                 <AiOutlineMessage />
               </label>
               <textarea

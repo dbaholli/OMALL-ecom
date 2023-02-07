@@ -57,6 +57,10 @@ const Register = (props) => {
     }
   };
 
+  if (userInfo) {
+    props.setRegisterModal();
+  }
+
   const [cities] = useState([
     {
       label: "Prishtine",

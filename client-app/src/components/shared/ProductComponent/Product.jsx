@@ -1,9 +1,46 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../../../actions/cartActions";
 import { BsCartPlusFill } from "react-icons/bs";
 
 const Product = (product, i) => {
   // use the props from the featured product component to display product data
+  let navigate = useNavigate();
+  let productParam = useParams();
+  const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+
+  // get the items from the cart state
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+  // console.log("cartItems:", cartItems);
+
+  // assign product slug from useParams to variable
+  // and quantity from url query string
+  const productSlug = productParam.slug;
+  const qty = Number(searchParams.get("qty"));
+  // console.log(qty);
+
+  // dispatch addToCart action with productSlug and qty as params,
+  // sets the product added to cart on the redux store
+  useEffect(() => {
+    if (productSlug) {
+      dispatch(addToCart(productSlug, qty));
+    }
+  }, [dispatch, productSlug, qty]);
+
+  const addToCartHandler = (e) => {
+    e.preventDefault();
+    // console.log("add to cart", productParam.slug);
+    navigate(`/shporta/${product.product.slug}?qty=${qty}`);
+  };
+
   return (
     <>
       <Link
@@ -23,9 +60,9 @@ const Product = (product, i) => {
           <p className='price paragraph-text'>{product.product.price}€</p>
           <p className='paragraph-text'>Vlersimet: {product.product.rating}</p>
         </div>
-        <div className='addtocart-button'>
+        <Link className='addtocart-button' onClick={addToCartHandler}>
           <BsCartPlusFill />
-        </div>
+        </Link>
       </Link>
     </>
   );

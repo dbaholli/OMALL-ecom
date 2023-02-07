@@ -50,12 +50,12 @@ export const register =
         type: USER_REGISTER_SUCCESS,
         payload: data,
       });
-      dispatch({
-        type: USER_LOGIN_SUCCESS,
-        payload: data,
-      });
+      // dispatch({
+      //   type: USER_LOGIN_SUCCESS,
+      //   payload: data,
+      // });
 
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      // localStorage.setItem("userInfo", JSON.stringify(data));
       console.log("Register success: ", data);
     } catch (error) {
       dispatch({
@@ -90,10 +90,15 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const getUserDetails = (id) => async (dispatch) => {
+  const token = JSON.parse(localStorage.getItem("userInfo"));
   try {
     dispatch({ type: USER_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`http://127.0.0.1:8000/profile/${id}`);
+    const { data } = await axios.get(`http://127.0.0.1:8000/profile/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token.access}`,
+      },
+    });
 
     dispatch({
       type: USER_DETAILS_SUCCESS,
@@ -112,6 +117,7 @@ export const getUserDetails = (id) => async (dispatch) => {
 
 export const updateUserDetails =
   (
+    token,
     id,
     name,
     lastName,
@@ -119,21 +125,29 @@ export const updateUserDetails =
     address,
     phone,
     cityDropdown,
-    stateDropdown,
+    stateDropdown
   ) =>
   async (dispatch) => {
     try {
       dispatch({ type: USER_UPDATE_REQUEST });
 
-      const { data } = await axios.put(`http://127.0.0.1:8000/profile/${id}`, {
-        address: address,
-        city: cityDropdown,
-        email: email,
-        first_name: name,
-        last_name: lastName,
-        phone_number: phone,
-        state: stateDropdown,
-      });
+      const { data } = await axios.put(
+        `http://127.0.0.1:8000/profile/${id}`,
+        {
+          address: address,
+          city: cityDropdown,
+          email: email,
+          first_name: name,
+          last_name: lastName,
+          phone_number: phone,
+          state: stateDropdown,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       dispatch({
         type: USER_UPDATE_SUCCESS,
@@ -146,7 +160,7 @@ export const updateUserDetails =
       });
 
       // localStorage.setItem("userInfo", JSON.stringify(data));
-      console.log(data)
+      console.log("update successful", data);
     } catch (error) {
       dispatch({
         type: USER_UPDATE_FAIL,

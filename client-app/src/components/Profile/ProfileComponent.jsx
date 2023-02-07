@@ -68,8 +68,10 @@ const ProfileComponent = () => {
 
   const handleProfileUpdate = async (event) => {
     event.preventDefault();
+    console.log("update");
     dispatch(
       updateUserDetails(
+        userInfo.access,
         jwt_decode(userInfo.access).user_id,
         name,
         lastName,
