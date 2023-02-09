@@ -72,3 +72,24 @@ body {
   color: green;
   font-weight: 500;
 }
+
+.breadcrumb-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  z-index: 3;
+  color: #122e82;
+  a,
+  .breadcrumb-active {
+    margin: max(0.25rem, 0.25vw) 0;
+  }
+  a {
+    color: #122e82;
+    font-weight: 400;
+  }
+  .breadcrumb-active {
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+}

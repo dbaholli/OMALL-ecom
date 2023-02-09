@@ -27,7 +27,17 @@ const ProductDetail = () => {
 
   return (
     <div className='product-detail-component'>
-      {/* <h1 className="header-text">sss{JSON.stringify(product)}</h1> */}
+      <div className='breadcrumb-nav '>
+        <Link to='/' className='paragraph-text'>
+          Ballina
+        </Link>
+        &nbsp;/&nbsp;
+        <Link to='/' className='paragraph-text'>
+          Produktet
+        </Link>
+        &nbsp;/&nbsp;
+        <div className='breadcrumb-active paragraph-text'>{product?.title}</div>
+      </div>
       <div className='product-detail-container'>
         {loading ? (
           <h1 className='header-text'>Loading ...</h1>
@@ -47,25 +57,23 @@ const ProductDetail = () => {
             </div>
             <div className='product-info'>
               <h1 className='product-title header-text'>{product?.title}</h1>
-              {/* `navbar ${isSticky ? "sticky" : ""}`} */}
-              {/* <p className='product-price paragraph-text'> */}
               <p
                 className={`product-price paragraph-text ${
-                  product.price_with_sale != "" ? "active-sale" : ""
+                  product.price_with_sale != null ? "active-sale" : ""
                 }`}
               >
                 <span>Cmimi:</span> {product?.price}€
               </p>
-              <p className='product-price paragraph-text'>
-                {product?.price_with_sale != "" ? (
+              {product?.price_with_sale != null ? (
+                <p className='product-price paragraph-text'>
                   <>
                     <span>Cmimi me zbritje: </span>
                     <span className='sale-price'>
                       {product.price_with_sale}€
                     </span>
                   </>
-                ) : null}
-              </p>
+                </p>
+              ) : null}
               <p className='product-quantity paragraph-text'>
                 Kategoria: {product?.category?.title}
               </p>
