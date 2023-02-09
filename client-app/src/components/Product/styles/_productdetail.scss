@@ -4,9 +4,9 @@
   margin: max(12.5vw, 140px) 0 max(35px, 3vw);
   width: 100%;
   padding: 0 5%;
+
   .product-detail-container {
     display: flex;
-
     .productimage-container {
       width: 40%;
       .product-image {
@@ -14,7 +14,6 @@
       }
     }
     .product-info {
-      // border: 1px solid black;
       padding: 20px 30px;
       width: 60%;
       display: flex;
