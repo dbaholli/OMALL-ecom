@@ -5,6 +5,7 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom";
+import cogoToast from "cogo-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../../../actions/cartActions";
 import { BsCartPlusFill } from "react-icons/bs";
@@ -38,7 +39,14 @@ const Product = (product, i) => {
   const addToCartHandler = (e) => {
     e.preventDefault();
     // console.log("add to cart", productParam.slug);
-    navigate(`/shporta/${product.product.slug}?qty=${qty}`);
+    // navigate(`/shporta/${product.product.slug}?qty=${qty}`);
+    if (product.product.slug) {
+      dispatch(addToCart(product.product.slug, qty));
+    }
+    cogoToast.success(`${product?.product.title}`, {
+      position: "top-right",
+      heading: "Produkti u shtua ne shporte!",
+    });
   };
 
   return (

@@ -57,13 +57,25 @@
         }
       }
     }
-    .pay-btn {
-      outline: none;
-      border: none;
-      color: hsl(0, 0%, 100%);
-      background-color: hsl(158, 36%, 37%);
-      border-radius: 10px;
-      padding: 15px 40px;
+    .cart-button-actions {
+      display: flex;
+      gap: 20px;
+      .pay-btn {
+        outline: none;
+        border: none;
+        color: hsl(0, 0%, 100%);
+        background-color: hsl(158, 36%, 37%);
+        border-radius: 10px;
+        padding: 15px 40px;
+      }
+      .navigate-cart-btn {
+        outline: none;
+        border: none;
+        color: hsl(0, 0%, 100%);
+        background-color: #122e82;
+        border-radius: 10px;
+        padding: 15px 40px;
+      }
     }
   }
 }

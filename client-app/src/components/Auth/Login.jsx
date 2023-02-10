@@ -20,7 +20,7 @@ const Login = (props) => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    if (!email && !password) {
+    if (!email && !password && error) {
       console.log("validate");
       setValidateError(true);
     } else {

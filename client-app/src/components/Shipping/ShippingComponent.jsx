@@ -6,6 +6,7 @@ import {
   AiOutlinePhone,
   AiOutlineProfile,
 } from "react-icons/ai";
+import cogoToast from "cogo-toast";
 import { saveShippingAddress } from "../../actions/cartActions";
 import "./styles/_shipping-component.scss";
 
@@ -75,6 +76,10 @@ const ShippingComponent = () => {
         phone,
       })
     );
+    cogoToast.success(``, {
+      position: "top-right",
+      heading: "Te dhenat e dorezimit u ruan me sukses!",
+    });
     // navigate("/pagesaa");
   };
 
