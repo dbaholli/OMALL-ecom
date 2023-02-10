@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import cogoToast from "cogo-toast";
 import { listProductDetails } from "../../actions/productActions";
 import "./styles/_productdetail.scss";
+import { addToCart } from "../../actions/cartActions";
 
 const ProductDetail = () => {
   // const product = productsData.find((p) => p.id == productParam.id);
   const [qty, setQty] = useState(1);
+  const [toCart, setToCart] = useState(false);
 
   let productParam = useParams();
   const dispatch = useDispatch();
@@ -15,6 +18,9 @@ const ProductDetail = () => {
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
   useEffect(() => {
     dispatch(listProductDetails(productParam.slug));
   }, [dispatch, productParam.slug]);
@@ -22,7 +28,14 @@ const ProductDetail = () => {
   const addToCartHandler = (e) => {
     e.preventDefault();
     // console.log("add to cart", productParam.slug);
-    navigate(`/shporta/${productParam.slug}?qty=${qty}`);
+    // navigate(`/shporta/${productParam.slug}?qty=${qty}`);
+    if (productParam.slug) {
+      dispatch(addToCart(productParam.slug, qty));
+    }
+    cogoToast.success(`${product?.title}`, {
+      position: "top-right",
+      heading: "Produkti u shtua ne shporte!",
+    });
   };
 
   return (
@@ -62,7 +75,7 @@ const ProductDetail = () => {
                   product.price_with_sale != null ? "active-sale" : ""
                 }`}
               >
-                <span>Cmimi:</span> {product?.price}€
+                <span>Cmimi:</span> €{product?.price}
               </p>
               {product?.price_with_sale != null ? (
                 <p className='product-price paragraph-text'>
@@ -110,13 +123,24 @@ const ProductDetail = () => {
                 </select>
               )}
 
-              <button
-                className='shared-button pay-btn'
-                onClick={addToCartHandler}
-                disabled={product.quanitity === 0}
-              >
-                Shto ne shporte
-              </button>
+              <div className='cart-button-actions'>
+                <button
+                  className='shared-button pay-btn'
+                  onClick={addToCartHandler}
+                  disabled={product.quanitity === 0}
+                >
+                  Shto ne shporte
+                </button>
+                {cartItems.length > 0 ? (
+                  <button
+                    className='shared-button navigate-cart-btn'
+                    onClick={() => navigate('/shporta')}
+                    disabled={product.quanitity === 0}
+                  >
+                    Shko ne shporte
+                  </button>
+                ) : null}
+              </div>
             </div>
           </>
         )}
