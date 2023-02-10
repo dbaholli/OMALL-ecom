@@ -1,4 +1,5 @@
 import axios from "axios";
+import cogoToast from "cogo-toast";
 import {
   USER_REGISTER_REQUEST,
   USER_LOGIN_REQUEST,
@@ -57,10 +58,18 @@ export const register =
 
       // localStorage.setItem("userInfo", JSON.stringify(data));
       console.log("Register success: ", data);
+      cogoToast.success(``, {
+        position: "top-right",
+        heading: "Jeni regjistruar me sukses!",
+      });
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
         payload: error.message,
+      });
+      cogoToast.error(``, {
+        position: "top-right",
+        heading: "Gabim!",
       });
     }
   };
@@ -81,10 +90,18 @@ export const login = (email, password) => async (dispatch) => {
     });
 
     localStorage.setItem("userInfo", JSON.stringify(data));
+    cogoToast.success(``, {
+      position: "top-right",
+      heading: "Jeni kyqur me sukses!",
+    });
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
       payload: error.message,
+    });
+    cogoToast.error(``, {
+      position: "top-right",
+      heading: "Gabim!",
     });
   }
 };
