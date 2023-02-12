@@ -1,14 +1,13 @@
 from django.urls import path
 from .views import (
-    add_to_order,
-    remove_from_order,
+    coupon_update_or_delete,
+
     get_order,
-    get_all_orders
+    order_get_or_create
 )
 
 urlpatterns = [
-    path('list/', get_all_orders, name="get_all_orders"),
-    path('<pk>/', get_order, name="get_order"),
-    path('add-to-order/<pk>/', add_to_order, name='add-to-order'),
-    path('remove-from-order/<pk>/', remove_from_order, name='remove-from-order')
+    path('', order_get_or_create, name="order_get_or_create"),
+    path('<pk>/', coupon_update_or_delete, name='coupon_update_or_delete'),
+    path('list/<pk>/', get_order, name="get_order"),
 ]

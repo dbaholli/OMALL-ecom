@@ -11,63 +11,40 @@ from .models import OrderProduct, Orders
 from .serializer import OrderProductSerializer, OrderSerializer
 
 
-@api_view(('POST',))
-@permission_classes([IsAuthenticated])
-def add_to_order(request, pk):
-    """Add a product to a user's order"""
-    product = get_object_or_404(Product, pk=pk)
-    order_product, _ = OrderProduct.objects.get_or_create(product=product, user=request.user, ordered=False)
-    order, _ = Orders.objects.get_or_create(user=request.user, ordered=False)
-    if order.products.filter(product=product).exists():
-        order_product.quantity += 1
-        order_product.price = order_product.get_final_price(order_product.quantity)
-        order_product.save() 
-        order.total_price = order.get_total_price()
-        order.save()
-        order_serializer = OrderSerializer(order)
-        product_serializer = OrderProductSerializer(order_product)
-    else:
-        order.products.add(order_product)
-        order_product.price = order_product.get_final_price(order_product.quantity)
-        order_product.save()
-        order.total_price = order.get_total_price()
-        order.save()
-        order_serializer = OrderSerializer(order)
-        product_serializer = OrderProductSerializer(order_product)
-    return Response(({"order":order_serializer.data},{"products":product_serializer.data}), status=status.HTTP_200_OK)
 
-
-@api_view(['DELETE'])
-@permission_classes([IsAuthenticated])
-def remove_from_order(request, pk):
-    """Remove a product from a user's order"""
+@api_view(['GET','POST'])
+def order_get_or_create(request):
+    if request.method == 'GET':
+        queryset = Orders.objects.all()
+        serializer = OrderSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    elif request.method == 'POST':
+        serializer = OrderSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET', 'PUT', 'DELETE'])
+def coupon_update_or_delete(request, pk):
     try:
-        product = get_object_or_404(Product, pk=pk)
-        order_product, _ = OrderProduct.objects.get_or_create(
-        product=product, user=request.user, ordered=False)
-        order, _ = Orders.objects.get_or_create(user=request.user, ordered=False)
-    except OrderProduct.DoesNotExist or Orders.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-   
-    if order_product.quantity > 1:
-        order_product.quantity -= 1
-        order_product.price = order_product.get_final_price(order_product.quantity)
-        order_product.save() 
-        order.total_price = order.get_total_price()
-        order.save()
-    else:
-        order.products.remove(order_product)
-        order_product.price = order_product.get_final_price(order_product.quantity)
-        order.total_price = order.get_total_price()
-        order_product.save() 
-        order.save()
-        order_product.delete()
+        queryset = Orders.objects.get(pk=pk)
+    except Orders.DoesNotExist:
+        return Response({"error": "Order does not exist"}, status=status.HTTP_404_NOT_FOUND)
+ 
+    if request.method == 'GET':
+        serializer = OrderSerializer(queryset)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    elif request.method == 'PUT':
+        serializer = OrderSerializer(queryset, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        queryset.delete()
+        return Response("Order successfully deleted", status=status.HTTP_204_NO_CONTENT)    
 
-    if order.products.count() == 0:
-        order.delete()
-
-    order_serializer = OrderSerializer(order)
-    return Response({"Order":order_serializer.data}, status=status.HTTP_200_OK)
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
