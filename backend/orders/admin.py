@@ -12,7 +12,7 @@ class Order(ModelAdmin):
     add_to_settings_menu = False 
     menu_order = 3
     exlude_from_explorer = False 
-    list_display = ("ordered", "total_price")
-    search_fields = ["ordered", "total_price"]
+    list_display = ("total_price", "phone_number", "email", "address", "city", "state", "ordered_date","ordered")
+    search_fields = ["ordered", "ordered_date", "products", "email", "address", "city","state", "total_price"]
 
 modeladmin_register(Order)

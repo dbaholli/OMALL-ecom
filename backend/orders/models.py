@@ -8,16 +8,13 @@ from wagtail.snippets.models import register_snippet
 
 @register_snippet
 class OrderProduct(models.Model):
-    user = models.ForeignKey("users.customUser", on_delete=models.CASCADE)
     product = models.ForeignKey("products.product", on_delete=models.CASCADE)
-    coupon = models.ForeignKey("coupons.coupons", on_delete=models.CASCADE, blank=True, null=True)
     quantity = models.IntegerField(default=1)
-    ordered = models.BooleanField(default=False)
+    ordered = models.BooleanField(default=True)
     price = models.FloatField(null=True)
 
     panels = [
         FieldPanel("product"),
-        FieldPanel("coupon"),    
         FieldPanel("quantity"),
         FieldPanel("price"),
         FieldPanel("ordered")
@@ -26,7 +23,6 @@ class OrderProduct(models.Model):
     api_fields = [
         APIField("order"),
         APIField("product"),
-        APIField("coupon"),
         APIField("quantity"),
         APIField("price")
     ]
@@ -38,29 +34,23 @@ class OrderProduct(models.Model):
     def __str__(self):
         return f"{self.quantity} : {self.product.title} : {self.price}"
 
-    def get_total_item_price(self, quantity):
-        return quantity * self.product.price
-
-    def get_discount_item_price(self, quantity):
-        return quantity * self.product.price_with_sale
-
-    def get_amount_saved(self):
-        return self.get_total_item_price() - self.get_discount_item_price()
-
-    def get_final_price(self,  quantity):
-        if self.product.price_with_sale:
-            return self.get_discount_item_price(quantity=quantity)
-        return self.get_total_item_price(quantity=quantity)
-
 
 @register_snippet
 class Orders(models.Model):
     products = models.ManyToManyField(OrderProduct)
-    user = models.ForeignKey("users.customUser", on_delete=models.CASCADE)
+    user = models.ForeignKey("users.customUser", on_delete=models.CASCADE, blank=True)
     start_date = models.DateTimeField(auto_now_add=True, editable=False)
 
-    ordered_date = models.DateTimeField(null=True)
-    ordered = models.BooleanField(default=False)
+    first_name = models.TextField()
+    last_name = models.TextField()
+    email = models.TextField(verbose_name="email address", max_length=255)
+    address = models.TextField()
+    city = models.TextField()
+    postal_code = models.TextField()
+    state = models.TextField()
+    phone_number = models.CharField(max_length=15, blank=True)
+    ordered_date = models.DateTimeField(auto_now_add=True, editable=True)
+    ordered = models.BooleanField(default=True)
     total_price = models.FloatField(default=0)
     
     STATUS_CHOICES = [
@@ -73,22 +63,33 @@ class Orders(models.Model):
 
     panels = [
         FieldPanel("products"),
-        FieldPanel("user"),
-        FieldPanel("ordered_date"),
-        FieldPanel("ordered"),
         FieldPanel("total_price"),
-        FieldPanel("order_status")
+        FieldPanel("order_status"),
+        FieldPanel("first_name"),
+        FieldPanel("last_name"),
+        FieldPanel("email"),
+        FieldPanel("address"),
+        FieldPanel("city"),
+        FieldPanel("postal_code"),
+        FieldPanel("state"),
+        FieldPanel("phone_number"),
+        FieldPanel("ordered"),  
     ]
 
     api_fields = [
         APIField("products"),
-        APIField("user"),
-        APIField("start_date"),
-        APIField("ordered_date"),
-        APIField("ordered"),
         APIField("total_price"),
-        APIField("order_status")
-
+        APIField("order_status"),
+        APIField("first_name"),
+        APIField("last_name"),
+        APIField("email"),
+        APIField("address"),
+        APIField("city"),
+        APIField("postal_code"),
+        APIField("state"),
+        APIField("phone_number"),
+        APIField("ordered_date"),
+        APIField("ordered")
     ]
 
     class Meta:
@@ -97,9 +98,3 @@ class Orders(models.Model):
 
     def __str__(self):
         return f"{self.user.email}:{self.total_price}"
-    
-    def get_total_price(self):
-        total = 0
-        for order_products in self.products.all():
-            total += order_products.price
-        return total
