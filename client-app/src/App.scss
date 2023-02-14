@@ -53,6 +53,15 @@ body {
   text-transform: uppercase;
 }
 
+.navigate-cart-btn {
+  outline: none;
+  border: none;
+  color: hsl(0, 0%, 100%);
+  background-color: #122e82;
+  border-radius: 10px;
+  padding: 15px 40px;
+}
+
 .component-layout {
   padding: 0 5%;
   margin: max(10vw, 140px) 0 max(35px, 3vw);
@@ -92,4 +101,47 @@ body {
     font-weight: 500;
     text-transform: capitalize;
   }
+}
+
+.maylike-products-wrapper {
+  margin-top: 120px;
+  overflow: hidden;
+}
+.maylike-products-wrapper h2 {
+  text-align: center;
+}
+.maylike-products-container {
+  display: flex;
+  // justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.track {
+  height: fit-content;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 15s linear infinite;
+}
+.track:hover {
+  animation-play-state: paused;
+}
+.marquee {
+  height: fit-content;
+  position: relative;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.product-card:hover {
+  transform: scale(1.1, 1.1);
 }

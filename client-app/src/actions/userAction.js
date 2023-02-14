@@ -145,6 +145,8 @@ export const updateUserDetails =
     stateDropdown
   ) =>
   async (dispatch) => {
+    const token = JSON.parse(localStorage.getItem("userInfo"));
+
     try {
       dispatch({ type: USER_UPDATE_REQUEST });
 
@@ -161,7 +163,7 @@ export const updateUserDetails =
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token.access}`,
           },
         }
       );

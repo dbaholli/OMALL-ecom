@@ -70,12 +70,35 @@ const Nav = (props) => {
 
   return (
     <div className={`navbar ${isSticky ? "sticky" : ""}`}>
-      <div className='navbar-content'>
+      <div className='top-navbar'>
         <div className='title-icon inline'>
           <Link to='/' className='inline'>
             <div className='nav-icon' />
           </Link>
         </div>
+        <div className='nav-link-actions actions-link '>
+          <Link>
+            <BsPersonCircle />
+            {userInfo ? (
+              <Link onClick={() => setDropdown(true)}>
+                {jwt_decode(userInfo.access).first_name}
+              </Link>
+            ) : (
+              <Link onClick={() => setShowModal(true)}>Profili</Link>
+            )}
+          </Link>
+          <Link to={`/shporta`}>
+            <BsFillCartFill />
+            <p>Shporta</p>
+          </Link>
+        </div>
+      </div>
+      <div className='navbar-content'>
+        {/* <div className='title-icon inline'>
+          <Link to='/' className='inline'>
+            <div className='nav-icon' />
+          </Link>
+        </div> */}
         <div className='navigation'>
           <div className='nav-link-container services-link'>
             <Link to='kategoria/hotel-line' className='nav-link inline'>
@@ -121,7 +144,7 @@ const Nav = (props) => {
               Dysheka
             </Link>
           </div>
-          <div className='nav-link-actions actions-link '>
+          {/* <div className='nav-link-actions actions-link '>
             <Link>
               <BsPersonCircle />
               {userInfo ? (
@@ -136,7 +159,7 @@ const Nav = (props) => {
               <BsFillCartFill />
               <p>Shporta</p>
             </Link>
-          </div>
+          </div> */}
         </div>
         <div onClick={showSidebar} className='hamburger-menu'>
           <div className='hamburger-line' />

@@ -53,7 +53,9 @@
       gap: 25px;
       .cart-pay-btn {
         color: hsl(0, 0%, 100%);
-        background-color: hsl(158, 36%, 37%);
+        // background-color: #3c8067;
+        background-color: #ff0000;
+        border-radius: 10px;
         border: unset;
         font-size: max(0.8rem, 0.8vw);
         width: fit-content;

@@ -53,9 +53,6 @@ const CartComponent = () => {
     <div className='component-layout cart-component'>
       <div className='products-layout'>
         <h1 className='cart-title header-text'>Produktet ne shporte</h1>
-        <h2 className='cart-title paragraph-text'>
-          Deshironi ende produkte ? <Link to='/'>Shko te produktet</Link>
-        </h2>
         {cartItems.length === 0 ? (
           <h2 className='paragraph-text'>
             Shporta eshte e zbrazet. <Link to='/'>Shko te produktet</Link>
@@ -120,7 +117,7 @@ const CartComponent = () => {
         </p>
         <div className='cart-buttons'>
           <button
-            className='shared-button cart-pay-btn'
+            className='shared-button navigate-cart-btn'
             onClick={() => navigate("/")}
           >
             Kthehu

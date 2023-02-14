@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import cogoToast from "cogo-toast";
-import { listProductDetails } from "../../actions/productActions";
+import { listProductDetails, listProducts } from "../../actions/productActions";
 import "./styles/_productdetail.scss";
 import { addToCart } from "../../actions/cartActions";
+import Product from "../shared/ProductComponent/Product";
 
 const ProductDetail = () => {
   // const product = productsData.find((p) => p.id == productParam.id);
@@ -16,13 +17,17 @@ const ProductDetail = () => {
   let navigate = useNavigate();
 
   const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
+  const { loading, product } = productDetails;
+
+  const productList = useSelector((state) => state.productList);
+  const { error, products } = productList;
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
   useEffect(() => {
     dispatch(listProductDetails(productParam.slug));
+    dispatch(listProducts());
   }, [dispatch, productParam.slug]);
 
   const addToCartHandler = (e) => {
@@ -134,7 +139,7 @@ const ProductDetail = () => {
                 {cartItems.length > 0 ? (
                   <button
                     className='shared-button navigate-cart-btn'
-                    onClick={() => navigate('/shporta')}
+                    onClick={() => navigate("/shporta")}
                     disabled={product.quanitity === 0}
                   >
                     Shko ne shporte
@@ -144,6 +149,18 @@ const ProductDetail = () => {
             </div>
           </>
         )}
+      </div>
+      <div className='product-suggestions-container'>
+        <div className='maylike-products-wrapper'>
+          <h2 className='header-text'>Produkte tjera</h2>
+          <div className='marquee'>
+            <div className='maylike-products-container track'>
+              {products.slice(0, 6).map((product, i) => {
+                return <Product product={product} index={i} />;
+              })}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

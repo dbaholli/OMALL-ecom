@@ -5,6 +5,12 @@
 /static/*
 /virtualenvs/*
 
+#Images for Wagtail
+*.jpeg
+*.jpg
+*.png
+*.webp
+
 #Django-specific files
 *.sqlite3
 *.log

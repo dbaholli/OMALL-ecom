@@ -7,18 +7,21 @@ import {
   AiOutlineProfile,
 } from "react-icons/ai";
 import cogoToast from "cogo-toast";
+import jwt_decode from "jwt-decode";
 import { saveShippingAddress } from "../../actions/cartActions";
 import "./styles/_shipping-component.scss";
+import { createOrder } from "../../actions/orderActions";
 
 const ShippingComponent = () => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress, cartItems } = cart;
 
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState(shippingAddress.name);
+  const [lastName, setLastName] = useState(shippingAddress.lastName);
   const [address, setAddress] = useState(shippingAddress.address);
   const [phone, setPhone] = useState(shippingAddress.phone);
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
+  const [email, setEmail] = useState(shippingAddress.email);
   const [cityDropdown, setCityDropdown] = useState(
     shippingAddress.cityDropdown
   );
@@ -27,6 +30,8 @@ const ShippingComponent = () => {
   );
   const [message, setMessage] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+
   const [validateError, setValidateError] = useState(false);
   const [cities] = useState([
     {
@@ -60,6 +65,9 @@ const ShippingComponent = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const handleOrderDetails = (e) => {
     e.preventDefault();
     console.log("handle order details function");
@@ -69,7 +77,10 @@ const ShippingComponent = () => {
     }
     dispatch(
       saveShippingAddress({
+        name,
+        lastName,
         address,
+        email,
         cityDropdown,
         postalCode,
         stateDropdown,
@@ -80,11 +91,52 @@ const ShippingComponent = () => {
       position: "top-right",
       heading: "Te dhenat e dorezimit u ruan me sukses!",
     });
-    // navigate("/pagesaa");
+  };
+
+  // this function sends the request to the order endpoint 
+  // and sends the cartItem and shippingAddress object as data
+  const handleOrder = () => {
+    if (isChecked === false) {
+      cogoToast.error(``, {
+        position: "top-right",
+        heading: "Duhet te zgjedhni nje menyre te pageses!",
+      });
+    } else {
+      // this forEach sets the neccessary values needed to make the order request
+      const itemsToBePurchased = [];
+      cart.cartItems.forEach((cartItem) => {
+        itemsToBePurchased.push({
+          id: cartItem.id,
+          color: cartItem.color,
+          name: cartItem.name,
+          price: cartItem.price,
+          product: cartItem.product,
+          qty: cartItem.qty,
+          quantity: cartItem.quantity,
+        });
+      });
+      dispatch(
+        createOrder({
+          user_id: jwt_decode(userInfo.access).user_id,
+          products: itemsToBePurchased,
+          order_status: "pending",
+          address: cart.shippingAddress.address,
+          city: cart.shippingAddress.cityDropdown,
+          email: cart.shippingAddress.email,
+          first_name: cart.shippingAddress.name,
+          last_name: cart.shippingAddress.lastName,
+          phone_number: cart.shippingAddress.phone,
+          state: cart.shippingAddress.stateDropdown,
+          postal_code: cart.shippingAddress.postalCode,
+          paymentMethod: paymentMethod,
+        })
+      );
+    }
   };
 
   const handleChange = (event) => {
     setPaymentMethod(event.target.value);
+    setIsChecked(true);
   };
 
   return (
@@ -136,6 +188,21 @@ const ShippingComponent = () => {
                 placeholder='Shkruaj adresen tuaj'
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className='order-details-input-container'>
+            <label htmlFor='adresa'>
+              <p>Email</p>
+            </label>
+            <div className='order-details-input'>
+              <AiOutlineMail />
+              <input
+                id='adress'
+                type='text'
+                placeholder='Shkruaj email adresen tuaj'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
           </div>
@@ -274,8 +341,9 @@ const ShippingComponent = () => {
             <input type='checkbox' id='remember-checkbox' />
             <p className='paragraph-text'>I pranoj Kushtet</p>
           </div>
-
-          <button className='shared-button pay-btn'>Paguaj</button>
+          <button className='shared-button pay-btn' onClick={handleOrder}>
+            Paguaj
+          </button>
         </div>
       </div>
     </div>
