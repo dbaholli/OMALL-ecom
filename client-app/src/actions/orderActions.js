@@ -1,11 +1,10 @@
 import axios from "axios";
-import cogoToast from "cogo-toast";
 import {
-  CART_CLEAR_ITEMS,
   ORDER_CREATE_FAIL,
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
 } from "../constants/orderConstants";
+import { CART_CLEAR_ITEMS } from "../constants/cartConstants";
 
 export const createOrder =
   ({
@@ -20,6 +19,7 @@ export const createOrder =
     phone,
     state,
     postal_code,
+    paymentMethod,
   }) =>
   async (dispatch) => {
     const token = JSON.parse(localStorage.getItem("userInfo"));
@@ -37,9 +37,10 @@ export const createOrder =
           email,
           first_name,
           last_name,
-          phone,
+          phone_number: phone,
           state,
           postal_code,
+          paymentMethod,
         },
         {
           headers: {
@@ -59,17 +60,7 @@ export const createOrder =
       });
 
       localStorage.removeItem("cartItems");
-
-      cogoToast.success(``, {
-        position: "top-right",
-        heading: "Porosia juaj eshte derguar!",
-      });
-      console.log("success order", data);
     } catch (error) {
-      cogoToast.error(``, {
-        position: "top-right",
-        heading: "Porosia e produktit deshtoi!",
-      });
       dispatch({
         type: ORDER_CREATE_FAIL,
         payload:

@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import cogoToast from "cogo-toast";
+import jwt_decode from "jwt-decode";
 import {
   AiOutlineMail,
   AiOutlinePhone,
   AiOutlineProfile,
 } from "react-icons/ai";
-import cogoToast from "cogo-toast";
-import jwt_decode from "jwt-decode";
 import { saveShippingAddress } from "../../actions/cartActions";
-import "./styles/_shipping-component.scss";
 import { createOrder } from "../../actions/orderActions";
+import { ORDER_CREATE_RESET } from "../../constants/orderConstants";
+import "./styles/_shipping-component.scss";
 
 const ShippingComponent = () => {
+  // get the cart state from the redux store and destructure the shippingAddress and cartItems state
   const cart = useSelector((state) => state.cart);
   const { shippingAddress, cartItems } = cart;
 
@@ -31,8 +33,6 @@ const ShippingComponent = () => {
   const [message, setMessage] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
   const [isChecked, setIsChecked] = useState(false);
-
-  const [validateError, setValidateError] = useState(false);
   const [cities] = useState([
     {
       label: "Prishtine",
@@ -65,44 +65,87 @@ const ShippingComponent = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // get user state from redux store
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  // get the orderData state from redux store and the response object returned from the request
+  const orderData = useSelector((state) => state.order);
+  const { order, error, success } = orderData;
+
+  // this function saves the order details which customer needs
+  // to fill for delivery purpose and future use
   const handleOrderDetails = (e) => {
     e.preventDefault();
-    console.log("handle order details function");
-    if (!address && !phone && !cityDropdown && !postalCode && !stateDropdown) {
-      console.log("validate");
-      setValidateError(true);
+    // validate the fields and display toast failed message if the required inputs are empty
+    if (
+      !name ||
+      !lastName ||
+      !address ||
+      !phone ||
+      !cityDropdown ||
+      !postalCode ||
+      !stateDropdown
+    ) {
+      cogoToast.error(``, {
+        position: "top-right",
+        heading: "Ju lutem plotsoni fushat e nevojshme per dergesen!",
+      });
+      // if the fields are filled dispatch the saveShippingAddress action and display success toast message
+    } else {
+      dispatch(
+        saveShippingAddress({
+          name,
+          lastName,
+          address,
+          email,
+          cityDropdown,
+          postalCode,
+          stateDropdown,
+          phone,
+        })
+      );
+      cogoToast.success(``, {
+        position: "top-right",
+        heading: "Te dhenat e dorezimit u ruan me sukses!",
+      });
     }
-    dispatch(
-      saveShippingAddress({
-        name,
-        lastName,
-        address,
-        email,
-        cityDropdown,
-        postalCode,
-        stateDropdown,
-        phone,
-      })
-    );
-    cogoToast.success(``, {
-      position: "top-right",
-      heading: "Te dhenat e dorezimit u ruan me sukses!",
-    });
   };
 
-  // this function sends the request to the order endpoint 
+  // resets the cart and ordered items to empty values
+  useEffect(() => {
+    // this conditional validates the order function response
+    // if the order has been sent successfully it displays the toast success message
+    if (success) {
+      cogoToast.success(``, {
+        position: "top-right",
+        heading: "Porosia juaj eshte derguar!",
+      });
+      // this dispatcher calls the reset order type which clears the state of the order
+      dispatch({ type: ORDER_CREATE_RESET });
+      // this conditional shows a toast failed message if the order has failed
+    } else {
+      error
+        ? cogoToast.error(``, {
+            position: "top-right",
+            heading: "Porosia e produktit deshtoi!",
+          })
+        : null;
+    }
+  }, [success, error]);
+
+  // this function sends the request to the order endpoint
   // and sends the cartItem and shippingAddress object as data
   const handleOrder = () => {
+    // this conditional validates the selected payment method checkbox
     if (isChecked === false) {
       cogoToast.error(``, {
         position: "top-right",
         heading: "Duhet te zgjedhni nje menyre te pageses!",
       });
     } else {
-      // this forEach sets the neccessary values needed to make the order request
+      // this forEach takes the cart object data from localstorage/redux
+      // and sets the custom neccessary values needed to make the order request
       const itemsToBePurchased = [];
       cart.cartItems.forEach((cartItem) => {
         itemsToBePurchased.push({
@@ -115,6 +158,7 @@ const ShippingComponent = () => {
           quantity: cartItem.quantity,
         });
       });
+      // dispatch the createOrder action which sends the order data to the api
       dispatch(
         createOrder({
           user_id: jwt_decode(userInfo.access).user_id,
@@ -125,7 +169,7 @@ const ShippingComponent = () => {
           email: cart.shippingAddress.email,
           first_name: cart.shippingAddress.name,
           last_name: cart.shippingAddress.lastName,
-          phone_number: cart.shippingAddress.phone,
+          phone: cart.shippingAddress.phone,
           state: cart.shippingAddress.stateDropdown,
           postal_code: cart.shippingAddress.postalCode,
           paymentMethod: paymentMethod,
@@ -134,6 +178,7 @@ const ShippingComponent = () => {
     }
   };
 
+  // handles state change of the checkbox and displays the chosen payment method
   const handleChange = (event) => {
     setPaymentMethod(event.target.value);
     setIsChecked(true);
@@ -155,7 +200,7 @@ const ShippingComponent = () => {
                   id='name'
                   type='text'
                   placeholder='Shkruaj emrin tuaj'
-                  defaultValue={name}
+                  value={name ? name : ""}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
@@ -170,7 +215,7 @@ const ShippingComponent = () => {
                   id='lastname'
                   type='text'
                   placeholder='Shkruaj mbiemrin tuaj'
-                  value={lastName}
+                  value={lastName ? lastName : ""}
                   onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
@@ -186,7 +231,7 @@ const ShippingComponent = () => {
                 id='adress'
                 type='text'
                 placeholder='Shkruaj adresen tuaj'
-                value={address}
+                value={address ? address : ""}
                 onChange={(e) => setAddress(e.target.value)}
               />
             </div>
@@ -201,7 +246,7 @@ const ShippingComponent = () => {
                 id='adress'
                 type='text'
                 placeholder='Shkruaj email adresen tuaj'
-                value={email}
+                value={email ? email : ""}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -216,7 +261,7 @@ const ShippingComponent = () => {
                 id='postal'
                 type='text'
                 placeholder='Shkruaj kodin postal tuaj'
-                value={postalCode}
+                value={postalCode ? postalCode : ""}
                 onChange={(e) => setPostalCode(e.target.value)}
               />
             </div>
@@ -231,7 +276,7 @@ const ShippingComponent = () => {
                 id='phone'
                 type='phone'
                 placeholder='Shkruaj numrin e telefonit tuaj'
-                value={phone}
+                value={phone ? phone : ""}
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>
@@ -281,10 +326,6 @@ const ShippingComponent = () => {
               onChange={(e) => setMessage(e.target.value)}
             ></textarea>
           </div>
-
-          {validateError ? (
-            <p className='error-text'>Ju lutem plotesoni te gjitha fushat!</p>
-          ) : null}
 
           <input type='submit' value='Ruaj ndryshimet' />
         </form>
