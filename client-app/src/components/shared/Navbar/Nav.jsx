@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BsPersonCircle, BsFillCartFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
-import "./nav.scss";
-import "../styles/shared-styles.scss";
-import "./Megamenus/_megamenu-style.scss";
+import jwt_decode from "jwt-decode";
+import { BsPersonCircle, BsFillCartFill } from "react-icons/bs";
 import Sidebar from "./Sidebar/Sidebar";
 import Login from "../../Auth/Login";
-import Backdrop from "./Backdrop/Backdrop";
 import Register from "../../Auth/Register";
+import Backdrop from "./Backdrop/Backdrop";
 import HotelLineMegamenu from "./Megamenus/HotelLine";
 import SetMegamenu from "./Megamenus/Sets";
 import BathroomMegamenu from "./Megamenus/Bathroom";
 import PotsMegamenu from "./Megamenus/Pots";
 import Dropdown from "../Dropdown/Dropdown";
-import jwt_decode from "jwt-decode";
+import "./nav.scss";
+import "../styles/shared-styles.scss";
+import "./Megamenus/_megamenu-style.scss";
 
 const Nav = (props) => {
   const [sidebar, setSidebar] = useState(false);
@@ -25,7 +25,6 @@ const Nav = (props) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  console.log("USER: ", userLogin);
 
   let navigate = useNavigate();
 
@@ -70,12 +69,35 @@ const Nav = (props) => {
 
   return (
     <div className={`navbar ${isSticky ? "sticky" : ""}`}>
-      <div className='navbar-content'>
+      <div className='top-navbar'>
         <div className='title-icon inline'>
           <Link to='/' className='inline'>
             <div className='nav-icon' />
           </Link>
         </div>
+        <div className='nav-link-actions actions-link '>
+          <Link>
+            <BsPersonCircle />
+            {userInfo ? (
+              <Link onClick={() => setDropdown(true)}>
+                {jwt_decode(userInfo.access).first_name}
+              </Link>
+            ) : (
+              <Link onClick={() => setShowModal(true)}>Profili</Link>
+            )}
+          </Link>
+          <Link to={`/shporta`}>
+            <BsFillCartFill />
+            <p>Shporta</p>
+          </Link>
+        </div>
+      </div>
+      <div className='navbar-content'>
+        {/* <div className='title-icon inline'>
+          <Link to='/' className='inline'>
+            <div className='nav-icon' />
+          </Link>
+        </div> */}
         <div className='navigation'>
           <div className='nav-link-container services-link'>
             <Link to='kategoria/hotel-line' className='nav-link inline'>
@@ -121,7 +143,7 @@ const Nav = (props) => {
               Dysheka
             </Link>
           </div>
-          <div className='nav-link-actions actions-link '>
+          {/* <div className='nav-link-actions actions-link '>
             <Link>
               <BsPersonCircle />
               {userInfo ? (
@@ -136,7 +158,7 @@ const Nav = (props) => {
               <BsFillCartFill />
               <p>Shporta</p>
             </Link>
-          </div>
+          </div> */}
         </div>
         <div onClick={showSidebar} className='hamburger-menu'>
           <div className='hamburger-line' />
