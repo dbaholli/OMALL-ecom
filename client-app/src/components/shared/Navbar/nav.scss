@@ -3,25 +3,66 @@
   top: 0;
   left: 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   z-index: 2000;
   box-shadow: rgba(60, 64, 67, 0.25) 0px 1px 3px 0px,
     rgba(60, 64, 67, 0.125) 0px 2px 6px 2px;
-  background-color: #373435;
-  .navbar-content {
-    padding: 0 5%;
+  background-color: #343537;
+  padding: 10px 0;
+  .top-navbar {
+    padding: 0 2%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     .title-icon {
       .nav-icon {
-        width: max(110px, 7.5vw);
+        // height: max(110px, 7.5vw);
+        height: 35px;
         content: url("../../../assets/othmanlogo.png");
       }
     }
+    .nav-link-actions {
+      margin: 0 max(12.5px, 1vw);
+      padding: 0 max(4px, 0.3vw);
+      display: flex;
+      gap: 30px;
+      a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        a {
+          color: #fff;
+          font-size: max(0.55rem, 0.8vw);
+        }
+        p {
+          color: #fff;
+          font-size: max(0.55rem, 0.8vw);
+        }
+      }
+      svg {
+        font-size: max(0.85rem, 1.2vw);
+        color: #fff;
+        cursor: pointer;
+      }
+    }
+  }
+  .navbar-content {
+    padding: 0 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    // .title-icon {
+    //   .nav-icon {
+    //     width: max(110px, 7.5vw);
+    //     content: url("../../../assets/othmanlogo.png");
+    //   }
+    // }
     .navigation {
       display: flex;
       justify-content: space-around;
@@ -31,7 +72,7 @@
         margin: 0 max(12.5px, 1vw);
         padding: 0 max(4px, 0.3vw);
         a {
-          padding: max(22.5px, 1.5vw) 0;
+          padding: max(10px, 0.8vw) 0;
         }
         .nav-link {
           font-size: max(0.85rem, 0.9vw);
@@ -43,31 +84,6 @@
           .navbar-megamenu {
             display: block;
           }
-        }
-      }
-      .nav-link-actions {
-        margin: 0 max(12.5px, 1vw);
-        padding: 0 max(4px, 0.3vw);
-        display: flex;
-        gap: 30px;
-        a {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 10px;
-          a {
-            color: #fff;
-            font-size: max(0.55rem, 0.8vw);
-          }
-          p {
-            color: #fff;
-            font-size: max(0.55rem, 0.8vw);
-          }
-        }
-        svg {
-          font-size: max(0.85rem, 1.2vw);
-          color: #fff;
-          cursor: pointer;
         }
       }
     }
@@ -180,6 +196,9 @@
 
 @media (max-width: 872px) {
   .navbar {
+    .top-navbar {
+      display: none;
+    }
     .navbar-content {
       .title-icon {
         width: 140px;
