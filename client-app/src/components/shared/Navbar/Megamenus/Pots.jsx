@@ -14,7 +14,6 @@ const PotsMegamenu = () => {
   return (
     <div className='navbar-megamenu hotelline-megamenu'>
       <div className='menu-links'>
-        <h1 className='paragraph-text megamenu-title'>Cajniket</h1>
         {BathroomData.map((bData, i) => {
           return (
             <Link to={bData.to} key={i} className='megamenu-link'>

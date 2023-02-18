@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BsPersonCircle, BsFillCartFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
-import "./nav.scss";
-import "../styles/shared-styles.scss";
-import "./Megamenus/_megamenu-style.scss";
+import jwt_decode from "jwt-decode";
+import { BsPersonCircle, BsFillCartFill } from "react-icons/bs";
 import Sidebar from "./Sidebar/Sidebar";
 import Login from "../../Auth/Login";
-import Backdrop from "./Backdrop/Backdrop";
 import Register from "../../Auth/Register";
+import Backdrop from "./Backdrop/Backdrop";
 import HotelLineMegamenu from "./Megamenus/HotelLine";
 import SetMegamenu from "./Megamenus/Sets";
 import BathroomMegamenu from "./Megamenus/Bathroom";
 import PotsMegamenu from "./Megamenus/Pots";
 import Dropdown from "../Dropdown/Dropdown";
-import jwt_decode from "jwt-decode";
+import "./nav.scss";
+import "../styles/shared-styles.scss";
+import "./Megamenus/_megamenu-style.scss";
 
 const Nav = (props) => {
   const [sidebar, setSidebar] = useState(false);
@@ -25,7 +25,6 @@ const Nav = (props) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  console.log("USER: ", userLogin);
 
   let navigate = useNavigate();
 

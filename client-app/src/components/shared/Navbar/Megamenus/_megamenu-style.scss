@@ -5,8 +5,8 @@
   border: 1px solid #eee;
   box-shadow: 0 0 15px 3px rgba(#707070, 0.4);
   overflow: hidden;
-  top: 55px;
-  padding: 15px 10px;
+  top: 45px;
+  // padding: 15px 10px;
   display: none;
 }
 
@@ -40,16 +40,14 @@
   }
 }
 .navbar .hotelline-megamenu {
-  width: 500px;
+  width: 200px;
   left: 0px;
   .menu-links {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     width: 100%;
     padding: 10px;
-
     .megamenu-title {
-      width: 25%;
       grid-column: 1 / -1;
     }
     .megamenu-link {
@@ -83,15 +81,14 @@
 }
 
 .navbar .bathroom-megamenu {
-  width: 600px;
-  left: -150px;
+  width: 200px;
+  right: -140px;
   .menu-links {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     width: 100%;
     padding: 10px;
     .megamenu-title {
-      width: 25%;
       grid-column: 1 / -1;
     }
     .megamenu-link {

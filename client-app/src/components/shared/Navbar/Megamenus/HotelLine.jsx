@@ -24,7 +24,6 @@ const HotelLineMegamenu = () => {
   return (
     <div className='navbar-megamenu hotelline-megamenu'>
       <div className='menu-links'>
-        <h1 className='paragraph-text megamenu-title'>Hotel Line</h1>
         {HotelLineData.map((hData, i) => {
           return (
             <Link to={hData.to} key={i} className='megamenu-link'>
