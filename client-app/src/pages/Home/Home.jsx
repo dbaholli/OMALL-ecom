@@ -1,15 +1,15 @@
 import React from "react";
-// import BannerComponent from "../../components/Home/BannerComponent";
 import BannerComponent2 from "../../components/Home/BannerComponent2";
 import FeaturedProductsComponent from "../../components/Home/FeaturedProductsComponent";
 import SliderComponent from "../../components/Home/SliderComponent";
+import CategoryBoxes from "../../components/TopCategories/CategoryBoxes";
 
 const HomePage = () => {
   return (
-    <div className="home-page">
+    <div className='home-page'>
       <SliderComponent />
       <FeaturedProductsComponent />
-      {/* <BannerComponent /> */}
+      <CategoryBoxes />
       <BannerComponent2 />
     </div>
   );

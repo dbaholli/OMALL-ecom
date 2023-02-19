@@ -13,7 +13,10 @@ import {
   productListReducer,
 } from "./reducers/productReducers";
 import { cartReducer } from "./reducers/cartReducer";
-import { categoryReducer } from "./reducers/categoryReducer";
+import {
+  categoryReducer,
+  listCategoryReducer,
+} from "./reducers/categoryReducer";
 import { orderCreateReducer } from "./reducers/orderReducers";
 
 const reducer = combineReducers({
@@ -25,6 +28,7 @@ const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   singleCategory: categoryReducer,
+  allCategories: listCategoryReducer,
   cart: cartReducer,
   order: orderCreateReducer,
 });
