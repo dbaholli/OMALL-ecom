@@ -26,7 +26,7 @@ const FeaturedProductsComponent = () => {
         ) : (
           <>
             {products.map((product, i) => {
-              return <Product product={product} index={i} />;
+              return <Product product={product} key={i} />;
             })}
           </>
         )}
