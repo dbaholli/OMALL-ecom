@@ -12,4 +12,5 @@ class CategoriesSerializer(serializers.ModelSerializer):
         fields = [
             "name",
             "icon",
+            "full_url"
         ]

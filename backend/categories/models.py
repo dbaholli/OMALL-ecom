@@ -13,6 +13,7 @@ class Categories(Page):
 
     name = models.TextField()
     icon = models.ImageField(default="")
+    full_url = models.CharField(max_length=500)
 
     content_panels = Page.content_panels + [
         FieldPanel("name"),
@@ -25,6 +26,7 @@ class Categories(Page):
         APIField("updated_at"),
         APIField("name"),
         APIField("icon"),
+        APIField("full_url")
     ]
 
     class Meta:
@@ -33,3 +35,7 @@ class Categories(Page):
 
     def __str__(self):
         return str(self.name)
+
+    def save(self, clean=True, user=None, log_action=False, **kwargs):
+        self.full_url = f"http://127.0.0.1:8000/products/{self.slug}"
+        return super().save(clean, user, log_action, **kwargs)
