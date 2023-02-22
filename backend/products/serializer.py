@@ -22,7 +22,7 @@ class ProductSerializer(serializers.ModelSerializer):
         image = Image.objects.get(id=image_id)
         caption = image_block[0]['value']['caption']
         data['image'] = {
-            'id':image.id,
+            "id":image.id,
             "title": image.title,
             "url": image.file.url,
             "original": image.get_rendition("original").attrs_dict,

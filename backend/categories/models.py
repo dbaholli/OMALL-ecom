@@ -37,5 +37,7 @@ class Categories(Page):
         return str(self.name)
 
     def save(self, clean=True, user=None, log_action=False, **kwargs):
-        self.full_url = f"http://127.0.0.1:8000/products/{self.slug}"
+        request = self.context.get('request', None)
+        host = request.get_host() if request else 'localhost:8000'
+        self.full_url = f"http://{host}/products/{self.slug}"
         return super().save(clean, user, log_action, **kwargs)
