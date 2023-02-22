@@ -33,12 +33,3 @@ class HomePage(Page):
     class Meta:
         verbose_name = "home"
 
-    # def save(self, clean=True, user=None, log_action=False, **kwargs):
-    #     self.trending_products.image = f"{self.trending_products.product.image}"
-    #     self.trending_products.price = f"{self.trending_products.product.price}"
-    #     self.trending_products.price_with_sale = f"{self.trending_products.product.price_with_sale}"
-    #     self.trending_products.currency = f"{self.product.currency}"
-    #     self.trending_products.image = f"{self.product.image}"
-    #     self.trending_products.image = f"{self.product.image}"
-
-    #     return super().save(clean, user, log_action, **kwargs)
