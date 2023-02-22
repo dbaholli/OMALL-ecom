@@ -50,7 +50,7 @@ def coupon_update_or_delete(request, pk):
 @permission_classes([IsAuthenticated])
 def get_order(request, pk):  
     if request.method == 'GET':
-        order = Orders.objects.filter(user=request.user, pk=pk)
+        order = Orders.objects.filter(user=pk)
         serializer = OrderSerializer(order, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
