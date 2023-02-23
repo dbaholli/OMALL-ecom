@@ -24,8 +24,8 @@ class Product(Page):
     price = models.FloatField()
     price_with_sale = models.FloatField(blank=True, null=True)
     currency = models.CharField(max_length=20)
-    category = models.ForeignKey("categories.categories", on_delete=models.SET_NULL, null=True )
-    quanitity = models.IntegerField(default=1)
+    category = models.ForeignKey("categories.categories", on_delete=models.SET_NULL, null=True)
+    quantity = models.IntegerField(default=1)
     shipping = models.BooleanField()
     color = models.CharField(max_length=50, blank=True, null=True)
     brand = models.CharField(max_length=200, blank=True, null=True)
@@ -38,7 +38,7 @@ class Product(Page):
         FieldPanel("price_with_sale"),
         FieldPanel("currency"),
         FieldPanel("category"),
-        FieldPanel("quanitity"),
+        FieldPanel("quantity"),
         FieldPanel("shipping"),
         FieldPanel("color"),
         FieldPanel("brand"),
@@ -55,7 +55,7 @@ class Product(Page):
         APIField("price_with_sale"),
         APIField("currency"),
         APIField("category"),
-        APIField("quanitity"),
+        APIField("quantity"),
         APIField("shipping"),
         APIField("color"),
         APIField("brand"),
