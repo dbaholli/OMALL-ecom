@@ -6,11 +6,11 @@ from wagtail.api import APIField
 from wagtail.fields import StreamField
 from wagtail.models import Page
 from .blocks import TrendingProductBlock
+from wagtail.snippets.models import register_snippet
 
+@register_snippet
 class HomePage(Page):
 
-    # product = models.ForeignKey("products.product", on_delete=models.CASCADE)
-    
     trending_products = StreamField(
         [
             ("Products", TrendingProductBlock()),
@@ -20,16 +20,13 @@ class HomePage(Page):
         blank=True
     )
     
-
     content_panels = Page.content_panels + [
         FieldPanel("trending_products"),
     ]
 
     api_fields = [
-        APIField("trending_products"),
-       
+        APIField("trending_products"),    
     ]
 
     class Meta:
         verbose_name = "home"
-
