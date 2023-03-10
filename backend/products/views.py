@@ -1,5 +1,4 @@
 from categories.models import Categories
-from categories.serializer import CategoriesSerializer
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -17,6 +16,7 @@ def get_product(request):
         return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
+
 @api_view(['GET'])
 def get_product_by_category(request, slug):
     if request.method == 'GET':
@@ -27,12 +27,3 @@ def get_product_by_category(request, slug):
         return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
-@api_view(['GET'])
-def get_product(request, slug):
-    if request.method == 'GET':
-        product = Product.objects.filter(slug=slug).values('id').get()
-        id = product['id']
-        products = Product.objects.filter(id=id)
-        serializer = ProductSerializer(products, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

@@ -1,12 +1,10 @@
-from email.headerregistry import Group
+import json
 
 from rest_framework import serializers
 from rest_framework.exceptions import NotFound
-
-from .models import Product
-import json
 from wagtail.images.models import Image
 
+from .models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
