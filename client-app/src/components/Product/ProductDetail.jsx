@@ -10,7 +10,6 @@ import Product from "../shared/ProductComponent/Product";
 const ProductDetail = () => {
   // const product = productsData.find((p) => p.id == productParam.id);
   const [qty, setQty] = useState(1);
-  const [toCart, setToCart] = useState(false);
 
   let productParam = useParams();
   const dispatch = useDispatch();
@@ -77,7 +76,8 @@ const ProductDetail = () => {
               <h1 className='product-title header-text'>{product?.title}</h1>
               <p
                 className={`product-price paragraph-text ${
-                  product.price_with_sale != null ? "active-sale" : ""
+                  // product?.price_with_sale != null ? "active-sale" : ""
+                  product?.price_with_sale ? "active-sale" : ""
                 }`}
               >
                 <span>Cmimi:</span> €{product?.price}
@@ -87,7 +87,7 @@ const ProductDetail = () => {
                   <>
                     <span>Cmimi me zbritje: </span>
                     <span className='sale-price'>
-                      {product.price_with_sale}€
+                      {product?.price_with_sale}€
                     </span>
                   </>
                 </p>
@@ -106,9 +106,9 @@ const ProductDetail = () => {
                 )}
               </h2>
               <p className='product-quantity paragraph-text'>
-                Sasia: <span>{product?.quanitity}</span>
+                Sasia: <span>{product?.quantity}</span>
               </p>
-              {product.quanitity > 0 && (
+              {product?.quantity > 0 && (
                 <select
                   name='quantity'
                   defaultValue={qty}
@@ -118,7 +118,7 @@ const ProductDetail = () => {
                   <option defaultValue='default' disabled>
                     Sasia
                   </option>
-                  {[...Array(product?.quanitity).keys()].map((opt, i) => {
+                  {[...Array(product?.quantity).keys()].map((opt, i) => {
                     return (
                       <option key={i} defaultValue={opt + 1}>
                         {opt + 1}
@@ -132,7 +132,7 @@ const ProductDetail = () => {
                 <button
                   className='shared-button pay-btn'
                   onClick={addToCartHandler}
-                  disabled={product.quanitity === 0}
+                  disabled={product.quantity === 0}
                 >
                   Shto ne shporte
                 </button>

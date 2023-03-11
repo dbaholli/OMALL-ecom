@@ -7,8 +7,7 @@ import {
 } from "react-router-dom";
 import cogoToast from "cogo-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../../../actions/cartActions";
-import { BsCartPlusFill } from "react-icons/bs";
+import { addToCart } from "../../../actions/cartActions";
 
 const Product = (product, i) => {
   // use the props from the featured product component to display product data
@@ -52,7 +51,7 @@ const Product = (product, i) => {
   return (
     <>
       <Link
-        className='product-card'
+        className='product-card hvr-float'
         key={i}
         to={`/produkti/${product.product.slug}`}
       >
@@ -68,9 +67,10 @@ const Product = (product, i) => {
           <p className='price paragraph-text'>{product.product.price}€</p>
           <p className='paragraph-text'>Vlersimet: {product.product.rating}</p>
         </div>
-        <Link className='addtocart-button' onClick={addToCartHandler}>
-          <BsCartPlusFill />
-        </Link>
+        <div className='product-actions'>
+          <Link to={`/produkti/${product.product.slug}`}>Shiko detajet</Link>
+          {/* <BsCartPlusFill /> */}
+        </div>
       </Link>
     </>
   );

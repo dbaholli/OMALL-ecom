@@ -9,15 +9,13 @@ const Dropdown = (props) => {
   const handleLogout = () => {
     dispatch(logout());
     props.setDropdown(false);
+    localStorage.clear('shippingAddress')
   };
   return (
     <div style={{ zIndex: props.zIndex }} className='profile-dropdown'>
       <div className='dropdown-links'>
         <Link onClick={() => props.setDropdown(false)} to={`/profili`}>
           Profili im
-        </Link>
-        <Link onClick={() => props.setDropdown(false)} to={`/porosite`}>
-          Porosite
         </Link>
         <Link className='logout-button' onClick={handleLogout}>
           Ç'kyçu

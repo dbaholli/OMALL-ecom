@@ -169,12 +169,12 @@
     }
   }
   .shipping-right {
-    // border: 1px solid #f3f3f3;
     display: flex;
     flex-direction: column;
     width: 50%;
     padding: 15px 25px;
     gap: 15px;
+    border-radius: 20px;
     .payment-products-container {
       display: flex;
       flex-direction: column;
@@ -208,9 +208,12 @@
       display: flex;
       align-items: center;
       gap: 15px;
-      label {
-        font-size: 14px;
+      .accept-terms {
         color: #323e64;
+        a {
+          color: #122e82;
+          font-weight: 500;
+        }
       }
     }
     .pay-btn {

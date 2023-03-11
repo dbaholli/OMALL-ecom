@@ -8,9 +8,8 @@
   align-items: center;
   width: 100%;
   z-index: 2000;
-  box-shadow: rgba(60, 64, 67, 0.25) 0px 1px 3px 0px,
-    rgba(60, 64, 67, 0.125) 0px 2px 6px 2px;
-  background-color: #343537;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px;
+  background-color: #fff;
   padding: 10px 0;
   .top-navbar {
     padding: 0 2%;
@@ -18,11 +17,12 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    border-bottom: 1px solid #f3f3f3;
     .title-icon {
       .nav-icon {
-        // height: max(110px, 7.5vw);
         height: 35px;
-        content: url("../../../assets/othmanlogo.png");
+        // content: url("../../../assets/othmanlogo.png");
+        content: url("../../../assets/othman.jpeg");
       }
     }
     .nav-link-actions {
@@ -32,21 +32,22 @@
       gap: 30px;
       a {
         display: flex;
-        flex-direction: column;
         align-items: center;
         gap: 10px;
         a {
-          color: #fff;
+          color: #14213d;
           font-size: max(0.55rem, 0.8vw);
+          font-weight: 500;
         }
         p {
-          color: #fff;
+          color: #14213d;
           font-size: max(0.55rem, 0.8vw);
+          font-weight: 500;
         }
       }
       svg {
         font-size: max(0.85rem, 1.2vw);
-        color: #fff;
+        color: #14213d;
         cursor: pointer;
       }
     }
@@ -77,7 +78,7 @@
         .nav-link {
           font-size: max(0.85rem, 0.9vw);
           font-weight: 500;
-          color: #fff;
+          color: #14213d;
           position: relative;
         }
         &:hover {
@@ -88,28 +89,61 @@
       }
     }
     .hamburger-menu {
+      // display: none;
+      // flex-direction: column;
       display: none;
-      flex-direction: column;
-      gap: 6px;
-      width: 33px;
+      width: 100%;
+      justify-content: space-between;
       cursor: pointer;
-      .hamburger-line {
-        align-self: flex-end;
-        width: 100%;
-        height: 5px;
-        background-color: #fff;
+      .hamburger-menu-actions {
+        margin: 0 max(12.5px, 1vw);
+        padding: 0 max(4px, 0.3vw);
+        display: flex;
+        gap: 10px;
+        a {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          a {
+            color: #14213d;
+            font-size: max(0.55rem, 0.8vw);
+            font-weight: 500;
+          }
+          p {
+            color: #14213d;
+            font-size: max(0.55rem, 0.8vw);
+            font-weight: 500;
+          }
+        }
+        svg {
+          font-size: max(0.85rem, 1.2vw);
+          color: #14213d;
+          cursor: pointer;
+        }
       }
-      &:hover {
+      .hamburger-lines {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        width: 33px;
         .hamburger-line {
-          animation: grow 1s infinite alternate;
-          &:nth-child(1) {
-            animation-delay: 0.1s;
-          }
-          &:nth-child(2) {
-            animation-delay: 0.2s;
-          }
-          &:nth-child(3) {
-            animation-delay: 0.3s;
+          align-self: flex-end;
+          width: 100%;
+          height: 5px;
+          background-color: #14213d;
+        }
+        &:hover {
+          .hamburger-line {
+            animation: grow 1s infinite alternate;
+            &:nth-child(1) {
+              animation-delay: 0.1s;
+            }
+            &:nth-child(2) {
+              animation-delay: 0.2s;
+            }
+            &:nth-child(3) {
+              animation-delay: 0.3s;
+            }
           }
         }
       }
@@ -120,7 +154,7 @@
   }
 }
 .sticky {
-  background-color: #373435;
+  background-color: #fff;
 }
 .sticky-nav-colors {
   color: #153131 !important;

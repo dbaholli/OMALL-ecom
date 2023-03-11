@@ -7,9 +7,14 @@ import {
 } from "react-icons/ai";
 import { BiLock } from "react-icons/bi";
 import jwt_decode from "jwt-decode";
-import { getUserDetails, updateUserDetails } from "../../actions/userAction";
+import {
+  getUserDetails,
+  login,
+  updateUserDetails,
+} from "../../actions/userAction";
 import { USER_UPDATE_RESET } from "../../constants/userConstants";
 import "./styles/_profile-component.scss";
+import MyOrders from "./MyOrders";
 
 const ProfileComponent = () => {
   const [name, setName] = useState("");
@@ -67,8 +72,7 @@ const ProfileComponent = () => {
   }, [dispatch, userInfo, user, success]);
 
   const handleProfileUpdate = async (event) => {
-    event.preventDefault();
-    console.log("update");
+    // event.preventDefault();
     dispatch(
       updateUserDetails(
         userInfo.access,
@@ -256,6 +260,7 @@ const ProfileComponent = () => {
       </div>
       <div className='profile-component-right'>
         <h1 className='profile-header header-text'>Porosite e juaja</h1>
+        <MyOrders />
       </div>
     </div>
   );
