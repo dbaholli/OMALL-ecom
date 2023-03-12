@@ -132,15 +132,45 @@
   }
 
   .profile-component-right {
-    border: 1px solid red;
-    width: 50%;
+    width: 75%;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      th,
+      td {
+        padding: 0.5rem;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+      .table-data-header {
+        color: #fff;
+        background-color: #122e82;
+      }
+      .table-data {
+        color: #14213d;
+        text-transform: capitalize;
+      }
+      tbody {
+        tr {
+          &:nth-child(2n) {
+            background-color: #e0e0e0;
+          }
+          &.confirmed {
+            background-color: #c9f9c9;
+          }
+          &.finished {
+            background-color: #f9c9c9;
+          }
+        }
+      }
+    }
   }
 }
 
 @media (max-width: 1170px) {
   .profile-page .profile-component {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     .profile-header {
       font-weight: 500;
       margin-bottom: 5%;

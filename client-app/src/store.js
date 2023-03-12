@@ -17,7 +17,10 @@ import {
   categoryReducer,
   listCategoryReducer,
 } from "./reducers/categoryReducer";
-import { orderCreateReducer } from "./reducers/orderReducers";
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+} from "./reducers/orderReducers";
 
 const reducer = combineReducers({
   userRegister: userRegisterReducer,
@@ -31,6 +34,7 @@ const reducer = combineReducers({
   allCategories: listCategoryReducer,
   cart: cartReducer,
   order: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")

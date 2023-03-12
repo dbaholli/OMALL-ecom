@@ -9,7 +9,7 @@ export const addToCart = (slug, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(
     `http://127.0.0.1:8000/api/v2/pages/${slug}/`
   );
-
+  console.log("shporta me produkte", data);
   dispatch({
     type: CART_ADD_ITEM,
     payload: {

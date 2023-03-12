@@ -13,7 +13,6 @@ from .models import CustomUser, UserManager
 from django.views.decorators.csrf import csrf_exempt
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
 def user_create(request):
     if request.method == 'POST':
         data = json.loads(request.body)
