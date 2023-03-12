@@ -193,6 +193,7 @@ export const updateUserDetails =
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
+  localStorage.removeItem("shippingAdress")
   dispatch({ type: USER_LOGOUT });
 };
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import cogoToast from "cogo-toast";
 import jwt_decode from "jwt-decode";
 import {
@@ -12,6 +12,7 @@ import { saveShippingAddress } from "../../actions/cartActions";
 import { createOrder } from "../../actions/orderActions";
 import { ORDER_CREATE_RESET } from "../../constants/orderConstants";
 import "./styles/_shipping-component.scss";
+import { getUserDetails } from "../../actions/userAction";
 
 const ShippingComponent = () => {
   // get the cart state from the redux store and destructure the shippingAddress and cartItems state
@@ -69,9 +70,30 @@ const ShippingComponent = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user } = userDetails;
+
   // get the orderData state from redux store and the response object returned from the request
   const orderData = useSelector((state) => state.order);
   const { order, error, success } = orderData;
+
+  useEffect(() => {
+    if (!userInfo) {
+      console.log("You need to login");
+    } else {
+      if (!user || !user.first_name) {
+        dispatch(getUserDetails(jwt_decode(userInfo.access).user_id));
+      } else {
+        setName(user.first_name);
+        setLastName(user.last_name);
+        setAddress(user.address);
+        setPhone(user.phone_number);
+        setEmail(user.email);
+        setCityDropdown(user.city);
+        setStateDropdown(user.state);
+      }
+    }
+  }, [dispatch, userInfo, user]);
 
   // this function saves the order details which customer needs
   // to fill for delivery purpose and future use
@@ -161,16 +183,16 @@ const ShippingComponent = () => {
       // dispatch the createOrder action which sends the order data to the api
       dispatch(
         createOrder({
-          user_id: jwt_decode(userInfo.access).user_id,
+          user_id: userInfo ? jwt_decode(userInfo.access).user_id : null,
           products: itemsToBePurchased,
           order_status: "pending",
-          address: cart.shippingAddress.address,
-          city: cart.shippingAddress.cityDropdown,
-          email: cart.shippingAddress.email,
-          first_name: cart.shippingAddress.name,
-          last_name: cart.shippingAddress.lastName,
-          phone: cart.shippingAddress.phone,
-          state: cart.shippingAddress.stateDropdown,
+          address: cart.shippingAddress.address || address,
+          city: cart.shippingAddress.cityDropdown || cityDropdown,
+          email: cart.shippingAddress.email || email,
+          first_name: cart.shippingAddress.name || name,
+          last_name: cart.shippingAddress.lastName || lastName,
+          phone: cart.shippingAddress.phone || phone,
+          state: cart.shippingAddress.stateDropdown || stateDropdown,
           postal_code: cart.shippingAddress.postalCode,
           paymentMethod: paymentMethod,
         })
@@ -380,7 +402,9 @@ const ShippingComponent = () => {
           </div>
           <div className='terms'>
             <input type='checkbox' id='remember-checkbox' />
-            <p className='paragraph-text'>I pranoj Kushtet</p>
+            <p className='paragraph-text accept-terms'>
+              I pranoj <Link to='/termat'>Termet dhe Kushtet</Link>
+            </p>
           </div>
           <button className='shared-button pay-btn' onClick={handleOrder}>
             Paguaj

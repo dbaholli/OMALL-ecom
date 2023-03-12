@@ -20,23 +20,29 @@ const CategoryBoxes = () => {
       {loading ? (
         <h1 className='header-text'>Loading...</h1>
       ) : (
-        <div className='categorybox-container'>
-          {categories?.map((category, i) => {
-            return (
-              <Link className='categorybox-item hvr-float' key={i}>
-                <div className='categorybox-img'>
-                  <img
-                    src={`http://127.0.0.1:8000/${category.icon}`}
-                    height='200px'
-                  />
-                  <h1 className='category-title paragraph-text'>
-                    {category.name}
-                  </h1>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+        <>
+          <div className='categorybox-container'>
+            {categories?.map((category, i) => {
+              return (
+                <Link
+                  className='categorybox-item hvr-float'
+                  key={i}
+                  to={`kategoria/${category.full_url}`}
+                >
+                  <div className='categorybox-img'>
+                    <img
+                      src={`http://127.0.0.1:8000/${category.icon}`}
+                      height='200px'
+                    />
+                    <h1 className='category-title paragraph-text'>
+                      {category.name}
+                    </h1>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </>
       )}
     </div>
   );

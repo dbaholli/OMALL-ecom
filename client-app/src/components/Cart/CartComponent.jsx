@@ -62,8 +62,7 @@ const CartComponent = () => {
             {cartItems.map((item) => (
               <div key={item.id} className='cart-product-rows'>
                 <img
-                  // src={item.image[0].value?.image.original.src}
-                  src={`http://127.0.0.1:8000/${item.image[0].value?.image.original.src}`}
+                  src={`http://127.0.0.1:8000/${item.image[0].value.image.original.src}`}
                   alt='Othman'
                   className='cartproduct-image'
                 />

@@ -10,7 +10,7 @@ import {
 export const categoryReducer = (state = { category: [] }, action) => {
   switch (action.type) {
     case CATEGORY_LIST_REQUEST:
-      return { loading: false, category: [] };
+      return { loading: true, category: [] };
 
     case CATEGORY_LIST_SUCCESS:
       return { loading: false, category: action.payload };
@@ -26,7 +26,7 @@ export const categoryReducer = (state = { category: [] }, action) => {
 export const listCategoryReducer = (state = { categories: [] }, action) => {
   switch (action.type) {
     case CATEGORY_LIST_ALL_REQUEST:
-      return { loading: false, categories: [] };
+      return { loading: true, categories: [] };
 
     case CATEGORY_LIST_ALL_SUCCESS:
       return { loading: false, categories: action.payload };
