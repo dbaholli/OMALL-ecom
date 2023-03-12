@@ -8,6 +8,7 @@ from wagtail.snippets.models import register_snippet
 
 @register_snippet
 class OrderProduct(models.Model):
+    uuid_order_product = models.UUIDField(default=uuid.uuid4, editable=False)
     product = models.ForeignKey("products.product", on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     ordered = models.BooleanField(default=True)
@@ -37,6 +38,8 @@ class OrderProduct(models.Model):
 
 @register_snippet
 class Orders(models.Model):
+    order_id = models.BigAutoField(primary_key=True)
+    uuid_order = models.UUIDField(default=uuid.uuid4, editable=False)
     products = models.ManyToManyField(OrderProduct)
     user = models.ForeignKey("users.customUser", on_delete=models.CASCADE, blank=True)
     start_date = models.DateTimeField(auto_now_add=True, editable=False)
@@ -51,6 +54,7 @@ class Orders(models.Model):
     phone_number = models.CharField(max_length=15, blank=True)
     ordered_date = models.DateTimeField(auto_now_add=True, editable=True)
     ordered = models.BooleanField(default=True)
+    selected_coupon = models.ForeignKey("coupons.Coupons", on_delete=models.SET_NULL, null=True, blank=True)
     total_price = models.FloatField(default=0)
     
     STATUS_CHOICES = [
