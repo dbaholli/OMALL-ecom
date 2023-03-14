@@ -171,6 +171,17 @@ body {
   }
 }
 
+.styled-input {
+  appearance: none;
+  -moz-appearance: textfield;
+  width: 75px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
 .hvr-float {
   display: inline-block;
   vertical-align: middle;

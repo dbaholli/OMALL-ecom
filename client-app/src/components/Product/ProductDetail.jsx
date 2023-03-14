@@ -82,7 +82,7 @@ const ProductDetail = () => {
               >
                 <span>Cmimi:</span> €{product?.price}
               </p>
-              {product?.price_with_sale != null ? (
+              {product?.price_with_sale != null || 0 ? (
                 <p className='product-price paragraph-text'>
                   <>
                     <span>Cmimi me zbritje: </span>
@@ -93,7 +93,18 @@ const ProductDetail = () => {
                 </p>
               ) : null}
               <p className='product-quantity paragraph-text'>
-                Kategoria: {product?.category?.title}
+                Kategoria:&nbsp;
+                <span className='product-extra-info'>
+                  {product?.category?.title}
+                </span>
+              </p>
+              <p className='product-quantity paragraph-text'>
+                Brendi:&nbsp;
+                <span className='product-extra-info'>{product?.brand}</span>
+              </p>
+              <p className='product-quantity paragraph-text'>
+                Ngjyra:&nbsp;
+                <div className='product-extra-info'>{product?.color}</div>
               </p>
               <h2 className='product-desc paragraph-text'>
                 {product?.description}
@@ -106,26 +117,23 @@ const ProductDetail = () => {
                 )}
               </h2>
               <p className='product-quantity paragraph-text'>
-                Sasia: <span>{product?.quantity}</span>
+                Gjendja:&nbsp;
+                {product?.quantity >= 1 && <span>I disponueshem</span>}
+                {product?.quantity < 1 && <span>Nuk eshte ne dispozicion</span>}
               </p>
               {product?.quantity > 0 && (
-                <select
-                  name='quantity'
-                  defaultValue={qty}
-                  onChange={(e) => setQty(e.target.value)}
-                  className='product-quantity paragraph-text'
-                >
-                  <option defaultValue='default' disabled>
-                    Sasia
-                  </option>
-                  {[...Array(product?.quantity).keys()].map((opt, i) => {
-                    return (
-                      <option key={i} defaultValue={opt + 1}>
-                        {opt + 1}
-                      </option>
-                    );
-                  })}
-                </select>
+                <p className='product-quantity paragraph-text'>
+                  Sasia:&nbsp;
+                  <input
+                    value={qty}
+                    type='number'
+                    step='1'
+                    min='1'
+                    max={`${product.quantity}`}
+                    onChange={(e) => setQty(e.target.value)}
+                    className='styled-input'
+                  />
+                </p>
               )}
 
               <div className='cart-button-actions'>

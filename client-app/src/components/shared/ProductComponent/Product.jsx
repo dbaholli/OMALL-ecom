@@ -65,7 +65,7 @@ const Product = (product, i) => {
         <div className='featuredproduct-info'>
           <h3 className='paragraph-text'>{product.product.title}</h3>
           <p className='price paragraph-text'>{product.product.price}€</p>
-          <p className='paragraph-text'>Vlersimet: {product.product.rating}</p>
+          <p className='paragraph-text'>Sasia: {product.product.quantity}</p>
         </div>
         <div className='product-actions'>
           <Link to={`/produkti/${product.product.slug}`}>Shiko detajet</Link>
