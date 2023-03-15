@@ -23,6 +23,7 @@ export const createOrder =
     state,
     postal_code,
     paymentMethod,
+    selected_coupon
   }) =>
   async (dispatch) => {
     const token = JSON.parse(localStorage.getItem("userInfo"));
@@ -44,6 +45,7 @@ export const createOrder =
           state,
           postal_code,
           paymentMethod,
+          selected_coupon
         },
         {
           headers: {

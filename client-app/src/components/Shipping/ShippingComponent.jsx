@@ -176,8 +176,7 @@ const ShippingComponent = () => {
           name: cartItem.name,
           price: cartItem.price,
           product: cartItem.product,
-          qty: cartItem.qty,
-          quantity: cartItem.quantity,
+          quantity: Number(cartItem.qty),
         });
       });
       // dispatch the createOrder action which sends the order data to the api
@@ -195,6 +194,7 @@ const ShippingComponent = () => {
           state: cart.shippingAddress.stateDropdown || stateDropdown,
           postal_code: cart.shippingAddress.postalCode,
           paymentMethod: paymentMethod,
+          selected_coupon: null,
         })
       );
     }

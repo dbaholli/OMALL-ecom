@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Link,
   useNavigate,
@@ -28,6 +28,7 @@ const CartComponent = () => {
   const productSlug = productParam.slug;
   const qty = Number(searchParams.get("qty"));
   // console.log(qty);
+  const [quantity, setQuantity] = useState();
 
   // dispatch addToCart action with productSlug and qty as params,
   // sets the product added to cart on the redux store
@@ -73,28 +74,16 @@ const CartComponent = () => {
                   {item.name}
                 </Link>
                 <p className='paragraph-text'>{item.price}€</p>
-                {/* <p className='product-quantity paragraph-text'>
-                  Sasia: <span>{item?.quantity}</span>
-                </p> */}
-                <select
+                <input
                   name='quantity'
-                  defaultValue={item.qty}
-                  onChange={(e) =>
-                    dispatch(addToCart(item.product, Number(e.target.value)))
-                  }
-                  className='product-quantity paragraph-text'
-                >
-                  <option value='default' disabled>
-                    Sasia
-                  </option>
-                  {[...Array(item?.quantity).keys()].map((opt, i) => {
-                    return (
-                      <option key={i + 1} defaultValue={opt + 1}>
-                        {opt + 1}
-                      </option>
-                    );
-                  })}
-                </select>
+                  value={item.qty}
+                  type='number'
+                  step='1'
+                  min='1'
+                  max={`${item?.quantity}`}
+                  onChange={(e) => setQuantity(e.target.value)}
+                  className='styled-input'
+                />
                 <BsFillTrashFill
                   color='blue'
                   onClick={() => removeFromCartHandler(item.product)}
