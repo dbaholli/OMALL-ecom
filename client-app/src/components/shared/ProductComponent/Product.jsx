@@ -53,13 +53,13 @@ const Product = (product, i) => {
       <Link
         className='product-card hvr-float'
         key={i}
-        to={`/produkti/${product.product.slug}`}
+        to={`/produkti/${product.product.meta.slug}`}
       >
         <div className='productimage-container'>
           <img
             className='featuredproduct-image'
             height='350px'
-            src={`http://127.0.0.1:8000/${product.product.image.url}`}
+            src={`http://127.0.0.1:8000/${product.product.image[0].value.image.url}`}
           ></img>
         </div>
         <div className='featuredproduct-info'>
@@ -68,8 +68,9 @@ const Product = (product, i) => {
           <p className='paragraph-text'>Sasia: {product.product.quantity}</p>
         </div>
         <div className='product-actions'>
-          <Link to={`/produkti/${product.product.slug}`}>Shiko detajet</Link>
-          {/* <BsCartPlusFill /> */}
+          <Link to={`/produkti/${product.product.meta.slug}`}>
+            Shiko detajet
+          </Link>
         </div>
       </Link>
     </>

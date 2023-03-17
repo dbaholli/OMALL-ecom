@@ -26,7 +26,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     dispatch(listProductDetails(productParam.slug));
-    dispatch(listProducts());
+    // dispatch(listProducts());
   }, [dispatch, productParam.slug]);
 
   const addToCartHandler = (e) => {
@@ -129,7 +129,7 @@ const ProductDetail = () => {
                     type='number'
                     step='1'
                     min='1'
-                    max={`${product.quantity}`}
+                    max={`${product?.quantity}`}
                     onChange={(e) => setQty(e.target.value)}
                     className='styled-input'
                   />
@@ -140,7 +140,7 @@ const ProductDetail = () => {
                 <button
                   className='shared-button pay-btn'
                   onClick={addToCartHandler}
-                  disabled={product.quantity === 0}
+                  disabled={product?.quantity === 0}
                 >
                   Shto ne shporte
                 </button>
@@ -148,7 +148,7 @@ const ProductDetail = () => {
                   <button
                     className='shared-button navigate-cart-btn'
                     onClick={() => navigate("/shporta")}
-                    disabled={product.quanitity === 0}
+                    disabled={product?.quanitity === 0}
                   >
                     Shko ne shporte
                   </button>
@@ -163,9 +163,9 @@ const ProductDetail = () => {
           <h2 className='header-text'>Produkte tjera</h2>
           <div className='marquee'>
             <div className='maylike-products-container track'>
-              {products.slice(0, 6).map((product, i) => {
+              {/* {products.slice(0, 6).map((product, i) => {
                 return <Product product={product} index={i} />;
-              })}
+              })} */}
             </div>
           </div>
         </div>

@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles/_featuredproducts-component.scss";
 import { listProducts } from "../../actions/productActions";
 import Product from "../shared/ProductComponent/Product";
+import { Link } from "react-router-dom";
 
 const FeaturedProductsComponent = () => {
   const dispatch = useDispatch();
@@ -10,10 +11,16 @@ const FeaturedProductsComponent = () => {
   const productList = useSelector((state) => state.productList);
   const { error, loading, products } = productList;
 
+  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(3);
+
+  const handleLoadMore = () => {
+    setLimit((prevLimit) => prevLimit + 3);
+  };
+
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
-  
+    dispatch(listProducts(offset, limit));
+  }, [dispatch, offset, limit]);
 
   return (
     <div className='featuredproduct-component'>
@@ -25,11 +32,14 @@ const FeaturedProductsComponent = () => {
           <p className='header-text'>{error}</p>
         ) : (
           <>
-            {products.map((product, i) => {
+            {products?.items?.map((product, i) => {
               return <Product product={product} key={i} />;
             })}
           </>
         )}
+        <Link onClick={handleLoadMore} className='shared-button more-button'>
+          Me shume
+        </Link>
       </div>
     </div>
   );
