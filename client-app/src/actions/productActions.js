@@ -8,11 +8,13 @@ import {
   PRODUCT_DETAIL_FAIL,
 } from "../constants/productConstants";
 
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (offset, limit) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
 
-    const { data } = await axios.get("http://127.0.0.1:8000/products/list/");
+    const { data } = await axios.get(
+      `http://127.0.0.1:8000/api/v2/pages/?type=products.Product&fields=_,id,slug,title,description,price,price_with_sale,quantity,currency,shipping,color,brand,rating,category,image&offset=${offset}&limit=${limit}`
+    );
     if (data) {
       console.log("listProducts", data);
     }
