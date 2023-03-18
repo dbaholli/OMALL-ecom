@@ -24,30 +24,7 @@
       .price {
         font-size: max(1rem, 1vw) !important;
       }
-      .product-actions {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        justify-content: space-between;
-        a {
-          font-weight: 500;
-          font-size: max(0.8rem, 0.5vw) !important;
-          border: 1px solid #f3f3f3;
-          padding: 10px 10px;
-          color: #14213d;
-          width: fit-content;
-          &:hover {
-            background: green;
-            color: #fff;
-          }
-        }
-        svg {
-          color: #14213d;
-          fill: #14213d;
-          font-size: 20px;
-          cursor: pointer;
-        }
-      }
+
       .hotelproduct-img-container {
         width: 100%;
         .hotelproduct-img {

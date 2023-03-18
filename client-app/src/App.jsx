@@ -14,6 +14,7 @@ import CartPage from "./pages/Cart/CartPage";
 import CategoryPage from "./pages/Category/CategoryPage";
 import ShippingPage from "./pages/Shipping/ShippingPage";
 import ScrollToTop from "./scrollToTop";
+import PrivateRoute from "./routes/PrivateRoute";
 
 const App = () => {
   return (
@@ -21,8 +22,10 @@ const App = () => {
       <ScrollToTop />
       <Nav />
       <Routes>
+        <Route element={<PrivateRoute />}>
+          <Route exact path='/profili' element={<ProfilePage />} />
+        </Route>
         <Route exact path='/' element={<HomePage />} />
-        <Route exact path='/profili' element={<ProfilePage />} />
         <Route exact path='/produkti/:slug' element={<ProductPage />} />
         <Route exact path='/kategoria/:slug' element={<CategoryPage />} />
         <Route exact path='/shporta/:slug' element={<CartPage />} />

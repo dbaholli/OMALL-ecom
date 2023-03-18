@@ -39,3 +39,4 @@ class Categories(Page):
     def save(self, clean=True, user=None, log_action=False, **kwargs):
         self.full_url = f"{self.slug}"
         return super().save(clean, user, log_action, **kwargs)
+        
