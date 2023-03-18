@@ -23,7 +23,8 @@ class Coupons(models.Model):
     panels = [
         FieldPanel("title"),
         FieldPanel("discount"),
-        FieldPanel("expiry_date"),    
+        FieldPanel("expiry_date"), 
+        FieldPanel("slug"),      
     ]
 
     api_fields = [

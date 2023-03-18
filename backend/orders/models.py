@@ -54,7 +54,7 @@ class Orders(models.Model):
     phone_number = models.CharField(max_length=15, blank=True)
     ordered_date = models.DateTimeField(auto_now_add=True, editable=True)
     ordered = models.BooleanField(default=True)
-    selected_coupon = models.ForeignKey("coupons.Coupons", on_delete=models.SET_NULL, null=True, blank=True)
+    selected_coupon = models.CharField(max_length=500, blank=True)
     total_price = models.FloatField(default=0)
     
     STATUS_CHOICES = [
