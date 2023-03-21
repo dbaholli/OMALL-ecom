@@ -20,7 +20,6 @@ class ImageChooserBlock(ImageChooser):
 
 class ImageBlock(blocks.StructBlock):
     image = ImageChooserBlock()
-    caption = blocks.TextBlock()
 
     class Meta:
         icon = "image"

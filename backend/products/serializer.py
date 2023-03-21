@@ -18,13 +18,11 @@ class ProductSerializer(serializers.ModelSerializer):
         image_block = json.loads(data['image'])
         image_id = image_block[0]['value']['image']
         image = Image.objects.get(id=image_id)
-        caption = image_block[0]['value']['caption']
         data['image'] = {
             "id":image.id,
             "title": image.title,
             "url": image.file.url,
             "original": image.get_rendition("original").attrs_dict,
             "thumbnail": image.get_rendition("fill-120x120").attrs_dict,
-            'caption': caption,
             }
         return data

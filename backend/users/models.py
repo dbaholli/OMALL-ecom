@@ -50,6 +50,7 @@ class CustomUser(AbstractUser):
     address = models.TextField(blank=True)
     city = models.TextField(blank=True)
     state = models.TextField(blank=True)
+    postal_code = models.CharField(max_length=100, blank=True)
     phone_number = models.CharField(max_length=15, blank=True)
 
     is_active = models.BooleanField(null=True)
@@ -70,6 +71,7 @@ class CustomUser(AbstractUser):
         FieldPanel("address"),
         FieldPanel("city"),
         FieldPanel("state"),
+        FieldPanel("postal_code"),
         FieldPanel("phone_number"),
         FieldPanel("is_active"),
         FieldPanel("is_superuser"),
@@ -83,6 +85,7 @@ class CustomUser(AbstractUser):
         APIField("address"),
         APIField("city"),
         APIField("state"),
+        APIField("postal_code"),
         APIField("phone_number"),
         APIField("is_active"),
         APIField("is_superuser"),
