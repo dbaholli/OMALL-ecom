@@ -49,7 +49,7 @@ class Orders(models.Model):
     email = models.TextField(verbose_name="email address", max_length=255)
     address = models.TextField()
     city = models.TextField()
-    postal_code = models.TextField()
+    postal_code = models.CharField(max_length=100)
     state = models.TextField()
     phone_number = models.CharField(max_length=15, blank=True)
     ordered_date = models.DateTimeField(auto_now_add=True, editable=True)

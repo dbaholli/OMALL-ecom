@@ -8,4 +8,17 @@ from users.models import CustomUser
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = "__all__"
+        fields = [
+            "user_id",
+            "first_name",
+            "last_name",
+            "email",
+            "address",
+            "city",
+            "state",
+            "postal_code",
+            "phone_number",
+            "is_active",
+            "is_superuser",
+            "is_staff"
+            ]

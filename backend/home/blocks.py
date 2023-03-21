@@ -7,6 +7,7 @@ from products.blocks import ImageBlock
 from products.models import Product
 from wagtail import blocks
 from wagtail.core.templatetags.wagtailcore_tags import richtext
+from wagtail.images.blocks import ImageChooserBlock as ImageChooser
 
 
 class PageChooserBlocks(blocks.PageChooserBlock):
@@ -39,6 +40,25 @@ class PageChooserBlocks(blocks.PageChooserBlock):
                 "product_slug": f"{value.slug}/"
             }
         return None
+
+class ImageChooserBlock(ImageChooser):
+    def get_api_representation(self, value, context=None):
+        if value:
+            return {
+                "id": value.id,
+                "title": value.title,
+                "url": value.file.url,
+                "original": value.get_rendition("original").attrs_dict,
+                "thumbnail": value.get_rendition("fill-120x120").attrs_dict,
+            }
+
+
+class ImageBlock(blocks.StructBlock):
+    image = ImageChooserBlock()
+
+    class Meta:
+        icon = "image"
+        label = "Image"
 
 
 class TrendingProductBlock(blocks.StructBlock):
