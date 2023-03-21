@@ -74,16 +74,7 @@ const CartComponent = () => {
                   {item.name}
                 </Link>
                 <p className='paragraph-text'>{item.price}€</p>
-                <input
-                  name='quantity'
-                  value={item.qty}
-                  type='number'
-                  step='1'
-                  min='1'
-                  max={`${item?.quantity}`}
-                  onChange={(e) => setQuantity(e.target.value)}
-                  className='styled-input'
-                />
+                <div className='paragraph-text'>Sasia: {item.qty}</div>
                 <BsFillTrashFill
                   color='blue'
                   onClick={() => removeFromCartHandler(item.product)}
@@ -96,7 +87,7 @@ const CartComponent = () => {
       <div className='cart-layout'>
         <h1 className='header-text'>Shporta</h1>
         <p className='cart-text paragraph-text'>
-          Sasia: ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+          Sasia: ({cartItems.reduce((acc, item) => acc + Number(item.qty), 0)})
         </p>
         <p className='cart-text paragraph-text'>Transporti: 2.5€</p>
         <p className='cart-total paragraph-text'>

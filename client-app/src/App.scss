@@ -44,6 +44,11 @@ body {
   font-size: max(1rem, 1vw);
 }
 
+.seperate-line {
+  color: #14213d;
+  font-weight: 500;
+}
+
 .shared-button {
   padding: max(0.85rem, 0.8vw) max(1.5rem, 1.5vw);
   margin-bottom: max(0.8rem, 0.9vw);
@@ -100,6 +105,56 @@ body {
   .breadcrumb-active {
     font-weight: 500;
     text-transform: capitalize;
+  }
+}
+
+.product-badge {
+  position: absolute;
+  left: -5px;
+  top: 1.6rem;
+  background-color: #2048d7;
+  color: #fff;
+  text-transform: capitalize;
+  padding: 0.2rem 1rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+  &::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 100%;
+    transform: translateY(-5px);
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #2048d7;
+  }
+}
+
+.rec-arrow,
+.rec-arrow-left,
+.rec-arrow-right {
+  border: 1px solid #efefef !important;
+  border-radius: 5px;
+  box-shadow: none !important;
+  background: #fff !important;
+  width: 42.5px !important;
+  height: 42.5px !important;
+  min-width: 42.5px !important;
+  min-height: 42.5px !important;
+  max-width: 42.5px !important;
+  max-height: 42.5px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px !important;
+  color: #00268f !important;
+  &:hover,
+  &:focus,
+  &:active {
+    background: #000000 !important;
+    color: #fff !important;
   }
 }
 

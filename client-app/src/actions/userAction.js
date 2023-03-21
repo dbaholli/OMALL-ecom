@@ -140,6 +140,7 @@ export const updateUserDetails =
     lastName,
     email,
     address,
+    postalCode,
     phone,
     cityDropdown,
     stateDropdown
@@ -156,6 +157,7 @@ export const updateUserDetails =
           address: address,
           city: cityDropdown,
           email: email,
+          postal_code: postalCode,
           first_name: name,
           last_name: lastName,
           phone_number: phone,
@@ -193,7 +195,7 @@ export const updateUserDetails =
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
-  localStorage.removeItem("shippingAdress")
+  localStorage.removeItem("shippingAdress");
   dispatch({ type: USER_LOGOUT });
 };
 

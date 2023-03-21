@@ -4,23 +4,27 @@
   margin: max(12.5vw, 140px) 0 max(35px, 3vw);
   width: 100%;
   padding: 0 5%;
-
   .product-detail-container {
     display: flex;
+    gap: 50px;
     .productimage-container {
       width: 40%;
-      .product-image {
-        width: 80%;
-      }
+      // .product-image {
+      //   width: 80%;
+      // }
     }
     .product-info {
-      padding: 20px 30px;
       width: 60%;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       flex-wrap: wrap;
       gap: 10px;
+      .product-info-details {
+        display: flex;
+        width: 100%;
+        gap: 20px;
+      }
       .product-desc {
         line-height: 1.6;
         font-weight: unset;
@@ -28,9 +32,9 @@
       .product-price {
         border-radius: 10px;
         padding: 10px 15px;
-        background-color: hsl(225, 100%, 98%);
+        background-color: #f5f7ff;
         span {
-          color: hsl(224, 23%, 55%);
+          color: #7280a7;
           font-weight: 500;
         }
         color: green;
@@ -40,15 +44,25 @@
       }
       .active-sale {
         position: relative;
-        &::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          top: 50%;
-          height: 3px;
-          border-radius: 100vh;
-          width: 100%;
-          background-color: red;
+        &.active-sale {
+          margin: 0;
+          color: #000;
+          font-weight: normal;
+          position: relative;
+          width: max-content;
+          line-height: normal;
+          &::before {
+            content: "";
+            position: absolute;
+            height: 3px;
+            border-radius: 100vh;
+            color: #373435 !important;
+            background-color: red;
+            transform: rotate(-15deg);
+            right: -5px;
+            bottom: 20px;
+            left: 1px;
+          }
         }
       }
       .product-quantity {
@@ -68,10 +82,11 @@
       display: flex;
       gap: 20px;
       .pay-btn {
+        display: flex;
+        gap: 10px;
         outline: none;
         border: none;
-        color: hsl(0, 0%, 100%);
-        // background-color: #3c8067;
+        color: #ffffff;
         background-color: #ff0000;
         border-radius: 10px;
         padding: 15px 40px;
@@ -80,7 +95,7 @@
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1030px) {
   .product-page .product-detail-component {
     .product-detail-container {
       flex-direction: column;
@@ -89,6 +104,24 @@
       }
       .product-info {
         width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 555px) {
+  .product-page .product-detail-component {
+    .product-detail-container {
+      flex-direction: column;
+      .product-info {
+        width: 100%;
+        .product-info-details {
+          flex-direction: column;
+          gap: 2px;
+          .seperate-line {
+            display: none;
+          }
+        }
       }
     }
   }

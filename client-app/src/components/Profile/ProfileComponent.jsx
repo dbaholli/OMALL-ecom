@@ -7,11 +7,7 @@ import {
 } from "react-icons/ai";
 import { BiLock } from "react-icons/bi";
 import jwt_decode from "jwt-decode";
-import {
-  getUserDetails,
-  login,
-  updateUserDetails,
-} from "../../actions/userAction";
+import { getUserDetails, updateUserDetails } from "../../actions/userAction";
 import { USER_UPDATE_RESET } from "../../constants/userConstants";
 import "./styles/_profile-component.scss";
 import MyOrders from "./MyOrders";
@@ -21,6 +17,7 @@ const ProfileComponent = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+  const [postalCode, setPostalCode] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [cityDropdown, setCityDropdown] = useState([]);
@@ -37,20 +34,6 @@ const ProfileComponent = () => {
 
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
-
-  // useEffect(() => {
-  //   if (userInfo || success) {
-  //     dispatch({ type: USER_UPDATE_RESET });
-  //     dispatch(getUserDetails(jwt_decode(userInfo.access).user_id));
-  //     setName(user.first_name);
-  //     setLastName(user.last_name);
-  //     setAddress(user.address);
-  //     setPhone(user.phone_number);
-  //     setEmail(user.email);
-  //     setCityDropdown(user.city);
-  //     setStateDropdown(user.state);
-  //   }
-  // }, [dispatch, userInfo, success]);
 
   useEffect(() => {
     if (!userInfo) {
@@ -81,6 +64,7 @@ const ProfileComponent = () => {
         lastName,
         email,
         address,
+        postalCode,
         phone,
         cityDropdown,
         stateDropdown
@@ -91,30 +75,30 @@ const ProfileComponent = () => {
   const [cities] = useState([
     {
       label: "Prishtine",
-      value: "pr",
+      value: "Prishtine",
     },
     {
       label: "Peja",
-      value: "pj",
+      value: "Peja",
     },
     {
       label: "Ferizaj",
-      value: "fr",
+      value: "Ferizaj",
     },
   ]);
 
   const [states] = useState([
     {
       label: "Kosova",
-      value: "ks",
+      value: "Kosova",
     },
     {
       label: "Shqiperia",
-      value: "al",
+      value: "Shqiperia",
     },
     {
       label: "Maqedonia",
-      value: "mk",
+      value: "Maqedonia",
     },
   ]);
 
@@ -173,6 +157,21 @@ const ProfileComponent = () => {
             </div>
           </div>
           <div className='profileupdate-input-container'>
+            <label htmlFor='adresa'>
+              <p>Kodi Postal</p>
+            </label>
+            <div className='profileupdate-input'>
+              <AiOutlineMail />
+              <input
+                id='postal'
+                type='text'
+                placeholder='Shkruaj kodin postal tuaj'
+                value={postalCode}
+                onChange={(e) => setPostalCode(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className='profileupdate-input-container'>
             <label htmlFor='email'>
               <p>E-maili</p>
             </label>
@@ -220,7 +219,7 @@ const ProfileComponent = () => {
           <p>Qyteti</p>
           <div className='select-input'>
             <select
-              defaultValue={"default"}
+              value={cityDropdown}
               onChange={(e) => setCityDropdown(e.target.value)}
             >
               <option value={"default"} disabled>
@@ -237,7 +236,7 @@ const ProfileComponent = () => {
           <p>Shteti</p>
           <div className='select-input'>
             <select
-              defaultValue={"default"}
+              value={stateDropdown}
               onChange={(e) => setStateDropdown(e.target.value)}
             >
               <option value={"default"} disabled>

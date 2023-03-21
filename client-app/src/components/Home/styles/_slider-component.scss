@@ -3,7 +3,7 @@
 }
 .home-page .banner-component {
   margin-top: 90px;
-  padding: 5% 7.5%;
+  padding: 5% 2.5%;
   .slider {
     .img-cont {
       width: 70%;
@@ -14,31 +14,7 @@
         z-index: 2;
       }
     }
-    .rec-arrow,
-    .rec-arrow-left,
-    .rec-arrow-right {
-      border: 1px solid #efefef !important;
-      border-radius: 5px;
-      box-shadow: none !important;
-      background: #fff !important;
-      width: 42.5px !important;
-      height: 42.5px !important;
-      min-width: 42.5px !important;
-      min-height: 42.5px !important;
-      max-width: 42.5px !important;
-      max-height: 42.5px !important;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 25px !important;
-      color: #00268f !important;
-      &:hover,
-      &:focus,
-      &:active {
-        background: #000000 !important;
-        color: #fff !important;
-      }
-    }
+
     .rec-pagination {
       display: none;
     }

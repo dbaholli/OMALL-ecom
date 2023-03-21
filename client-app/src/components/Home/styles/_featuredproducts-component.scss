@@ -14,6 +14,7 @@
       margin: 0 auto;
     }
     .product-card {
+      position: relative;
       display: flex;
       flex-direction: column;
       margin: 2% 0;
@@ -23,6 +24,7 @@
       cursor: pointer;
       transform: scale(1, 1);
       transition: transform 0.5s ease;
+
       .productimage-container {
         width: 100%;
         .featuredproduct-image {

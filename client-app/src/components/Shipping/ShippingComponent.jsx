@@ -33,6 +33,7 @@ const ShippingComponent = () => {
   );
   const [message, setMessage] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [discountCoupon, setDiscountCoupon] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [cities] = useState([
     {
@@ -194,7 +195,7 @@ const ShippingComponent = () => {
           state: cart.shippingAddress.stateDropdown || stateDropdown,
           postal_code: cart.shippingAddress.postalCode,
           paymentMethod: paymentMethod,
-          selected_coupon: null,
+          selected_coupon: discountCoupon ? discountCoupon : null,
         })
       );
     }
@@ -306,7 +307,7 @@ const ShippingComponent = () => {
           <p>Qyteti</p>
           <div className='select-input'>
             <select
-              defaultValue={"default"}
+              value={cityDropdown ? cityDropdown : ""}
               onChange={(e) => setCityDropdown(e.target.value)}
             >
               <option value={"default"} disabled>
@@ -323,7 +324,8 @@ const ShippingComponent = () => {
           <p>Shteti</p>
           <div className='select-input'>
             <select
-              defaultValue={"default"}
+              // defaultValue={"default"}
+              value={stateDropdown ? stateDropdown : ""}
               onChange={(e) => setStateDropdown(e.target.value)}
             >
               <option value={"default"} disabled>
@@ -393,6 +395,13 @@ const ShippingComponent = () => {
             <option value='Cash'>Cash</option>
             <option value='Kartele'>Kartele</option>
           </select>
+          <input
+            type='text'
+            placeholder='Kuponi i zbritjes'
+            className='styled-input coupon-input'
+            value={discountCoupon}
+            onChange={(e) => setDiscountCoupon(e.target.value)}
+          />
           <div className='paragraph-text'>
             {paymentMethod && (
               <p className='paragraph-text'>
@@ -400,6 +409,7 @@ const ShippingComponent = () => {
               </p>
             )}
           </div>
+
           <div className='terms'>
             <input type='checkbox' id='remember-checkbox' />
             <p className='paragraph-text accept-terms'>
