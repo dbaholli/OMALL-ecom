@@ -6,6 +6,9 @@ import {
   PRODUCT_DETAIL_REQUEST,
   PRODUCT_DETAIL_SUCCESS,
   PRODUCT_DETAIL_FAIL,
+  TRENDING_PRODUCTS_REQUEST,
+  TRENDING_PRODUCTS_SUCCESS,
+  TRENDING_PRODUCTS_FAIL,
 } from "../constants/productConstants";
 
 export const listProducts = (offset, limit) => async (dispatch) => {
@@ -25,6 +28,31 @@ export const listProducts = (offset, limit) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listTrendingProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: TRENDING_PRODUCTS_REQUEST });
+
+    const { data } = await axios.get(
+      "http://127.0.0.1:8000/api/v2/pages/?type=home.HomePage&fields=_,id,title,trending_products"
+    );
+    if (data) {
+      console.log("TRENDING PRODUCTS: ", data.items);
+    }
+    dispatch({
+      type: TRENDING_PRODUCTS_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    dispatch({
+      type: TRENDING_PRODUCTS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

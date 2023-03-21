@@ -61,6 +61,7 @@
           }
         }
       }
+
       p {
         font-size: 14px;
         color: #323e64;
@@ -193,6 +194,9 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
+      .coupon-input {
+        width: fit-content;
+      }
       select {
         color: #14213d;
         border: 1px solid #ababab;

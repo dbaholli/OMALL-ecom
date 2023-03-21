@@ -11,6 +11,7 @@ import {
 import {
   productDetailsReducer,
   productListReducer,
+  trendingProductsReducer,
 } from "./reducers/productReducers";
 import { cartReducer } from "./reducers/cartReducer";
 import {
@@ -30,6 +31,7 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateReducer,
   productList: productListReducer,
   productDetails: productDetailsReducer,
+  trendingProductsList: trendingProductsReducer,
   singleCategory: categoryReducer,
   allCategories: listCategoryReducer,
   cart: cartReducer,

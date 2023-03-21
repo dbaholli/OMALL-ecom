@@ -55,6 +55,9 @@ const Product = (product, i) => {
         key={i}
         to={`/produkti/${product.product.meta.slug}`}
       >
+        <div className='product-badge paragraph-text'>
+          {product.product.category.title}
+        </div>
         <div className='productimage-container'>
           <img
             className='featuredproduct-image'

@@ -1,0 +1,105 @@
+.home-page .trending-products-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .trending-products-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .trending-product-header {
+      text-align: center;
+      margin-bottom: 2%;
+    }
+    .trending-slider {
+      display: flex;
+      .slider {
+        width: 100%;
+        .rec-pagination {
+          display: none;
+        }
+        .trending-item {
+          position: relative;
+          display: flex;
+          align-items: center;
+          background-color: #fff;
+          border-radius: 5px;
+          box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          padding: 20px 20px;
+          .trending-image-container {
+            width: 100%;
+            img {
+              width: 100%;
+            }
+          }
+
+          .trending-info {
+            width: 50%;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .paragraph-text {
+              margin-bottom: 0.5rem;
+            }
+
+            .price-sale-amount {
+              color: #ff0a0a;
+              font-weight: 600;
+              font-size: 24px;
+            }
+
+            .product-price {
+              &.active-sale {
+                margin: 0;
+                color: #000;
+                font-weight: normal;
+                position: relative;
+                width: max-content;
+                line-height: normal;
+                &::before {
+                  content: "";
+                  position: absolute;
+                  height: 2px;
+                  border-radius: 100vh;
+                  color: #373435 !important;
+                  background-color: red;
+                  transform: rotate(-11deg);
+                  right: -1px;
+                  bottom: 12px;
+                  left: -1px;
+                }
+              }
+            }
+            .product-sale-price {
+              font-size: 24px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1090px) {
+  .home-page .trending-products-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .trending-products-container {
+      .trending-slider {
+        flex-direction: column;
+        .slider {
+          display: flex;
+          flex-direction: column;
+          .trending-item {
+            .trending-info {
+              width: 40%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

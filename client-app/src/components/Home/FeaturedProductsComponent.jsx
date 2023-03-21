@@ -37,10 +37,10 @@ const FeaturedProductsComponent = () => {
             })}
           </>
         )}
-        <Link onClick={handleLoadMore} className='shared-button more-button'>
-          Me shume
-        </Link>
       </div>
+      <Link onClick={handleLoadMore} className='shared-button more-button'>
+        Me shume
+      </Link>
     </div>
   );
 };

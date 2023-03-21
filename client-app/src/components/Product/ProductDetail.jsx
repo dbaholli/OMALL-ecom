@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import cogoToast from "cogo-toast";
+import { BsCartPlusFill } from "react-icons/bs";
 import { listProductDetails, listProducts } from "../../actions/productActions";
 import "./styles/_productdetail.scss";
 import { addToCart } from "../../actions/cartActions";
 import Product from "../shared/ProductComponent/Product";
+import ImageSlider from "../shared/ProductComponent/ImageSlider";
 
 const ProductDetail = () => {
   // const product = productsData.find((p) => p.id == productParam.id);
   const [qty, setQty] = useState(1);
+  const [product, setProduct] = useState({});
+  const [loading, setLoading] = useState(true);
 
   let productParam = useParams();
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, product } = productDetails;
+  // const productDetails = useSelector((state) => state.productDetails);
+  // const { loading, product } = productDetails;
 
   const productList = useSelector((state) => state.productList);
   const { error, products } = productList;
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-
-  useEffect(() => {
-    dispatch(listProductDetails(productParam.slug));
-    // dispatch(listProducts());
-  }, [dispatch, productParam.slug]);
 
   const addToCartHandler = (e) => {
     e.preventDefault();
@@ -41,6 +41,22 @@ const ProductDetail = () => {
       heading: "Produkti u shtua ne shporte!",
     });
   };
+
+  useEffect(() => {
+    async function getProduct(slug) {
+      const { data } = await axios.get(
+        `http://127.0.0.1:8000/api/v2/pages/${slug}/`
+      );
+      setProduct(data);
+      setLoading(false);
+    }
+    getProduct(productParam.slug);
+  }, [productParam.slug]);
+
+  // useEffect(() => {
+  //   dispatch(listProductDetails(productParam.slug));
+  //   // dispatch(listProducts());
+  // }, [productParam.slug]);
 
   return (
     <div className='product-detail-component'>
@@ -58,25 +74,15 @@ const ProductDetail = () => {
       <div className='product-detail-container'>
         {loading ? (
           <h1 className='header-text'>Loading ...</h1>
-        ) : (
+        ) : product ? (
           <>
             <div className='productimage-container'>
-              {product?.image?.map((productImg, i) => {
-                return (
-                  <img
-                    src={`http://127.0.0.1:8000/${productImg.value?.image?.url}`}
-                    alt='Othman Home'
-                    className='product-image'
-                    key={i}
-                  />
-                );
-              })}
+              <ImageSlider images={product?.image} />
             </div>
             <div className='product-info'>
               <h1 className='product-title header-text'>{product?.title}</h1>
               <p
                 className={`product-price paragraph-text ${
-                  // product?.price_with_sale != null ? "active-sale" : ""
                   product?.price_with_sale ? "active-sale" : ""
                 }`}
               >
@@ -92,20 +98,28 @@ const ProductDetail = () => {
                   </>
                 </p>
               ) : null}
-              <p className='product-quantity paragraph-text'>
-                Kategoria:&nbsp;
-                <span className='product-extra-info'>
-                  {product?.category?.title}
-                </span>
-              </p>
-              <p className='product-quantity paragraph-text'>
-                Brendi:&nbsp;
-                <span className='product-extra-info'>{product?.brand}</span>
-              </p>
-              <p className='product-quantity paragraph-text'>
-                Ngjyra:&nbsp;
-                <div className='product-extra-info'>{product?.color}</div>
-              </p>
+              <div className='product-info-details'>
+                <p className='product-quantity paragraph-text'>
+                  Kategoria:&nbsp;
+                  <span className='product-extra-info paragraph-text'>
+                    {product?.category?.title}
+                  </span>
+                </p>
+                <span className='seperate-line'>|</span>
+                <p className='product-quantity paragraph-text'>
+                  Brendi:&nbsp;
+                  <span className='product-extra-info paragraph-text'>
+                    {product?.brand}
+                  </span>
+                </p>
+                <span className='seperate-line'>|</span>
+                <p className='product-quantity paragraph-text'>
+                  Ngjyra:&nbsp;
+                  <span className='product-extra-info paragraph-text'>
+                    {product?.color}
+                  </span>
+                </p>
+              </div>
               <h2 className='product-desc paragraph-text'>
                 {product?.description}
               </h2>
@@ -118,7 +132,12 @@ const ProductDetail = () => {
               </h2>
               <p className='product-quantity paragraph-text'>
                 Gjendja:&nbsp;
-                {product?.quantity >= 1 && <span>I disponueshem</span>}
+                {product?.quantity > 5 && (
+                  <span>I disponueshem (me shume se 5 artikuj)</span>
+                )}
+                {product?.quantity === 1 && (
+                  <span>I disponueshem (vetem 1 i mbetur)</span>
+                )}
                 {product?.quantity < 1 && <span>Nuk eshte ne dispozicion</span>}
               </p>
               {product?.quantity > 0 && (
@@ -142,6 +161,7 @@ const ProductDetail = () => {
                   onClick={addToCartHandler}
                   disabled={product?.quantity === 0}
                 >
+                  <BsCartPlusFill fontSize={20} />
                   Shto ne shporte
                 </button>
                 {cartItems.length > 0 ? (
@@ -156,6 +176,8 @@ const ProductDetail = () => {
               </div>
             </div>
           </>
+        ) : (
+          <h1 className='header-text'>Produkti nuk u gjend</h1>
         )}
       </div>
       <div className='product-suggestions-container'>
