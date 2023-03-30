@@ -41,7 +41,7 @@ class PageChooserBlocks(blocks.PageChooserBlock):
             }
         return None
 
-class ImageChooserBlock(ImageChooser):
+class ImageChooserBlocks(ImageChooser):
     def get_api_representation(self, value, context=None):
         if value:
             return {
@@ -53,8 +53,8 @@ class ImageChooserBlock(ImageChooser):
             }
 
 
-class ImageBlock(blocks.StructBlock):
-    image = ImageChooserBlock()
+class ImageBlocks(blocks.StructBlock):
+    image = ImageChooserBlocks()
 
     class Meta:
         icon = "image"
