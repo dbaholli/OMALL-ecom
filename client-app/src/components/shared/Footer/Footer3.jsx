@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import "./footer3.scss";
+import React from "react";
 import { Link } from "react-router-dom";
-import { FooterData } from "./data";
 import { HiOutlineMail } from "react-icons/hi";
 import {
   AiOutlineFacebook,
@@ -9,6 +7,7 @@ import {
   AiOutlineTwitter,
   AiOutlineYoutube,
 } from "react-icons/ai";
+import "./footer3.scss";
 
 const SocialMedia = [
   {

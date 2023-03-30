@@ -24,7 +24,6 @@ const MyOrders = () => {
         <thead>
           <tr>
             <th className='table-data-header'>Statusi</th>
-            <th className='table-data-header'>Klienti</th>
             <th className='table-data-header'>Adresa</th>
             <th className='table-data-header'>Sasia</th>
             <th className='table-data-header'>Totali</th>
@@ -36,9 +35,6 @@ const MyOrders = () => {
               <>
                 <tr key={i}>
                   <td className='table-data'>{orderData.order_status}</td>
-                  <td className='table-data'>
-                    {orderData.first_name} {orderData.last_name}
-                  </td>
                   <td className='table-data'>{orderData.address}</td>
                   {orderData?.products.map((p, i) => {
                     return (

@@ -12,7 +12,7 @@ const TrendingProducts = () => {
     (state) => state.trendingProductsList
   );
 
-  const { error, loading, trendingProducts } = trendingProductsList;
+  const { loading, trendingProducts } = trendingProductsList;
 
   useEffect(() => {
     dispatch(listTrendingProducts());
@@ -54,7 +54,7 @@ const TrendingProducts = () => {
   return (
     <div className='trending-products-component component-layout'>
       {loading ? (
-        <h1 className='header-text'>Loading trending...</h1>
+        <h1 className='header-text'>Loading...</h1>
       ) : (
         <div className='trending-products-container'>
           {trendingProducts?.map((trendingData, i) => {
@@ -64,7 +64,7 @@ const TrendingProducts = () => {
                   <h1 className='header-text'>{trendingData.title}</h1>
                 </div>
 
-                <div className='trending-slider'>
+                <div className='trending-slider' key={i}>
                   <Carousel
                     className='slider'
                     breakPoints={breakPoints}
@@ -72,6 +72,8 @@ const TrendingProducts = () => {
                     onPrevStart={onPrevStart}
                     onNextStart={onNextStart}
                     disableArrowsOnEnd={false}
+                    enableAutoPlay={true}
+                    autoPlaySpeed={1500}
                   >
                     {trendingData.trending_products.map((props, i) => {
                       return (
@@ -83,7 +85,7 @@ const TrendingProducts = () => {
                           <div className='product-badge'>ZBRITJE</div>
                           <div className='trending-image-container'>
                             <img
-                              src={`http://127.0.0.1:8000/${props.value.product.image[0].url.src}`}
+                              // src={`http://127.0.0.1:8000/${props.value.product.image[0].url.src}`}
                               alt=''
                               height='350px'
                             />

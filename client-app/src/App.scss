@@ -27,6 +27,14 @@ body::-webkit-scrollbar-thumb {
   border-radius: 2px;
 }
 
+:root {
+  --main-color: #14213d;
+  --dark-blue: #122e82;
+  --light-blue: #2048d7;
+  --red: #ff0000;
+  --green: #008000;
+}
+
 body {
   width: 100%;
   font-family: "Poppins", sans-serif;
@@ -73,18 +81,25 @@ body {
 }
 
 .price {
-  color: green;
+  color: #ff0000;
   font-weight: 500;
   font-size: max(1rem, 1.2vw);
 }
 
 .error-text {
-  color: red !important;
+  color: #ff0000 !important;
 }
 
 .success-text {
   color: green;
   font-weight: 500;
+}
+
+.loadertext {
+  text-align: center;
+  margin: auto;
+  color: #707070;
+  font-size: max(1.5em, 1);
 }
 
 .breadcrumb-nav {

@@ -56,7 +56,7 @@
           }
           &:focus-within {
             .order-details-input {
-              outline: 2px solid #122e82;
+              outline: 2px solid var(--dark-blue);
             }
           }
         }
@@ -102,7 +102,7 @@
         }
         &:focus-within {
           .order-details-input {
-            outline: 2px solid #122e82;
+            outline: 2px solid var(--dark-blue);
           }
         }
       }
@@ -111,7 +111,7 @@
         border-radius: 10px;
         padding: 0 5px;
         &:focus-within {
-          border: 1px solid #14213d;
+          border: 1px solid var(--main-color);
         }
       }
       p {
@@ -161,7 +161,7 @@
         outline: none;
         cursor: pointer;
         border-radius: 10px;
-        background-color: #122e82;
+        background-color: var(--dark-blue);
         color: #fff;
         font-size: 17px;
         font-weight: 500;
@@ -198,7 +198,7 @@
         width: fit-content;
       }
       select {
-        color: #14213d;
+        color: var(--main-color);
         border: 1px solid #ababab;
         background: none !important;
         width: 65%;
@@ -215,14 +215,14 @@
       .accept-terms {
         color: #323e64;
         a {
-          color: #122e82;
+          color: var(--dark-blue);
           font-weight: 500;
         }
       }
     }
     .pay-btn {
       color: hsl(0, 0%, 100%);
-      background-color: #ff0000;
+      background-color: var(--red);
       border: unset;
       font-size: max(0.8rem, 0.8vw);
       width: 100%;

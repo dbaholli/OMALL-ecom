@@ -34,8 +34,8 @@
           width: 100%;
         }
         svg {
-          color: #14213d;
-          fill: #14213d;
+          color: var(--dark-blue);
+          fill: var(--dark-blue);
         }
       }
     }
@@ -52,9 +52,8 @@
       justify-content: flex-start;
       gap: 25px;
       .cart-pay-btn {
-        color: hsl(0, 0%, 100%);
-        // background-color: #3c8067;
-        background-color: #ff0000;
+        color: #ffffff;
+        background-color: var(--red);
         border-radius: 10px;
         border: unset;
         font-size: max(0.8rem, 0.8vw);

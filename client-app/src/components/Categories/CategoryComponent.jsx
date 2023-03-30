@@ -22,12 +22,18 @@ const CategoryComponent = () => {
         {loading ? (
           <p className='header-text'>Loading categories...</p>
         ) : error ? (
-          <p className='header-text'>No categories {error}</p>
+          <p className='header-text loadertext'>
+            Kemi hasur ne probleme teknike, ju lutem kthehuni me vone!
+          </p>
         ) : (
           <>
             {category?.map((categoryData, i) => {
               return (
-                <Link className='hotel-categories' key={i} to={`/produkti/${categoryData.slug}/`}>
+                <Link
+                  className='hotel-categories'
+                  key={i}
+                  to={`/produkti/${categoryData.slug}/`}
+                >
                   <div className='hotelproduct-img-container'>
                     <img
                       src={`http://127.0.0.1:8000/${categoryData.image.original.src}`}
@@ -39,7 +45,9 @@ const CategoryComponent = () => {
                   <p className='paragraph-text'>{categoryData.title}</p>
                   <p className='price paragraph-text'>{categoryData.price}€</p>
                   <div className='product-actions'>
-                    <Link to={`/produkti/${categoryData.slug}/`}>Shiko detajet</Link>
+                    <Link to={`/produkti/${categoryData.slug}/`}>
+                      Shiko detajet
+                    </Link>
                     <BsCartPlusFill />
                   </div>
                 </Link>
