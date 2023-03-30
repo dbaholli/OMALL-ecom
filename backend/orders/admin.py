@@ -13,9 +13,9 @@ class Order(ModelAdmin):
     menu_order = 3
     exlude_from_explorer = False 
     list_display = (
-        "total_price", "phone_number", "first_name",
+        "order_id","total_price", "phone_number", "first_name",
         "last_name", "email", "address",
-        "city", "state", "ordered_date","ordered"
+        "city", "state", "ordered_date", "ordered"
         )
     search_fields = ["ordered", "ordered_date", "products", "email", "address", "city","state", "total_price"]
 
