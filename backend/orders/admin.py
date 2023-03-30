@@ -13,10 +13,11 @@ class Order(ModelAdmin):
     menu_order = 3
     exlude_from_explorer = False 
     list_display = (
-        "total_price", "phone_number", "first_name",
-        "last_name", "email", "address",
-        "city", "state", "ordered_date","ordered"
+        "order_id","total_price", "phone_number", "first_name",
+        "last_name", "address",
+        "city", "state", "ordered_date", "ordered",
+        "payment_type", "additional_info"
         )
-    search_fields = ["ordered", "ordered_date", "products", "email", "address", "city","state", "total_price"]
+    search_fields = ["order_id", "ordered", "ordered_date", "products", "address", "city", "state", "total_price"]
 
 modeladmin_register(Order)

@@ -65,7 +65,11 @@ class Orders(models.Model):
     ]
     order_status = models.CharField(max_length=20, choices=STATUS_CHOICES)
 
+    payment_type = models.CharField(max_length=50)
+    additional_info = models.CharField(max_length=2000, blank=True)
+
     panels = [
+        FieldPanel("order_id"),
         FieldPanel("products"),
         FieldPanel("total_price"),
         FieldPanel("order_status"),
@@ -78,9 +82,12 @@ class Orders(models.Model):
         FieldPanel("state"),
         FieldPanel("phone_number"),
         FieldPanel("ordered"),  
+        FieldPanel("payment_type"),
+        FieldPanel("additional_info"),
     ]
 
     api_fields = [
+        APIField("order_id"),
         APIField("products"),
         APIField("total_price"),
         APIField("order_status"),
@@ -93,7 +100,9 @@ class Orders(models.Model):
         APIField("state"),
         APIField("phone_number"),
         APIField("ordered_date"),
-        APIField("ordered")
+        APIField("ordered"),
+        APIField("payment_type"),
+        APIField("additional_info"),
     ]
 
     class Meta:
