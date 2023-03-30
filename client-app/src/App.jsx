@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/Home/Home";
 import ProductPage from "./pages/Product/ProductPage";
 import ContactPage from "./pages/ContactUs/Contact";
-import "./App.scss";
 import Nav from "./components/shared/Navbar/Nav";
 import Footer from "./components/shared/Footer/Footer";
 import FaqPage from "./pages/FAQ/FaqPage";
@@ -15,6 +14,7 @@ import CategoryPage from "./pages/Category/CategoryPage";
 import ShippingPage from "./pages/Shipping/ShippingPage";
 import ScrollToTop from "./scrollToTop";
 import PrivateRoute from "./routes/PrivateRoute";
+import "./App.scss";
 
 const App = () => {
   return (

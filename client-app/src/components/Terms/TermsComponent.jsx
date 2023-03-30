@@ -16,25 +16,24 @@ const TermsComponent = () => {
       </h3>
       <br />
       <h3 className='terms-paragraph paragraph-text'>
-        <Link>www.othmanhome.com</Link> - <b>OTHMAN HOME SH.P.K</b> kërkon nga ju që ti
-        lexoni me kujdes të gjitha informacionet dhe kushtet e blerjes, pasi që
-        me pranimin e këtij teksti, rregullave dhe kushteve konsiderohet
+        <Link>www.othmanhome.com</Link> - <b>OTHMAN HOME SH.P.K</b> kërkon nga
+        ju që ti lexoni me kujdes të gjitha informacionet dhe kushtet e blerjes,
+        pasi që me pranimin e këtij teksti, rregullave dhe kushteve konsiderohet
         përfundimisht kontratë në mes Blerësit (Konsumatori) dhe Shitësit (
-        <Link>www.othmanhome.com</Link>, OTHMAN Home, <b>OTHMAN HOME SH.P.K</b>).
+        <Link>www.othmanhome.com</Link>, OTHMAN Home, <b>OTHMAN HOME SH.P.K</b>
+        ).
       </h3>
       <br />
       <h3 className='terms-paragraph paragraph-text'>
         <Link>www.othmanhome.com</Link> është Platformë e Shitjes Online nën
-        ombrellën e <b>OTHMAN HOME SH.P.K</b>, të cilët ofrojnë artikuj për blerje
-        online. <b>OTHMAN HOME SH.P.K</b>, ka të drejtën e ofertave për shitje online
-        gjithashtu edhe në Dyqanet fizike – OTHMAN Home. Webfaqja online shpalos
-        artikuj të ndryshëm për konsumatorët të cilët preferojnë blerjen online
-        dhe dërgesat në adresën e tyre sipas kushteve dhe rregullave të blerjes.
-        Për dërgesat me vlerë deri në shumën 19.98 Euro duhet të paguhet
-        Transporti i Porosisë që është 2.50 Euro, për dërgesat nga vlera 19.99
-        Euro e tutje Transporti i porosisë është GRATIS. Transporti nuk
-        llogaritet në disa artikuj të caktuar të cilët janë të liruar nga pagesa
-        e Transportit pa marrë parasysh vlerën.
+        ombrellën e <b>OTHMAN HOME SH.P.K</b>, të cilët ofrojnë artikuj për
+        blerje online. <b>OTHMAN HOME SH.P.K</b>, ka të drejtën e ofertave për
+        shitje online gjithashtu edhe në Dyqanet fizike – OTHMAN Home. Webfaqja
+        online shpalos artikuj të ndryshëm për konsumatorët të cilët preferojnë
+        blerjen online dhe dërgesat në adresën e tyre sipas kushteve dhe
+        rregullave të blerjes. Transporti nuk llogaritet në disa artikuj të
+        caktuar të cilët janë të liruar nga pagesa e Transportit pa marrë
+        parasysh vlerën.
       </h3>
       <br />
       <h1 className='terms-header header-text'>
@@ -48,9 +47,10 @@ const TermsComponent = () => {
         dërgesat bëhen prej 1-3 ditë pune, gjithashtu gjatë dorëzimit artikujt
         duhet të jenë në gjendje të rregullt (të paketuara) pa dëmtime. Artikujt
         i dorëzohen postës me paketim nga <Link>www.othmanhome.com</Link> -
-        <b>OTHMAN HOME SH.P.K</b> Në rast të dëmtimit të artikullit gjatë dërgesës,
-        konsumatori është i obliguar që të lajmëroj shitësin dhe të organizoj
-        kthimin e artikullit me atë të ri dhe të padëmtuar, brenda 24 orëve.
+        <b>OTHMAN HOME SH.P.K</b> Në rast të dëmtimit të artikullit gjatë
+        dërgesës, konsumatori është i obliguar që të lajmëroj shitësin dhe të
+        organizoj kthimin e artikullit me atë të ri dhe të padëmtuar, brenda 24
+        orëve.
         <br />
         <br />
         Kthimi duhet të bëhet nga vet Konsumatori ose nëse pajtohet të paguaj
@@ -72,12 +72,13 @@ const TermsComponent = () => {
         Përmbarimi i detyrimeve dhe zgjedhja e kontesteve
       </h1>
       <h3 className='terms-paragraph paragraph-text'>
-        Nëse përdoruesi është person fizik dhe ka detyrime apo konteste me <Link>www.othmanhome.com</Link> - <b>OTHMAN HOME SH.P.K</b> palët do të drejtohen në gjykatën
-        themelore në vendbanimin e përdoruesit. Ligjet e aplikueshme janë ligjet
-        e Republikës të Kosovës të cilat janë në fuqi. <b>OTHMAN HOME SH.P.K</b> ka të
-        drejtë të kërkojë përmbarimin e faturave dhe detyrimeve përmes
-        përmbaruesëve privat, sipas nenit 29 të Ligjit Për Procedurën
-        Përmbarimore.
+        Nëse përdoruesi është person fizik dhe ka detyrime apo konteste me{" "}
+        <Link>www.othmanhome.com</Link> - <b>OTHMAN HOME SH.P.K</b> palët do të
+        drejtohen në gjykatën themelore në vendbanimin e përdoruesit. Ligjet e
+        aplikueshme janë ligjet e Republikës të Kosovës të cilat janë në fuqi.{" "}
+        <b>OTHMAN HOME SH.P.K</b> ka të drejtë të kërkojë përmbarimin e faturave
+        dhe detyrimeve përmes përmbaruesëve privat, sipas nenit 29 të Ligjit Për
+        Procedurën Përmbarimore.
       </h3>
     </div>
   );

@@ -16,6 +16,7 @@ const Register = (props) => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+  const [postalCode, setPostalCode] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [cityDropdown, setCityDropdown] = useState([]);
@@ -34,6 +35,7 @@ const Register = (props) => {
       !lastName ||
       !email ||
       !address ||
+      !postalCode ||
       !phone ||
       !password ||
       !cityDropdown ||
@@ -48,6 +50,7 @@ const Register = (props) => {
           lastName,
           email,
           address,
+          postalCode,
           cityDropdown,
           stateDropdown,
           phone,
@@ -163,6 +166,21 @@ const Register = (props) => {
             </div>
           </div>
           <div className='register-input-container'>
+            <label htmlFor='kodi-postal'>
+              <p>Kodi Postal</p>
+            </label>
+            <div className='register-input'>
+              <AiOutlineMail />
+              <input
+                id='postal'
+                type='text'
+                placeholder='Shkruaj kodin postal'
+                defaultValue={postalCode}
+                onChange={(e) => setPostalCode(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className='register-input-container'>
             <label htmlFor='password'>
               <p>Fjalekalimi</p>
             </label>
@@ -185,7 +203,7 @@ const Register = (props) => {
               <AiOutlinePhone />
               <input
                 id='number'
-                type='number'
+                type='text'
                 placeholder='Shkruani numrin e telefonit tuaj'
                 defaultValue={phone}
                 onChange={(e) => setPhone(e.target.value)}

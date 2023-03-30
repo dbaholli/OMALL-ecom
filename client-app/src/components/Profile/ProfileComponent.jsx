@@ -18,7 +18,7 @@ const ProfileComponent = () => {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [postalCode, setPostalCode] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState(null);
   const [password, setPassword] = useState("");
   const [cityDropdown, setCityDropdown] = useState([]);
   const [stateDropdown, setStateDropdown] = useState([]);
@@ -48,6 +48,7 @@ const ProfileComponent = () => {
         setAddress(user.address);
         setPhone(user.phone_number);
         setEmail(user.email);
+        setPostalCode(user.postal_code)
         setCityDropdown(user.city);
         setStateDropdown(user.state);
       }
@@ -166,7 +167,7 @@ const ProfileComponent = () => {
                 id='postal'
                 type='text'
                 placeholder='Shkruaj kodin postal tuaj'
-                value={postalCode}
+                defaultValue={postalCode}
                 onChange={(e) => setPostalCode(e.target.value)}
               />
             </div>
@@ -209,9 +210,9 @@ const ProfileComponent = () => {
               <AiOutlinePhone />
               <input
                 id='number'
-                type='number'
+                type='text'
                 placeholder='Shkruani numrin e telefonit tuaj'
-                value={phone}
+                defaultValue={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>

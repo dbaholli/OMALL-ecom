@@ -9,8 +9,6 @@
   }
   .profile-component-left {
     display: flex;
-    // align-items: center;
-    // width: 50%;
     flex-direction: column;
     width: clamp(1%, 700px, 100%);
     .select-input {
@@ -18,7 +16,7 @@
       border-radius: 10px;
       padding: 0 5px;
       &:focus-within {
-        border: 1px solid #14213d;
+        border: 1px solid var(--main-color);
       }
     }
     p {
@@ -31,10 +29,6 @@
       border: 0;
       outline: none;
       width: 100%;
-      // font-size: max(0.85rem, 0.85vw);
-      // font-size: 17px;
-      // padding: 7.5px 5px 7.5px 15px;
-
       padding: 10px 15px;
       option {
         color: #7b7b7b;
@@ -81,7 +75,6 @@
           width: 100%;
           border: 1px solid #d8d8d8;
           display: flex;
-          // padding: 7.5px 5px 7.5px 15px;
           padding: 10px 15px;
           gap: 10px;
           border-radius: 10px;
@@ -104,7 +97,7 @@
         }
         &:focus-within {
           .profileupdate-input {
-            outline: 2px solid #122e82;
+            outline: 2px solid var(--dark-blue);
           }
         }
       }
@@ -114,7 +107,7 @@
         gap: 15px;
         label {
           font-size: 14px;
-          color: #323e64;
+          color: var(--main-color);
         }
       }
       input[type="submit"] {
@@ -122,7 +115,7 @@
         outline: none;
         cursor: pointer;
         border-radius: 10px;
-        background-color: #122e82;
+        background-color: var(--dark-blue);
         color: #fff;
         font-size: 17px;
         font-weight: 500;
@@ -144,7 +137,7 @@
       }
       .table-data-header {
         color: #fff;
-        background-color: #122e82;
+        background-color: var(--dark-blue);
       }
       .table-data {
         color: #14213d;

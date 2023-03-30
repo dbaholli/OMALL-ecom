@@ -28,9 +28,8 @@ const Sidebar = (props) => {
       <div className='sidebar-logo inline spread'>
         <div className='sidebar-icon-title'>
           <Link to='/' className='inline'>
-            {/* <div className='sidebar-icon' />
-             */}
-            <p className='paragraph-text sidebar-text'>Othman Home</p>
+            <div className='sidebar-icon' />
+            {/* <p className='paragraph-text sidebar-text'>Othman Home</p> */}
           </Link>
         </div>
         <CgClose onClick={props.click} />
@@ -99,12 +98,18 @@ const Sidebar = (props) => {
         ) : (
           <div className='auth-navigations'>
             <div className='login-link-container'>
-              <Link onClick={showModal} className='mobile-login-link'>
+              <Link
+                onClick={props.showLoginModal}
+                className='mobile-login-link'
+              >
                 Kyqu
               </Link>
             </div>
             <div className='login-link-container'>
-              <Link to='/register' className='mobile-login-link'>
+              <Link
+                onClick={props.setRegisterModal}
+                className='mobile-login-link'
+              >
                 Regjistrohu
               </Link>
             </div>

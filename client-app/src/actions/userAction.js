@@ -26,6 +26,7 @@ export const register =
     lastName,
     email,
     address,
+    postalCode,
     cityDropdown,
     stateDropdown,
     phone,
@@ -38,6 +39,7 @@ export const register =
       });
       const { data } = await axios.post("http://127.0.0.1:8000/register/", {
         address: address,
+        postal_code: postalCode,
         city: cityDropdown,
         email: email,
         first_name: name,

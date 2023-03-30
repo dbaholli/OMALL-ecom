@@ -8,10 +8,7 @@
     display: flex;
     gap: 50px;
     .productimage-container {
-      width: 40%;
-      // .product-image {
-      //   width: 80%;
-      // }
+      width: 50%;
     }
     .product-info {
       width: 60%;
@@ -37,9 +34,9 @@
           color: #7280a7;
           font-weight: 500;
         }
-        color: green;
+        color: var(--red);
         .sale-price {
-          color: green;
+          color: var(--red);
         }
       }
       .active-sale {
@@ -57,7 +54,7 @@
             height: 3px;
             border-radius: 100vh;
             color: #373435 !important;
-            background-color: red;
+            background-color: var(--red);
             transform: rotate(-15deg);
             right: -5px;
             bottom: 20px;
@@ -73,7 +70,7 @@
           color: green;
         }
         .product-extra-info {
-          color: #122e82;
+          color: var(--dark-blue);
           font-weight: 500;
         }
       }
@@ -87,7 +84,7 @@
         outline: none;
         border: none;
         color: #ffffff;
-        background-color: #ff0000;
+        background-color: var(--red);
         border-radius: 10px;
         padding: 15px 40px;
       }

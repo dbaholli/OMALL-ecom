@@ -9,6 +9,7 @@ import "./styles/_productdetail.scss";
 import { addToCart } from "../../actions/cartActions";
 import Product from "../shared/ProductComponent/Product";
 import ImageSlider from "../shared/ProductComponent/ImageSlider";
+import OtherProducts from "../shared/ProductComponent/OtherProducts";
 
 const ProductDetail = () => {
   // const product = productsData.find((p) => p.id == productParam.id);
@@ -53,10 +54,10 @@ const ProductDetail = () => {
     getProduct(productParam.slug);
   }, [productParam.slug]);
 
-  // useEffect(() => {
-  //   dispatch(listProductDetails(productParam.slug));
-  //   // dispatch(listProducts());
-  // }, [productParam.slug]);
+  useEffect(() => {
+    // dispatch(listProductDetails(productParam.slug));
+    dispatch(listProducts(1, 4));
+  }, [productParam.slug]);
 
   return (
     <div className='product-detail-component'>
@@ -185,9 +186,9 @@ const ProductDetail = () => {
           <h2 className='header-text'>Produkte tjera</h2>
           <div className='marquee'>
             <div className='maylike-products-container track'>
-              {/* {products.slice(0, 6).map((product, i) => {
-                return <Product product={product} index={i} />;
-              })} */}
+              {products?.items?.map((product, i) => {
+                return <OtherProducts product={product} index={i} />;
+              })}
             </div>
           </div>
         </div>

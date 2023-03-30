@@ -11,8 +11,8 @@ import {
 import { saveShippingAddress } from "../../actions/cartActions";
 import { createOrder } from "../../actions/orderActions";
 import { ORDER_CREATE_RESET } from "../../constants/orderConstants";
-import "./styles/_shipping-component.scss";
 import { getUserDetails } from "../../actions/userAction";
+import "./styles/_shipping-component.scss";
 
 const ShippingComponent = () => {
   // get the cart state from the redux store and destructure the shippingAddress and cartItems state
@@ -35,6 +35,7 @@ const ShippingComponent = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [discountCoupon, setDiscountCoupon] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const [hasAcceptedTerms, sethasAcceptedTerms] = useState(false);
   const [cities] = useState([
     {
       label: "Prishtine",
@@ -89,6 +90,7 @@ const ShippingComponent = () => {
         setLastName(user.last_name);
         setAddress(user.address);
         setPhone(user.phone_number);
+        setPostalCode(user.postal_code);
         setEmail(user.email);
         setCityDropdown(user.city);
         setStateDropdown(user.state);
@@ -161,10 +163,11 @@ const ShippingComponent = () => {
   // and sends the cartItem and shippingAddress object as data
   const handleOrder = () => {
     // this conditional validates the selected payment method checkbox
-    if (isChecked === false) {
+    if (isChecked === false || !hasAcceptedTerms) {
       cogoToast.error(``, {
         position: "top-right",
-        heading: "Duhet te zgjedhni nje menyre te pageses!",
+        heading:
+          "Duhet te zgjedhni nje menyre te pageses dhe te pranoni kushtet!",
       });
     } else {
       // this forEach takes the cart object data from localstorage/redux
@@ -193,7 +196,7 @@ const ShippingComponent = () => {
           last_name: cart.shippingAddress.lastName || lastName,
           phone: cart.shippingAddress.phone || phone,
           state: cart.shippingAddress.stateDropdown || stateDropdown,
-          postal_code: cart.shippingAddress.postalCode,
+          postal_code: cart.shippingAddress.postalCode || postalCode,
           paymentMethod: paymentMethod,
           selected_coupon: discountCoupon ? discountCoupon : null,
         })
@@ -205,6 +208,10 @@ const ShippingComponent = () => {
   const handleChange = (event) => {
     setPaymentMethod(event.target.value);
     setIsChecked(true);
+  };
+
+  const handleCheckboxChange = (event) => {
+    sethasAcceptedTerms(event.target.checked);
   };
 
   return (
@@ -409,9 +416,29 @@ const ShippingComponent = () => {
               </p>
             )}
           </div>
+          <p className='paragraph-text'>
+            {paymentMethod === "Kartele" ? (
+              <div className='bank-details'>
+                <h3 className='HEADER-text'>Paguaj ne TEB banka:</h3>
+                <p className='paragraph-text'>Filiala: DARDANIA</p>
+                <p className='paragraph-text'>
+                  Numri i llogarise: 20-20-000-1879933-50
+                </p>
+                <p className='paragraph-text'>
+                  IBAN/NLLBN: XK052020000187993350
+                </p>
+                <p className='paragraph-text'>Swift: TEBKXKPR</p>
+              </div>
+            ) : null}
+          </p>
 
           <div className='terms'>
-            <input type='checkbox' id='remember-checkbox' />
+            <input
+              type='checkbox'
+              id='remember-checkbox'
+              checked={hasAcceptedTerms}
+              onChange={handleCheckboxChange}
+            />
             <p className='paragraph-text accept-terms'>
               I pranoj <Link to='/termat'>Termet dhe Kushtet</Link>
             </p>
