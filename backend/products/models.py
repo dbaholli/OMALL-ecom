@@ -26,7 +26,7 @@ class Product(Page):
     currency = models.CharField(max_length=20)
     category = models.ForeignKey("categories.categories", on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=1)
-    shipping = models.BooleanField()
+    shipping = models.CharField(max_length=2000, blank=True)
     color = models.CharField(max_length=50, blank=True, null=True)
     brand = models.CharField(max_length=200, blank=True, null=True)
     rating = models.FloatField(blank=True, null=True)
