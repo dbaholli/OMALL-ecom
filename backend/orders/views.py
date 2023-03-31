@@ -19,7 +19,7 @@ def order_get_or_create(request):
         data = request.data
         get_product_price(request.data)
         get_total_price(request.data)
-        if data["selected_coupon"] != None:
+        if "selected_coupon" in data:
             slug = data["selected_coupon"]
             discount = Coupons.objects.get(slug=slug).discount
             new_price = round(data["total_price"] * (1 - (discount/100)), 2)

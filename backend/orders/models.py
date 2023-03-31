@@ -41,7 +41,7 @@ class Orders(models.Model):
     order_id = models.BigAutoField(primary_key=True)
     uuid_order = models.UUIDField(default=uuid.uuid4, editable=False)
     products = models.ManyToManyField(OrderProduct)
-    user = models.ForeignKey("users.customUser", on_delete=models.CASCADE, blank=True)
+    user = models.ForeignKey("users.customUser", on_delete=models.CASCADE, blank=True, null=True)
     start_date = models.DateTimeField(auto_now_add=True, editable=False)
 
     first_name = models.TextField()
