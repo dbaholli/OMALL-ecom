@@ -6,6 +6,7 @@ import Product from "../shared/ProductComponent/Product";
 import "./styles/_featuredproducts-component.scss";
 
 const FeaturedProductsComponent = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
@@ -15,7 +16,11 @@ const FeaturedProductsComponent = () => {
   const [limit, setLimit] = useState(3);
 
   const handleLoadMore = () => {
-    setLimit((prevLimit) => prevLimit + 3);
+    setIsLoading(true);
+    setTimeout(() => {
+      setLimit((prevLimit) => prevLimit + 3);
+      setIsLoading(false);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -37,12 +42,16 @@ const FeaturedProductsComponent = () => {
             {products?.items?.map((product, i) => {
               return <Product product={product} key={i} />;
             })}
-            <Link
-              onClick={handleLoadMore}
-              className='shared-button more-button'
-            >
-              Me shume
-            </Link>
+            {isLoading ? (
+              <p className='header-text loadertext'>Loading ...</p>
+            ) : (
+              <Link
+                onClick={handleLoadMore}
+                className='shared-button more-button'
+              >
+                Me shume
+              </Link>
+            )}
           </>
         )}
       </div>

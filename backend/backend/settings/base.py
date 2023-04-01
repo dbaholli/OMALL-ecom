@@ -76,7 +76,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    # "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -186,8 +186,8 @@ CORS_REPLACE_HTTPS_REFERER = True
 CORS_ALLOW_ALL_ORIGINS = True
 CSRF_COOKIE_DOMAIN = "*"
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = ["https://localhost:8000"]
-CSRF_TRUSTED_ORIGINS = ["https://localhost:8000"]
+# CORS_ORIGIN_WHITELIST = ["https://localhost:8000"]
+# CSRF_TRUSTED_ORIGINS = ["https://localhost:8000"]
 
 # Simple JWT Configuration
 SIMPLE_JWT = {

@@ -89,7 +89,12 @@ const CartComponent = () => {
         <p className='cart-text paragraph-text'>
           Sasia: ({cartItems.reduce((acc, item) => acc + Number(item.qty), 0)})
         </p>
-        <p className='cart-text paragraph-text'>Transporti: 2.5€</p>
+
+        {cartItems.slice(0, 1).map((item) => (
+          <p className='cart-text paragraph-text'>
+            Transporti: {item.shipping}€
+          </p>
+        ))}
         <p className='cart-total paragraph-text'>
           Totali:{" "}
           {cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}€

@@ -85,7 +85,7 @@ const TrendingProducts = () => {
                           <div className='product-badge'>ZBRITJE</div>
                           <div className='trending-image-container'>
                             <img
-                              // src={`http://127.0.0.1:8000/${props.value.product.image[0].url.src}`}
+                              src={`http://127.0.0.1:8000/${props.value.product.image[0].url.src}`}
                               alt=''
                               height='350px'
                             />
@@ -95,10 +95,12 @@ const TrendingProducts = () => {
                               {props.value.product.title}
                             </h1>
                             <div className='paragraph-text price-sale-amount'>
-                              {calculatePriceChangePercentage(
-                                props?.value.product.price,
-                                props?.value.product.price_with_sale
-                              )}
+                              {props.value.product.price_with_sale
+                                ? calculatePriceChangePercentage(
+                                    props?.value.product.price,
+                                    props?.value.product.price_with_sale
+                                  )
+                                : null}
                             </div>
                             <p
                               className={`product-price paragraph-text ${
@@ -112,7 +114,7 @@ const TrendingProducts = () => {
                             {props?.value.product.price_with_sale != null ||
                             0 ? (
                               <p className='product-sale-price paragraph-text'>
-                                <span className='sale-price'>
+                                <span className='price sale-price'>
                                   €{props?.value.product.price_with_sale}
                                 </span>
                               </p>

@@ -22,6 +22,7 @@ import {
   orderCreateReducer,
   orderDetailsReducer,
 } from "./reducers/orderReducers";
+import { bannerAdReducer } from "./reducers/bannerAdReducer";
 
 const reducer = combineReducers({
   userRegister: userRegisterReducer,
@@ -32,6 +33,7 @@ const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   trendingProductsList: trendingProductsReducer,
+  bannerAds: bannerAdReducer,
   singleCategory: categoryReducer,
   allCategories: listCategoryReducer,
   cart: cartReducer,
