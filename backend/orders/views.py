@@ -20,10 +20,11 @@ def order_get_or_create(request):
         get_product_price(request.data)
         get_total_price(request.data)
         if "selected_coupon" in data:
-            slug = data["selected_coupon"]
-            discount = Coupons.objects.get(slug=slug).discount
-            new_price = round(data["total_price"] * (1 - (discount/100)), 2)
-            data["total_price"] = new_price
+            if data["selected_coupon"] != None:
+                slug = data["selected_coupon"]
+                discount = Coupons.objects.get(slug=slug).discount
+                new_price = round(data["total_price"] * (1 - (discount/100)), 2)
+                data["total_price"] = new_price
         serializer = OrderSerializer(data=request.data)
         if serializer.is_valid():   
             serializer.save()
