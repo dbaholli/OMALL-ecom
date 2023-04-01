@@ -54,7 +54,7 @@ class Orders(models.Model):
     phone_number = models.CharField(max_length=15, blank=True)
     ordered_date = models.DateTimeField(auto_now_add=True, editable=True)
     ordered = models.BooleanField(default=True)
-    selected_coupon = models.CharField(max_length=500, blank=True)
+    selected_coupon = models.CharField(max_length=500, blank=True, null=True)
     total_price = models.FloatField(default=0)
     
     STATUS_CHOICES = [
@@ -66,7 +66,7 @@ class Orders(models.Model):
     order_status = models.CharField(max_length=20, choices=STATUS_CHOICES)
 
     payment_type = models.CharField(max_length=50)
-    additional_info = models.CharField(max_length=2000, blank=True)
+    additional_info = models.CharField(max_length=2000, blank=True, null=True)
 
     panels = [
         FieldPanel("order_id"),
