@@ -119,7 +119,7 @@
         color: #323e64;
       }
       select {
-        color: #7b7b7b;
+        color: var(--main-color);
         background: none !important;
         border: 0;
         outline: none;
@@ -137,14 +137,14 @@
         gap: 10px;
         border-radius: 5px;
         background: rgba(255, 255, 255, 0.1);
-        color: #7b7b7b;
+        color: var(--main-color);
         outline: none;
         height: max(90px, 6vw);
         &::placeholder {
-          color: #7b7b7b;
+          color: var(--main-color);
         }
         &:focus {
-          border: 1px solid #fff;
+          outline: 2px solid var(--dark-blue);
         }
       }
       .remember-me-login {

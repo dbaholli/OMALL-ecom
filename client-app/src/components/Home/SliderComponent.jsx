@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Carousel from "react-elastic-carousel";
 import { topOffers } from "./data";
 import "./styles/_slider-component.scss";
+import { displayBannerAds } from "../../actions/bannerAdsActions";
 
 const SliderComponent = () => {
   const carouselRef = React.useRef(null);
@@ -21,25 +23,45 @@ const SliderComponent = () => {
     { width: 550, itemsToShow: 1 },
   ];
 
+  const dispatch = useDispatch();
+
+  const bannerAds = useSelector((state) => state.bannerAds);
+  const { loading, error, bannerAd } = bannerAds;
+
+  useEffect(() => {
+    dispatch(displayBannerAds());
+  }, [dispatch]);
+
   return (
-    <div className='banner-component'>
-      <Carousel
-        className='slider'
-        breakPoints={breakPoints}
-        ref={carouselRef}
-        onPrevStart={onPrevStart}
-        onNextStart={onNextStart}
-        disableArrowsOnEnd={false}
-      >
-        {topOffers.map((img, i) => {
-          return (
-            <div className='img-cont' key={i}>
-              <div className='img' style={{ content: `url(${img.img})` }}></div>
-            </div>
-          );
-        })}
-      </Carousel>
-    </div>
+    <>
+      {loading ? (
+        <p className='paragraph-text'>Loading...</p>
+      ) : (
+        <div className='banner-component'>
+          <Carousel
+            className='slider'
+            breakPoints={breakPoints}
+            ref={carouselRef}
+            onPrevStart={onPrevStart}
+            onNextStart={onNextStart}
+            disableArrowsOnEnd={false}
+          >
+            {bannerAd[0]?.banner?.map((img, i) => {
+              return (
+                <div className='img-cont' key={i}>
+                  <img
+                    className='img'
+                    alt=''
+                    height='350px'
+                    src={`http://127.0.0.1:8000/${img.value.image.original.src}`}
+                  />
+                </div>
+              );
+            })}
+          </Carousel>
+        </div>
+      )}
+    </>
   );
 };
 

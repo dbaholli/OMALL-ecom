@@ -44,23 +44,23 @@ body {
 }
 
 .header-text {
-  color: #14213d;
+  color: var(--main-color);
   font-size: max(1.5rem, 1.8vw);
 }
 .paragraph-text {
-  color: #14213d;
+  color: var(--main-color);
   font-size: max(1rem, 1vw);
 }
 
 .seperate-line {
-  color: #14213d;
+  color: var(--main-color);
   font-weight: 500;
 }
 
 .shared-button {
   padding: max(0.85rem, 0.8vw) max(1.5rem, 1.5vw);
   margin-bottom: max(0.8rem, 0.9vw);
-  background: #2048d7;
+  background: var(--light-blue);
   color: #fff;
   cursor: pointer;
   text-transform: uppercase;
@@ -70,7 +70,7 @@ body {
   outline: none;
   border: none;
   color: hsl(0, 0%, 100%);
-  background-color: #122e82;
+  background-color: var(--dark-blue);
   border-radius: 10px;
   padding: 15px 40px;
 }
@@ -81,17 +81,17 @@ body {
 }
 
 .price {
-  color: #ff0000;
+  color: var(--red);
   font-weight: 500;
   font-size: max(1rem, 1.2vw);
 }
 
 .error-text {
-  color: #ff0000 !important;
+  color: var(--red) !important;
 }
 
 .success-text {
-  color: green;
+  color: var(--green);
   font-weight: 500;
 }
 
@@ -108,13 +108,13 @@ body {
   align-items: center;
   width: 100%;
   z-index: 3;
-  color: #122e82;
+  color: var(--dark-blue);
   a,
   .breadcrumb-active {
     margin: max(0.25rem, 0.25vw) 0;
   }
   a {
-    color: #122e82;
+    color: var(--dark-blue);
     font-weight: 400;
   }
   .breadcrumb-active {
@@ -127,7 +127,7 @@ body {
   position: absolute;
   left: -5px;
   top: 1.6rem;
-  background-color: #2048d7;
+  background-color: var(--light-blue);
   color: #fff;
   text-transform: capitalize;
   padding: 0.2rem 1rem;
@@ -143,7 +143,7 @@ body {
     height: 0;
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-right: 5px solid #2048d7;
+    border-right: 5px solid var(--light-blue);
   }
 }
 
@@ -223,12 +223,12 @@ body {
   justify-content: space-between;
   a {
     font-weight: 500;
-    font-size: max(0.5rem, 1vw) !important;
+    font-size: max(0.5rem, 0.8vw) !important;
     border: 2px solid #f3f3f3;
     padding: 10px 10px;
     color: #14213d;
     &:hover {
-      background: #122e82;
+      background: var(--dark-blue);
       color: #fff;
       width: 100%;
     }

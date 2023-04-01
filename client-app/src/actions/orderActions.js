@@ -22,8 +22,9 @@ export const createOrder =
     phone,
     state,
     postal_code,
-    paymentMethod,
-    selected_coupon
+    selected_coupon,
+    payment_type,
+    additional_info,
   }) =>
   async (dispatch) => {
     const token = JSON.parse(localStorage.getItem("userInfo"));
@@ -33,7 +34,7 @@ export const createOrder =
       const { data } = await axios.post(
         `http://127.0.0.1:8000/order/`,
         {
-          user: user_id,
+          user: user_id ? user_id : null,
           products,
           order_status,
           address,
@@ -44,12 +45,13 @@ export const createOrder =
           phone_number: phone,
           state,
           postal_code,
-          paymentMethod,
-          selected_coupon
+          selected_coupon: selected_coupon ? selected_coupon : null,
+          payment_type,
+          additional_info,
         },
         {
           headers: {
-            Authorization: `Bearer ${token.access}`,
+            Authorization: token ? `Bearer ${token?.access}` : null,
           },
         }
       );
@@ -66,6 +68,7 @@ export const createOrder =
 
       localStorage.removeItem("cartItems");
     } catch (error) {
+      console.log("error", error);
       dispatch({
         type: ORDER_CREATE_FAIL,
         payload:

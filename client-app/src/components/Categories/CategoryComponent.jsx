@@ -18,7 +18,7 @@ const CategoryComponent = () => {
 
   return (
     <div className='component-layout category-component'>
-      <div className='hotel-container'>
+      <div className='category-container'>
         {loading ? (
           <p className='header-text'>Loading categories...</p>
         ) : error ? (
@@ -30,15 +30,15 @@ const CategoryComponent = () => {
             {category?.map((categoryData, i) => {
               return (
                 <Link
-                  className='hotel-categories'
+                  className='category-categories'
                   key={i}
                   to={`/produkti/${categoryData.slug}/`}
                 >
-                  <div className='hotelproduct-img-container'>
+                  <div className='categoryproduct-img-container'>
                     <img
                       src={`http://127.0.0.1:8000/${categoryData.image.original.src}`}
                       alt='Othman Home'
-                      className='hotelproduct-img'
+                      className='categoryproduct-img'
                       key={i}
                     />
                   </div>
@@ -48,7 +48,6 @@ const CategoryComponent = () => {
                     <Link to={`/produkti/${categoryData.slug}/`}>
                       Shiko detajet
                     </Link>
-                    <BsCartPlusFill />
                   </div>
                 </Link>
               );

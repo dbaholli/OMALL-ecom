@@ -19,6 +19,38 @@ const ShippingComponent = () => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress, cartItems } = cart;
 
+  const cityNames = [
+    "Pristina",
+    "Fushë Kosovë",
+    "Vushtrri",
+    "Mitrovica",
+    "Peja",
+    "Podujeva",
+    "Prizren",
+    "Gjakova",
+    "Ferizaj",
+    "Gjilan",
+    "Rahovec",
+    "Dragash",
+    "Suhareka",
+    "Malisheva",
+    "Kamenica",
+    "Skenderaj",
+    "Kline",
+    "Obiliq",
+    "Istog",
+    "Glogovac",
+    "Junik",
+    "Partesh",
+    "Zubin Potok",
+    "Kacanik",
+    "Hani i Elezit",
+    "Mamushe",
+    "Kllokot",
+    "Kushninë",
+    "Zveçan",
+  ];
+
   const [name, setName] = useState(shippingAddress.name);
   const [lastName, setLastName] = useState(shippingAddress.lastName);
   const [address, setAddress] = useState(shippingAddress.address);
@@ -36,20 +68,12 @@ const ShippingComponent = () => {
   const [discountCoupon, setDiscountCoupon] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [hasAcceptedTerms, sethasAcceptedTerms] = useState(false);
-  const [cities] = useState([
-    {
-      label: "Prishtine",
-      value: "pr",
-    },
-    {
-      label: "Peja",
-      value: "pj",
-    },
-    {
-      label: "Ferizaj",
-      value: "fr",
-    },
-  ]);
+  const [cities] = useState(
+    cityNames.map((city) => ({
+      label: city,
+      value: city,
+    }))
+  );
   const [states] = useState([
     {
       label: "Kosova",
@@ -162,46 +186,65 @@ const ShippingComponent = () => {
   // this function sends the request to the order endpoint
   // and sends the cartItem and shippingAddress object as data
   const handleOrder = () => {
-    // this conditional validates the selected payment method checkbox
+    // Validate form fields
+    if (
+      !name ||
+      !lastName ||
+      !address ||
+      !phone ||
+      !cityDropdown ||
+      !postalCode ||
+      !stateDropdown
+    ) {
+      cogoToast.error(``, {
+        position: "top-right",
+        heading: "Ju lutem plotsoni fushat e nevojshme per dergesen!",
+      });
+      return;
+    }
+
+    // Validate payment and terms
     if (isChecked === false || !hasAcceptedTerms) {
       cogoToast.error(``, {
         position: "top-right",
         heading:
           "Duhet te zgjedhni nje menyre te pageses dhe te pranoni kushtet!",
       });
-    } else {
-      // this forEach takes the cart object data from localstorage/redux
-      // and sets the custom neccessary values needed to make the order request
-      const itemsToBePurchased = [];
-      cart.cartItems.forEach((cartItem) => {
-        itemsToBePurchased.push({
-          id: cartItem.id,
-          color: cartItem.color,
-          name: cartItem.name,
-          price: cartItem.price,
-          product: cartItem.product,
-          quantity: Number(cartItem.qty),
-        });
-      });
-      // dispatch the createOrder action which sends the order data to the api
-      dispatch(
-        createOrder({
-          user_id: userInfo ? jwt_decode(userInfo.access).user_id : null,
-          products: itemsToBePurchased,
-          order_status: "pending",
-          address: cart.shippingAddress.address || address,
-          city: cart.shippingAddress.cityDropdown || cityDropdown,
-          email: cart.shippingAddress.email || email,
-          first_name: cart.shippingAddress.name || name,
-          last_name: cart.shippingAddress.lastName || lastName,
-          phone: cart.shippingAddress.phone || phone,
-          state: cart.shippingAddress.stateDropdown || stateDropdown,
-          postal_code: cart.shippingAddress.postalCode || postalCode,
-          paymentMethod: paymentMethod,
-          selected_coupon: discountCoupon ? discountCoupon : null,
-        })
-      );
+      return;
     }
+
+    // this forEach takes the cart object data from localstorage/redux
+    // and sets the custom neccessary values needed to make the order request
+    const itemsToBePurchased = [];
+    cart.cartItems.forEach((cartItem) => {
+      itemsToBePurchased.push({
+        id: cartItem.id,
+        color: cartItem.color,
+        name: cartItem.name,
+        shipping: cartItem.shipping,
+        price: cartItem.price + cartItem.shipping,
+        product: cartItem.product,
+        quantity: Number(cartItem.qty),
+      });
+    });
+    // dispatch the createOrder action which sends the order data to the api
+    dispatch(
+      createOrder({
+        user_id: userInfo ? jwt_decode(userInfo.access).user_id : null,
+        products: itemsToBePurchased,
+        order_status: "pending",
+        address: cart.shippingAddress.address || address,
+        city: cart.shippingAddress.cityDropdown || cityDropdown,
+        email: cart.shippingAddress.email || email,
+        first_name: cart.shippingAddress.name || name,
+        last_name: cart.shippingAddress.lastName || lastName,
+        phone: cart.shippingAddress.phone || phone,
+        state: cart.shippingAddress.stateDropdown || stateDropdown,
+        postal_code: cart.shippingAddress.postalCode || postalCode,
+        payment_type: paymentMethod,
+        selected_coupon: discountCoupon ? discountCoupon : null,
+      })
+    );
   };
 
   // handles state change of the checkbox and displays the chosen payment method
@@ -314,7 +357,7 @@ const ShippingComponent = () => {
           <p>Qyteti</p>
           <div className='select-input'>
             <select
-              value={cityDropdown ? cityDropdown : ""}
+              value={cityDropdown ? cityDropdown : "default"}
               onChange={(e) => setCityDropdown(e.target.value)}
             >
               <option value={"default"} disabled>
@@ -332,7 +375,7 @@ const ShippingComponent = () => {
           <div className='select-input'>
             <select
               // defaultValue={"default"}
-              value={stateDropdown ? stateDropdown : ""}
+              value={stateDropdown ? stateDropdown : "default"}
               onChange={(e) => setStateDropdown(e.target.value)}
             >
               <option value={"default"} disabled>
@@ -365,34 +408,43 @@ const ShippingComponent = () => {
         <h1 className='header-text shipping-header'>Porosia juaj</h1>
         <div className='payment-products-container'>
           {cartItems.map((item) => (
-            <div key={item.id} className='payment-products-rows'>
-              <img
-                src={`http://127.0.0.1:8000/${item.image[0].value?.image.original.src}`}
-                alt='Othman'
-                className='cartproduct-image'
-                height='100px'
-                width='125px'
-              />
-              <div className='product-final-details'>
-                <p className='product-final-text paragraph-text'>
-                  Produkti: {item.name}
-                </p>
-                <p className='product-final-text paragraph-text'>
-                  Sasia: {item.qty}
-                </p>
-                <p className='product-final-text paragraph-text'>
-                  Nentotali: €{item.price * item.qty}
-                </p>
+            <>
+              <div key={item.id} className='payment-products-rows'>
+                <img
+                  src={`http://127.0.0.1:8000/${item.image[0].value?.image.original.src}`}
+                  alt='Othman'
+                  className='cartproduct-image'
+                  height='100px'
+                  width='125px'
+                />
+                <div className='product-final-details'>
+                  <p className='product-final-text paragraph-text'>
+                    Produkti: {item.name}
+                  </p>
+                  <p className='product-final-text paragraph-text'>
+                    Sasia: {item.qty}
+                  </p>
+                  <p className='product-final-text paragraph-text'>
+                    Nentotali: €{item.price * item.qty}
+                  </p>
+                </div>
               </div>
-            </div>
+            </>
           ))}
-          <p className='product-final-text paragraph-text'>Transporti: Falas</p>
+          {cartItems.slice(0, 1).map((item) => (
+            <p className='product-final-text paragraph-text'>
+              Transporti: {item.shipping}€
+            </p>
+          ))}
           <p className='product-final-text paragraph-text'>
-            Totali: €
-            {cartItems.reduce(
-              (finalPrice, item) => (finalPrice += item.price * item.qty),
-              0
-            )}
+            Totali:&nbsp;
+            {cartItems.reduce((finalPrice, item, idx) => {
+              if (idx === 0) finalPrice += Number(item.shipping);
+              finalPrice += item.price * item.qty;
+
+              return finalPrice;
+            }, 0)}
+            €
           </p>
         </div>
         <div className='payment-choices'>
