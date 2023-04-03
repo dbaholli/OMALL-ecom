@@ -68,7 +68,7 @@ const ShippingComponent = () => {
   const [discountCoupon, setDiscountCoupon] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [hasAcceptedTerms, sethasAcceptedTerms] = useState(false);
-  const [cities] = useState(
+  const [cities, setCities] = useState(
     cityNames.map((city) => ({
       label: city,
       value: city,
@@ -183,6 +183,7 @@ const ShippingComponent = () => {
     }
   }, [success, error]);
 
+
   // this function sends the request to the order endpoint
   // and sends the cartItem and shippingAddress object as data
   const handleOrder = () => {
@@ -228,23 +229,31 @@ const ShippingComponent = () => {
       });
     });
     // dispatch the createOrder action which sends the order data to the api
-    dispatch(
-      createOrder({
-        user_id: userInfo ? jwt_decode(userInfo.access).user_id : null,
-        products: itemsToBePurchased,
-        order_status: "pending",
-        address: cart.shippingAddress.address || address,
-        city: cart.shippingAddress.cityDropdown || cityDropdown,
-        email: cart.shippingAddress.email || email,
-        first_name: cart.shippingAddress.name || name,
-        last_name: cart.shippingAddress.lastName || lastName,
-        phone: cart.shippingAddress.phone || phone,
-        state: cart.shippingAddress.stateDropdown || stateDropdown,
-        postal_code: cart.shippingAddress.postalCode || postalCode,
-        payment_type: paymentMethod,
-        selected_coupon: discountCoupon ? discountCoupon : null,
-      })
-    );
+    if (cartItems.length === 0) {
+      cogoToast.error(``, {
+        position: "top-right",
+        heading: "Nuk keni produkte ne shporte!",
+      });
+      return;
+    } else {
+      dispatch(
+        createOrder({
+          user_id: userInfo ? jwt_decode(userInfo.access).user_id : null,
+          products: itemsToBePurchased,
+          order_status: "pending",
+          address: cart.shippingAddress.address || address,
+          city: cart.shippingAddress.cityDropdown || cityDropdown,
+          email: cart.shippingAddress.email || email,
+          first_name: cart.shippingAddress.name || name,
+          last_name: cart.shippingAddress.lastName || lastName,
+          phone: cart.shippingAddress.phone || phone,
+          state: cart.shippingAddress.stateDropdown || stateDropdown,
+          postal_code: cart.shippingAddress.postalCode || postalCode,
+          payment_type: paymentMethod,
+          selected_coupon: discountCoupon ? discountCoupon : null,
+        })
+      );
+    }
   };
 
   // handles state change of the checkbox and displays the chosen payment method
@@ -354,6 +363,23 @@ const ShippingComponent = () => {
               />
             </div>
           </div>
+          <p>Shteti</p>
+          <div className='select-input'>
+            <select
+              value={stateDropdown ? stateDropdown : "default"}
+              onChange={(e) => setStateDropdown(e.target.value)}
+            >
+              <option value='default' disabled>
+                Shteti
+              </option>
+              {states.map((state) => (
+                <option key={state.value} value={state.value}>
+                  {state.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
           <p>Qyteti</p>
           <div className='select-input'>
             <select
@@ -366,24 +392,6 @@ const ShippingComponent = () => {
               {cities.map((city) => (
                 <option key={city.value} value={city.value}>
                   {city.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <p>Shteti</p>
-          <div className='select-input'>
-            <select
-              // defaultValue={"default"}
-              value={stateDropdown ? stateDropdown : "default"}
-              onChange={(e) => setStateDropdown(e.target.value)}
-            >
-              <option value={"default"} disabled>
-                Shteti
-              </option>
-              {states.map((state) => (
-                <option key={state.value} value={state.value}>
-                  {state.label}
                 </option>
               ))}
             </select>

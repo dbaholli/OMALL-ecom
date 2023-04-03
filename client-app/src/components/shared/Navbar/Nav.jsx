@@ -190,32 +190,35 @@ const Nav = (props) => {
         <Login
           setRegisterModal={showRegisterModal}
           setLoginModal={showModal}
+          zIndex={zIndex + 1}
           click={showModal}
-          zIndex={zIndex}
         />
       )}
-      {modal && (
-        <Backdrop click={() => setShowModal(!modal)} zIndex={zIndex - 1} />
-      )}
-
-      {sidebar && (
-        <Sidebar
-          click={showSidebar}
-          zIndex={zIndex}
-          showLoginModal={showLoginModal}
-          setRegisterModal={showModal}
-        />
-      )}
-      {sidebar && <Backdrop click={showSidebar} zIndex={zIndex - 1} />}
 
       {register && (
         <Register
           click={removeRegisterModal}
           showLoginModal={showLoginModal}
           setRegisterModal={showModal}
-          zIndex={zIndex}
+          zIndex={zIndex + 1}
         />
       )}
+
+      {modal && (
+        <Backdrop click={() => setShowModal(!modal)} zIndex={zIndex - 1} />
+      )}
+
+      {sidebar && !register && !modal && (
+        <Sidebar
+          click={showSidebar}
+          zIndex={zIndex}
+          showLoginModal={showLoginModal}
+          showRegisterModal={showRegisterModal}
+          setRegisterModal={showModal}
+        />
+      )}
+      {sidebar && <Backdrop click={showSidebar} zIndex={zIndex - 1} />}
+
       {register && <Backdrop click={removeRegisterModal} zIndex={zIndex - 1} />}
     </div>
   );

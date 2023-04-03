@@ -5,7 +5,6 @@ import {
   AiOutlinePhone,
   AiOutlineProfile,
 } from "react-icons/ai";
-import { BiLock } from "react-icons/bi";
 import jwt_decode from "jwt-decode";
 import { getUserDetails, updateUserDetails } from "../../actions/userAction";
 import { USER_UPDATE_RESET } from "../../constants/userConstants";
@@ -19,7 +18,6 @@ const ProfileComponent = () => {
   const [address, setAddress] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [phone, setPhone] = useState(null);
-  const [password, setPassword] = useState("");
   const [cityDropdown, setCityDropdown] = useState([]);
   const [stateDropdown, setStateDropdown] = useState([]);
   const [validateError, setValidateError] = useState(false);
@@ -48,7 +46,7 @@ const ProfileComponent = () => {
         setAddress(user.address);
         setPhone(user.phone_number);
         setEmail(user.email);
-        setPostalCode(user.postal_code)
+        setPostalCode(user.postal_code);
         setCityDropdown(user.city);
         setStateDropdown(user.state);
       }
@@ -184,21 +182,6 @@ const ProfileComponent = () => {
                 placeholder='Shkruaj email adresen tuaj'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className='profileupdate-input-container'>
-            <label htmlFor='password'>
-              <p>Fjalekalimi</p>
-            </label>
-            <div className='profileupdate-input'>
-              <BiLock />
-              <input
-                id='password'
-                type='password'
-                placeholder='Shkruaj fjalekalimin tuaj'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>

@@ -18,6 +18,9 @@
   .sidebar-logo {
     border-bottom: 1px solid #222e50;
     padding: 15px 25px;
+    svg {
+      color: var(--main-color);
+    }
     .sidebar-icon-title {
       display: flex;
       .sidebar-text {
