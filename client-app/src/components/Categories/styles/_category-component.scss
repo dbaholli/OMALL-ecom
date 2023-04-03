@@ -21,15 +21,24 @@
       gap: 5px;
       border: 1px solid #f3f3f3;
       padding: 15px 15px;
-      
+
       .price {
         font-size: max(1rem, 1vw) !important;
       }
 
       .categoryproduct-img-container {
         width: 100%;
+        padding-top: 100%;
+        position: relative;
         .categoryproduct-img {
           width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          max-height: 100%;
+          margin: auto;
         }
       }
     }

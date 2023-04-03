@@ -13,43 +13,12 @@ import { createOrder } from "../../actions/orderActions";
 import { ORDER_CREATE_RESET } from "../../constants/orderConstants";
 import { getUserDetails } from "../../actions/userAction";
 import "./styles/_shipping-component.scss";
+import { cityNamesAl, cityNamesKs, cityNamesMk } from "../data";
 
 const ShippingComponent = () => {
   // get the cart state from the redux store and destructure the shippingAddress and cartItems state
   const cart = useSelector((state) => state.cart);
   const { shippingAddress, cartItems } = cart;
-
-  const cityNames = [
-    "Pristina",
-    "Fushë Kosovë",
-    "Vushtrri",
-    "Mitrovica",
-    "Peja",
-    "Podujeva",
-    "Prizren",
-    "Gjakova",
-    "Ferizaj",
-    "Gjilan",
-    "Rahovec",
-    "Dragash",
-    "Suhareka",
-    "Malisheva",
-    "Kamenica",
-    "Skenderaj",
-    "Kline",
-    "Obiliq",
-    "Istog",
-    "Glogovac",
-    "Junik",
-    "Partesh",
-    "Zubin Potok",
-    "Kacanik",
-    "Hani i Elezit",
-    "Mamushe",
-    "Kllokot",
-    "Kushninë",
-    "Zveçan",
-  ];
 
   const [name, setName] = useState(shippingAddress.name);
   const [lastName, setLastName] = useState(shippingAddress.lastName);
@@ -68,12 +37,19 @@ const ShippingComponent = () => {
   const [discountCoupon, setDiscountCoupon] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [hasAcceptedTerms, sethasAcceptedTerms] = useState(false);
+  const [cityNames] = useState({
+    ks: cityNamesKs,
+    al: cityNamesAl,
+    mk: cityNamesMk,
+  });
+
   const [cities, setCities] = useState(
-    cityNames.map((city) => ({
+    cityNames[stateDropdown]?.map((city) => ({
       label: city,
       value: city,
-    }))
+    })) || []
   );
+
   const [states] = useState([
     {
       label: "Kosova",
@@ -183,7 +159,6 @@ const ShippingComponent = () => {
     }
   }, [success, error]);
 
-
   // this function sends the request to the order endpoint
   // and sends the cartItem and shippingAddress object as data
   const handleOrder = () => {
@@ -264,6 +239,17 @@ const ShippingComponent = () => {
 
   const handleCheckboxChange = (event) => {
     sethasAcceptedTerms(event.target.checked);
+  };
+
+  const handleStateChange = (e) => {
+    const selectedState = e.target.value;
+    setStateDropdown(selectedState);
+
+    const selectedCities = cityNames[selectedState]?.map((city) => ({
+      label: city,
+      value: city,
+    }));
+    setCities(selectedCities);
   };
 
   return (
@@ -367,7 +353,7 @@ const ShippingComponent = () => {
           <div className='select-input'>
             <select
               value={stateDropdown ? stateDropdown : "default"}
-              onChange={(e) => setStateDropdown(e.target.value)}
+              onChange={handleStateChange}
             >
               <option value='default' disabled>
                 Shteti
