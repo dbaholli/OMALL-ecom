@@ -1,17 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import HomePage from "./pages/Home/Home";
-// import ProductPage from "./pages/Product/ProductPage";
-// import ContactPage from "./pages/ContactUs/Contact";
 import Nav from "./components/shared/Navbar/Nav";
 import Footer from "./components/shared/Footer/Footer";
-// import FaqPage from "./pages/FAQ/FaqPage";
-// import TermsPage from "./pages/Terms/TermsPage";
-// import SecurityPage from "./pages/Security/SecurityPage";
-// import ProfilePage from "./pages/Profile/ProfilePage";
-// import CartPage from "./pages/Cart/CartPage";
-// import CategoryPage from "./pages/Category/CategoryPage";
-// import ShippingPage from "./pages/Shipping/ShippingPage";
 import ScrollToTop from "./scrollToTop";
 import PrivateRoute from "./routes/PrivateRoute";
 import "./App.scss";
