@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Carousel from "react-elastic-carousel";
-import { topOffers } from "./data";
-import "./styles/_slider-component.scss";
 import { displayBannerAds } from "../../actions/bannerAdsActions";
+import "./styles/_slider-component.scss";
 
 const SliderComponent = () => {
   const carouselRef = React.useRef(null);

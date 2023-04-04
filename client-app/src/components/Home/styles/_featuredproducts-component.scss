@@ -12,7 +12,7 @@
     justify-content: space-between;
     margin: 5% 0;
     .more-button {
-      margin: 0 auto;
+      margin: 2% auto;
     }
     .product-card {
       position: relative;
@@ -23,9 +23,6 @@
       width: 33%;
       box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       cursor: pointer;
-      transform: scale(1, 1);
-      transition: transform 0.5s ease;
-
       .productimage-container {
         width: 100%;
         .featuredproduct-image {
