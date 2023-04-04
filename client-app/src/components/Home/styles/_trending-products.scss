@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1%;
   .trending-products-container {
     display: flex;
     flex-direction: column;
@@ -16,6 +17,20 @@
         width: 100%;
         .rec-pagination {
           display: none;
+          .rec-dot {
+            background-color: #fff;
+            border: 1px solid var(--light-blue);
+            box-shadow: 0 0 1px 1px var(--dark-blue);
+            &_active {
+              background-color: var(--light-blue);
+            }
+            &:active {
+              background-color: var(--light-blue);
+            }
+            &::selection {
+              background-color: var(--light-blue);
+            }
+          }
         }
         .trending-item {
           position: relative;
@@ -91,9 +106,36 @@
       .trending-slider {
         flex-direction: column;
         .slider {
-          display: flex;
-          flex-direction: column;
           .trending-item {
+            .trending-info {
+              width: 40%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 585px) {
+  .home-page .trending-products-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .trending-products-container {
+      .trending-slider {
+        flex-direction: column;
+        .slider {
+          .rec-pagination {
+            display: block;
+          }
+          .rec-arrow {
+            display: none;
+          }
+          .trending-item {
+            flex-direction: column;
+            padding: unset;
+            align-items: flex-start;
             .trending-info {
               width: 40%;
             }

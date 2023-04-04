@@ -13,12 +13,17 @@ import { useSelector } from "react-redux";
 
 const Sidebar = (props) => {
   const [modal, setShowModal] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   const showModal = () => {
     setShowModal((prev) => (prev = !modal));
+  };
+
+  const showSideBar = () => {
+    setSidebar(!sidebar);
   };
 
   const zIndex = 5000;
@@ -29,10 +34,9 @@ const Sidebar = (props) => {
         <div className='sidebar-icon-title'>
           <Link to='/' className='inline'>
             <div className='sidebar-icon' />
-            {/* <p className='paragraph-text sidebar-text'>Othman Home</p> */}
           </Link>
         </div>
-        <CgClose onClick={props.click} />
+        <CgClose onClick={props.click} size={20} />
       </div>
       <div className='sidebar-links'>
         <div className='navigation-link '>
@@ -107,7 +111,7 @@ const Sidebar = (props) => {
             </div>
             <div className='login-link-container'>
               <Link
-                onClick={props.setRegisterModal}
+                onClick={props.showRegisterModal}
                 className='mobile-login-link'
               >
                 Regjistrohu
@@ -115,7 +119,8 @@ const Sidebar = (props) => {
             </div>
           </div>
         )}
-        {modal && <Login click={showModal} zIndex={zIndex} />}
+        {modal && <Login click={showModal} zIndex={zIndex - 1} />}
+
         {modal && (
           <Backdrop click={() => setShowModal(!modal)} zIndex={zIndex - 1} />
         )}

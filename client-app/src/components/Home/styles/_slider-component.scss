@@ -45,13 +45,6 @@
   }
 }
 
-@media (max-width: 1000px) {
-  .home-page .banner-component {
-    margin-top: 80px;
-    padding: 50px 5% 7.5%;
-  }
-}
-
 @media (max-width: 1450px) {
   .home-page .banner-component {
     .img-cont {
@@ -68,6 +61,16 @@
       max-width: 30px !important;
       max-height: 30px !important;
       font-size: 20px !important;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .home-page .banner-component {
+    .slider {
+      .rec-arrow {
+        display: none;
+      }
     }
   }
 }

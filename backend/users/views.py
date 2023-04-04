@@ -24,6 +24,7 @@ def user_create(request):
         city = data.get('city')
         state = data.get('state')
         phone_number = data.get('phone_number')
+        postal_code = data.get('postal_code')
 
         manager = UserManager()
         user = manager.create_user(
@@ -35,7 +36,8 @@ def user_create(request):
             city=city,
             state=state,
             phone_number=phone_number,
-            is_active=True
+            is_active=True,
+            postal_code=postal_code
             )
         return HttpResponse("User created successfully: {}".format(user))
     return Response(status=status.HTTP_400_BAD_REQUEST)

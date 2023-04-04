@@ -13,43 +13,12 @@ import { createOrder } from "../../actions/orderActions";
 import { ORDER_CREATE_RESET } from "../../constants/orderConstants";
 import { getUserDetails } from "../../actions/userAction";
 import "./styles/_shipping-component.scss";
+import { cityNamesAl, cityNamesKs, cityNamesMk } from "../data";
 
 const ShippingComponent = () => {
   // get the cart state from the redux store and destructure the shippingAddress and cartItems state
   const cart = useSelector((state) => state.cart);
   const { shippingAddress, cartItems } = cart;
-
-  const cityNames = [
-    "Pristina",
-    "Fushë Kosovë",
-    "Vushtrri",
-    "Mitrovica",
-    "Peja",
-    "Podujeva",
-    "Prizren",
-    "Gjakova",
-    "Ferizaj",
-    "Gjilan",
-    "Rahovec",
-    "Dragash",
-    "Suhareka",
-    "Malisheva",
-    "Kamenica",
-    "Skenderaj",
-    "Kline",
-    "Obiliq",
-    "Istog",
-    "Glogovac",
-    "Junik",
-    "Partesh",
-    "Zubin Potok",
-    "Kacanik",
-    "Hani i Elezit",
-    "Mamushe",
-    "Kllokot",
-    "Kushninë",
-    "Zveçan",
-  ];
 
   const [name, setName] = useState(shippingAddress.name);
   const [lastName, setLastName] = useState(shippingAddress.lastName);
@@ -68,12 +37,19 @@ const ShippingComponent = () => {
   const [discountCoupon, setDiscountCoupon] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [hasAcceptedTerms, sethasAcceptedTerms] = useState(false);
-  const [cities] = useState(
-    cityNames.map((city) => ({
+  const [cityNames] = useState({
+    ks: cityNamesKs,
+    al: cityNamesAl,
+    mk: cityNamesMk,
+  });
+
+  const [cities, setCities] = useState(
+    cityNames[stateDropdown]?.map((city) => ({
       label: city,
       value: city,
-    }))
+    })) || []
   );
+
   const [states] = useState([
     {
       label: "Kosova",
@@ -228,23 +204,31 @@ const ShippingComponent = () => {
       });
     });
     // dispatch the createOrder action which sends the order data to the api
-    dispatch(
-      createOrder({
-        user_id: userInfo ? jwt_decode(userInfo.access).user_id : null,
-        products: itemsToBePurchased,
-        order_status: "pending",
-        address: cart.shippingAddress.address || address,
-        city: cart.shippingAddress.cityDropdown || cityDropdown,
-        email: cart.shippingAddress.email || email,
-        first_name: cart.shippingAddress.name || name,
-        last_name: cart.shippingAddress.lastName || lastName,
-        phone: cart.shippingAddress.phone || phone,
-        state: cart.shippingAddress.stateDropdown || stateDropdown,
-        postal_code: cart.shippingAddress.postalCode || postalCode,
-        payment_type: paymentMethod,
-        selected_coupon: discountCoupon ? discountCoupon : null,
-      })
-    );
+    if (cartItems.length === 0) {
+      cogoToast.error(``, {
+        position: "top-right",
+        heading: "Nuk keni produkte ne shporte!",
+      });
+      return;
+    } else {
+      dispatch(
+        createOrder({
+          user_id: userInfo ? jwt_decode(userInfo.access).user_id : null,
+          products: itemsToBePurchased,
+          order_status: "pending",
+          address: cart.shippingAddress.address || address,
+          city: cart.shippingAddress.cityDropdown || cityDropdown,
+          email: cart.shippingAddress.email || email,
+          first_name: cart.shippingAddress.name || name,
+          last_name: cart.shippingAddress.lastName || lastName,
+          phone: cart.shippingAddress.phone || phone,
+          state: cart.shippingAddress.stateDropdown || stateDropdown,
+          postal_code: cart.shippingAddress.postalCode || postalCode,
+          payment_type: paymentMethod,
+          selected_coupon: discountCoupon ? discountCoupon : null,
+        })
+      );
+    }
   };
 
   // handles state change of the checkbox and displays the chosen payment method
@@ -255,6 +239,17 @@ const ShippingComponent = () => {
 
   const handleCheckboxChange = (event) => {
     sethasAcceptedTerms(event.target.checked);
+  };
+
+  const handleStateChange = (e) => {
+    const selectedState = e.target.value;
+    setStateDropdown(selectedState);
+
+    const selectedCities = cityNames[selectedState]?.map((city) => ({
+      label: city,
+      value: city,
+    }));
+    setCities(selectedCities);
   };
 
   return (
@@ -354,6 +349,23 @@ const ShippingComponent = () => {
               />
             </div>
           </div>
+          <p>Shteti</p>
+          <div className='select-input'>
+            <select
+              value={stateDropdown ? stateDropdown : "default"}
+              onChange={handleStateChange}
+            >
+              <option value='default' disabled>
+                Shteti
+              </option>
+              {states.map((state) => (
+                <option key={state.value} value={state.value}>
+                  {state.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
           <p>Qyteti</p>
           <div className='select-input'>
             <select
@@ -366,24 +378,6 @@ const ShippingComponent = () => {
               {cities.map((city) => (
                 <option key={city.value} value={city.value}>
                   {city.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <p>Shteti</p>
-          <div className='select-input'>
-            <select
-              // defaultValue={"default"}
-              value={stateDropdown ? stateDropdown : "default"}
-              onChange={(e) => setStateDropdown(e.target.value)}
-            >
-              <option value={"default"} disabled>
-                Shteti
-              </option>
-              {states.map((state) => (
-                <option key={state.value} value={state.value}>
-                  {state.label}
                 </option>
               ))}
             </select>

@@ -110,4 +110,4 @@ class Orders(models.Model):
         verbose_name_plural = "orders"
 
     def __str__(self):
-        return f"{self.user.email}:{self.total_price}"
+        return f"{self.email}:{self.total_price}"

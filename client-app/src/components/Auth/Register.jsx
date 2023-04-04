@@ -150,34 +150,36 @@ const Register = (props) => {
               />
             </div>
           </div>
-          <div className='register-input-container'>
-            <label htmlFor='adresa'>
-              <p>Adresa</p>
-            </label>
-            <div className='register-input'>
-              <AiOutlineProfile />
-              <input
-                id='adress'
-                type='text'
-                placeholder='Shkruaj adresen tuaj'
-                defaultValue={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
+          <div className='inline-inputs'>
+            <div className='register-input-container'>
+              <label htmlFor='adresa'>
+                <p>Adresa</p>
+              </label>
+              <div className='register-input'>
+                <AiOutlineProfile />
+                <input
+                  id='adress'
+                  type='text'
+                  placeholder='Shkruaj adresen tuaj'
+                  defaultValue={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              </div>
             </div>
-          </div>
-          <div className='register-input-container'>
-            <label htmlFor='kodi-postal'>
-              <p>Kodi Postal</p>
-            </label>
-            <div className='register-input'>
-              <AiOutlineMail />
-              <input
-                id='postal'
-                type='text'
-                placeholder='Shkruaj kodin postal'
-                defaultValue={postalCode}
-                onChange={(e) => setPostalCode(e.target.value)}
-              />
+            <div className='register-input-container'>
+              <label htmlFor='kodi-postal'>
+                <p>Kodi Postal</p>
+              </label>
+              <div className='register-input'>
+                <AiOutlineMail />
+                <input
+                  id='postal'
+                  type='number'
+                  placeholder='Shkruaj kodin postal'
+                  defaultValue={postalCode}
+                  onChange={(e) => setPostalCode(e.target.value)}
+                />
+              </div>
             </div>
           </div>
           <div className='register-input-container'>

@@ -6,7 +6,22 @@
   display: flex;
   justify-content: center;
   width: 50%;
+  height: fit-content;
+  max-height: 80vh;
+  overflow: hidden;
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #d8dae2;
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #14213d;
+    border-radius: 2px;
+  }
   .register-form-container-content {
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
