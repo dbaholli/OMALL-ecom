@@ -4,6 +4,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from .models import Orders
 from .serializer import OrderSerializer
@@ -81,3 +83,23 @@ def get_total_price(data):
         prod_price = data["products"][index]["price"]
         total += prod_price
     data["total_price"] = total
+
+
+@receiver(post_save, sender=Orders)
+def update_product_quantity(sender, instance, **kwargs):
+    if instance.order_status.lower() == "confirmed":
+        prod = list(instance.products.all())
+        for product in range(len(prod)):
+            quantity = prod[product].quantity
+            prod_id = prod[product].product.id
+            product = Product.objects.get(id=prod_id)
+            product.quantity -= quantity
+            product.save()
+    elif instance.order_status.lower() == "cancelled":
+        prod = list(instance.products.all())
+        for product in range(len(prod)):
+            quantity = prod[product].quantity
+            prod_id = prod[product].product.id
+            product = Product.objects.get(id=prod_id)
+            product.quantity += quantity
+            product.save()
