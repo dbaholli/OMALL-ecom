@@ -58,10 +58,10 @@ class Orders(models.Model):
     total_price = models.FloatField(default=0)
     
     STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('confirmed', 'Confirmed'),
-        ('finished', 'Finished'),
-        ('cancelled', 'Cancelled'),
+        ('pending', 'Ne pritje'),
+        ('confirmed', 'E konfirmuar'),
+        ('finished', 'E perfunduar'),
+        ('cancelled', 'Anuluar'),
     ]
     order_status = models.CharField(max_length=20, choices=STATUS_CHOICES)
 
