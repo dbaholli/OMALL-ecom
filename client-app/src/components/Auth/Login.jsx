@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineMail } from "react-icons/ai";
 import { BiLock } from "react-icons/bi";
@@ -12,7 +12,6 @@ const Login = (props) => {
   const [password, setPassword] = useState("");
   const [validateError, setValidateError] = useState(false);
 
-  let navigate = useNavigate();
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);

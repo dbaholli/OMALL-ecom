@@ -23,9 +23,10 @@ const MyOrders = () => {
       <table>
         <thead>
           <tr>
+            <th className='table-data-header'>ID</th>
             <th className='table-data-header'>Statusi</th>
             <th className='table-data-header'>Adresa</th>
-            <th className='table-data-header'>Sasia</th>
+            <th className='table-data-header'>Pagesa</th>
             <th className='table-data-header'>Totali</th>
           </tr>
         </thead>
@@ -34,23 +35,18 @@ const MyOrders = () => {
             return (
               <>
                 <tr key={i}>
+                  <td className='table-data'>{orderData.order_id}</td>
                   <td className='table-data'>{orderData.order_status}</td>
                   <td className='table-data'>{orderData.address}</td>
-                  {orderData?.products.map((p, i) => {
-                    return (
-                      <>
-                        <td className='table-data'>{p.quantity}</td>
-                        <td className='table-data'>
-                          {orderData?.products.reduce(
-                            (total, product) =>
-                              total + product.quantity * product.price,
-                            0
-                          )}
-                          €
-                        </td>
-                      </>
-                    );
-                  })}
+                  <td className='table-data'>{orderData.payment_type}</td>
+                  <td className='table-data'>
+                    {orderData?.products.reduce(
+                      (total, product) =>
+                        total + product.quantity * product.price,
+                      0
+                    )}
+                    €
+                  </td>
                 </tr>
               </>
             );

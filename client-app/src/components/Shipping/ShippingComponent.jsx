@@ -226,6 +226,7 @@ const ShippingComponent = () => {
           postal_code: cart.shippingAddress.postalCode || postalCode,
           payment_type: paymentMethod,
           selected_coupon: discountCoupon ? discountCoupon : null,
+          additional_info: message
         })
       );
     }

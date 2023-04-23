@@ -16,7 +16,9 @@ export const listProducts = (offset, limit) => async (dispatch) => {
     dispatch({ type: PRODUCT_LIST_REQUEST });
 
     const { data } = await axios.get(
-      `http://127.0.0.1:8000/api/v2/pages/?type=products.Product&fields=_,id,slug,title,description,price,price_with_sale,quantity,currency,shipping,color,brand,rating,category,image&offset=${offset}&limit=${limit}`
+      `${
+        import.meta.env.VITE_APP_API
+      }api/v2/pages/?type=products.Product&fields=_,id,slug,title,description,price,price_with_sale,quantity,currency,shipping,color,brand,rating,category,image&offset=${offset}&limit=${limit}`
     );
     if (data) {
       console.log("listProducts", data);
@@ -41,7 +43,9 @@ export const listTrendingProducts = () => async (dispatch) => {
     dispatch({ type: TRENDING_PRODUCTS_REQUEST });
 
     const { data } = await axios.get(
-      "http://127.0.0.1:8000/api/v2/pages/?type=home.HomePage&fields=_,id,title,trending_products"
+      `${
+        import.meta.env.VITE_APP_API
+      }api/v2/pages/?type=home.HomePage&fields=_,id,title,trending_products`
     );
     if (data) {
       console.log("TRENDING PRODUCTS: ", data.items);
@@ -66,7 +70,7 @@ export const listProductDetails = (slug) => async (dispatch) => {
     dispatch({ type: PRODUCT_DETAIL_REQUEST });
 
     const { data } = await axios.get(
-      `http://127.0.0.1:8000/api/v2/pages/${slug}/`
+      `${import.meta.env.VITE_APP_API}api/v2/pages/${slug}/`
     );
 
     dispatch({

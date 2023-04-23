@@ -15,7 +15,7 @@ const OtherProducts = (product, i) => {
         <img
           className='featuredproduct-image'
           height='350px'
-          src={`http://127.0.0.1:8000/${product.product.image[0].value.image.url}`}
+          src={`${import.meta.env.VITE_APP_API}${product.product.image[0].value.image.url}`}
         ></img>
       </div>
       <div className='featuredproduct-info'>

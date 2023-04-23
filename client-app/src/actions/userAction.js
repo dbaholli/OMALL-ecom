@@ -16,7 +16,6 @@ import {
   USER_CONTACT_SUCCESS,
   USER_UPDATE_REQUEST,
   USER_UPDATE_SUCCESS,
-  USER_UPDATE_RESET,
   USER_UPDATE_FAIL,
 } from "../constants/userConstants";
 
@@ -37,7 +36,7 @@ export const register =
       dispatch({
         type: USER_REGISTER_REQUEST,
       });
-      const { data } = await axios.post("http://127.0.0.1:8000/register/", {
+      const { data } = await axios.post(`${import.meta.env.VITE_APP_API}register/`, {
         address: address,
         postal_code: postalCode,
         city: cityDropdown,
@@ -53,12 +52,6 @@ export const register =
         type: USER_REGISTER_SUCCESS,
         payload: data,
       });
-      // dispatch({
-      //   type: USER_LOGIN_SUCCESS,
-      //   payload: data,
-      // });
-
-      // localStorage.setItem("userInfo", JSON.stringify(data));
       console.log("Register success: ", data);
       cogoToast.success(``, {
         position: "top-right",
@@ -81,7 +74,7 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({
       type: USER_LOGIN_REQUEST,
     });
-    const { data } = await axios.post("http://127.0.0.1:8000/token/", {
+    const { data } = await axios.post(`${import.meta.env.VITE_APP_API}token/`, {
       email: email,
       password: password,
     });
@@ -113,7 +106,7 @@ export const getUserDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: USER_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`http://127.0.0.1:8000/profile/${id}`, {
+    const { data } = await axios.get(`${import.meta.env.VITE_APP_API}profile/${id}`, {
       headers: {
         Authorization: `Bearer ${token.access}`,
       },
@@ -154,7 +147,7 @@ export const updateUserDetails =
       dispatch({ type: USER_UPDATE_REQUEST });
 
       const { data } = await axios.put(
-        `http://127.0.0.1:8000/profile/${id}`,
+        `${import.meta.env.VITE_APP_API}profile/${id}`,
         {
           address: address,
           city: cityDropdown,
@@ -208,7 +201,7 @@ export const contact =
         type: USER_CONTACT_REQUEST,
       });
 
-      const { data } = await axios.post("http://127.0.0.1:8000/contactus/", {
+      const { data } = await axios.post(`${import.meta.env.VITE_APP_API}contactus/`, {
         email: email,
         full_name: fullName,
         message: message,

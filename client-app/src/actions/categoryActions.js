@@ -12,7 +12,7 @@ export const listCategory = (slug) => async (dispatch) => {
   try {
     dispatch({ type: CATEGORY_LIST_REQUEST });
 
-    const { data } = await axios.get(`http://127.0.0.1:8000/products/${slug}/`);
+    const { data } = await axios.get(`${import.meta.env.VITE_APP_API}products/${slug}/`);
 
     dispatch({
       type: CATEGORY_LIST_SUCCESS,
@@ -33,7 +33,7 @@ export const listAllCategories = () => async (dispatch) => {
   try {
     dispatch({ type: CATEGORY_LIST_ALL_REQUEST });
 
-    const { data } = await axios.get(`http://127.0.0.1:8000/categories/`);
+    const { data } = await axios.get(`${import.meta.env.VITE_APP_API}categories/`);
 
     dispatch({
       type: CATEGORY_LIST_ALL_SUCCESS,

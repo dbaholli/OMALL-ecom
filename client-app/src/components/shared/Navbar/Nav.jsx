@@ -16,7 +16,7 @@ import "./nav.scss";
 import "../styles/shared-styles.scss";
 import "./Megamenus/_megamenu-style.scss";
 
-const Nav = (props) => {
+const Nav = () => {
   const [sidebar, setSidebar] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [modal, setShowModal] = useState(false);
@@ -77,13 +77,16 @@ const Nav = (props) => {
         </div>
         <div className='nav-link-actions actions-link '>
           <Link>
-            <BsPersonCircle />
             {userInfo ? (
               <Link onClick={() => setDropdown(true)}>
+                <BsPersonCircle />
                 {jwt_decode(userInfo.access).first_name}
               </Link>
             ) : (
-              <Link onClick={() => setShowModal(true)}>Profili</Link>
+              <Link onClick={() => setShowModal(true)}>
+                <BsPersonCircle />
+                Profili
+              </Link>
             )}
           </Link>
           <Link to={`/shporta`}>
@@ -138,22 +141,6 @@ const Nav = (props) => {
               Dysheka
             </Link>
           </div>
-          {/* <div className='nav-link-actions actions-link '>
-            <Link>
-              <BsPersonCircle />
-              {userInfo ? (
-                <Link onClick={() => setDropdown(true)}>
-                  {jwt_decode(userInfo.access).first_name}
-                </Link>
-              ) : (
-                <Link onClick={() => setShowModal(true)}>Profili</Link>
-              )}
-            </Link>
-            <Link to={`/shporta`}>
-              <BsFillCartFill />
-              <p>Shporta</p>
-            </Link>
-          </div> */}
         </div>
         <div onClick={showSidebar} className='hamburger-menu'>
           <div className='hamburger-lines'>
@@ -161,8 +148,11 @@ const Nav = (props) => {
             <div className='hamburger-line' />
             <div className='hamburger-line' />
           </div>
+          <Link to='/' className='mobile-icon inline'>
+            <div className='nav-mobile-icon' />
+          </Link>
           <div className='hamburger-menu-actions'>
-            <Link>
+            <>
               <BsPersonCircle />
               {userInfo ? (
                 <Link onClick={() => setDropdown(true)}>
@@ -171,7 +161,7 @@ const Nav = (props) => {
               ) : (
                 <Link onClick={() => setShowModal(true)}>Profili</Link>
               )}
-            </Link>
+            </>
             <Link to={`/shporta`}>
               <BsFillCartFill />
               <p>Shporta</p>

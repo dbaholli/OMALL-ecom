@@ -8,6 +8,7 @@ import {
 import cogoToast from "cogo-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../actions/cartActions";
+import { BsCartPlusFill } from "react-icons/bs";
 
 const Product = (product, i) => {
   // use the props from the featured product component to display product data
@@ -39,9 +40,7 @@ const Product = (product, i) => {
     e.preventDefault();
     // console.log("add to cart", productParam.slug);
     // navigate(`/shporta/${product.product.slug}?qty=${qty}`);
-    if (product.product.slug) {
-      dispatch(addToCart(product.product.slug, qty));
-    }
+    dispatch(addToCart(product.product.meta.slug, 1));
     cogoToast.success(`${product?.product.title}`, {
       position: "top-right",
       heading: "Produkti u shtua ne shporte!",
@@ -49,34 +48,33 @@ const Product = (product, i) => {
   };
 
   return (
-    <>
-      <Link
-        className='product-card hvr-float'
-        key={i}
-        to={`/produkti/${product.product.meta.slug}`}
-      >
-        <div className='product-badge paragraph-text'>
-          {product.product.category.title}
-        </div>
-        <div className='productimage-container'>
-          <img
-            className='featuredproduct-image'
-            height='350px'
-            src={`http://127.0.0.1:8000/${product.product.image[0].value.image.url}`}
-          ></img>
-        </div>
-        <div className='featuredproduct-info'>
-          <h3 className='paragraph-text'>{product.product.title}</h3>
-          <p className='price paragraph-text'>{product.product.price}€</p>
-          <p className='paragraph-text'>Sasia: {product.product.quantity}</p>
-        </div>
-        <div className='product-actions'>
-          <Link to={`/produkti/${product.product.meta.slug}`}>
-            Shiko detajet
-          </Link>
-        </div>
-      </Link>
-    </>
+    <Link
+      className='product-card hvr-float'
+      key={i}
+      to={`/produkti/${product.product.meta.slug}`}
+    >
+      <div className='product-badge paragraph-text'>
+        {product.product.category.title}
+      </div>
+      <div className='productimage-container'>
+        <img
+          className='featuredproduct-image'
+          height='350px'
+          src={`${import.meta.env.VITE_APP_API}${
+            product.product.image[0].value.image.url
+          }`}
+        ></img>
+      </div>
+      <div className='featuredproduct-info'>
+        <h3 className='paragraph-text'>{product.product.title}</h3>
+        <p className='price paragraph-text'>{product.product.price}€</p>
+        <p className='paragraph-text'>Sasia: {product.product.quantity}</p>
+      </div>
+      <div className='product-actions'>
+        <Link to={`/produkti/${product.product.meta.slug}`}>Shiko detajet</Link>
+        <BsCartPlusFill fontSize={20} onClick={addToCartHandler} />
+      </div>
+    </Link>
   );
 };
 

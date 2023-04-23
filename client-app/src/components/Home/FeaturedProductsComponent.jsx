@@ -13,7 +13,7 @@ const FeaturedProductsComponent = () => {
   const { error, loading, products } = productList;
 
   const [offset, setOffset] = useState(0);
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(6);
 
   const handleLoadMore = () => {
     setIsLoading(true);
@@ -43,7 +43,7 @@ const FeaturedProductsComponent = () => {
               return <Product product={product} key={i} />;
             })}
             {isLoading ? (
-              <p className='header-text loadertext'>Loading ...</p>
+              <p className='header-text loadertext'>Loading...</p>
             ) : (
               <Link
                 onClick={handleLoadMore}

@@ -32,7 +32,7 @@ export const createOrder =
       dispatch({ type: ORDER_CREATE_REQUEST });
 
       const { data } = await axios.post(
-        `http://127.0.0.1:8000/order/`,
+        `${import.meta.env.VITE_APP_API}order/`,
         {
           user: user_id ? user_id : null,
           products,
@@ -84,7 +84,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`http://127.0.0.1:8000/order/list/${id}`, {
+    const { data } = await axios.get(`${import.meta.env.VITE_APP_API}order/list/${id}`, {
       headers: {
         Authorization: `Bearer ${token.access}`,
       },

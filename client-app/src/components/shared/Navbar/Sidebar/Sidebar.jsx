@@ -9,14 +9,21 @@ import { AiOutlineUser } from "react-icons/ai";
 import Login from "../../../Auth/Login";
 import Backdrop from "../Backdrop/Backdrop";
 import jwt_decode from "jwt-decode";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../../actions/userAction";
 
 const Sidebar = (props) => {
   const [modal, setShowModal] = useState(false);
   const [sidebar, setSidebar] = useState(false);
 
+  const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const handleLogout = () => {
+    dispatch(logout());
+    props.setDropdown(false);
+  };
 
   const showModal = () => {
     setShowModal((prev) => (prev = !modal));
@@ -32,7 +39,7 @@ const Sidebar = (props) => {
     <div style={{ zIndex: props.zIndex }} className='side-bar'>
       <div className='sidebar-logo inline spread'>
         <div className='sidebar-icon-title'>
-          <Link to='/' className='inline'>
+          <Link to='/' className='inline' onClick={props.click}>
             <div className='sidebar-icon' />
           </Link>
         </div>
@@ -42,49 +49,63 @@ const Sidebar = (props) => {
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"kategoria/hotel-line"}>Hotel Line</Link>
+              <Link to={"kategoria/hotel-line"} onClick={props.click}>
+                Hotel Line
+              </Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"kategoria/sete"}>Sete</Link>
+              <Link to={"kategoria/sete"} onClick={props.click}>
+                Sete
+              </Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"kategoria/jastake"}>Jastake</Link>
+              <Link to={"kategoria/jastake"} onClick={props.click}>
+                Jastake
+              </Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"kategoria/banjo"}>Banjo</Link>
+              <Link to={"kategoria/banjo"} onClick={props.click}>
+                Banjo
+              </Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"kategoria/cajniket"}>Cajniket</Link>
+              <Link to={"kategoria/cajniket"} onClick={props.click}>
+                Cajniket
+              </Link>
             </p>
           </div>
         </div>
         <div className='navigation-link '>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"kategoria/mbulesa"}>Mbulesa</Link>
+              <Link to={"kategoria/mbulesa"} onClick={props.click}>
+                Mbulesa
+              </Link>
             </p>
           </div>
         </div>
-        <div className='navigation-link '>
+        <div className='navigation-link'>
           <div className='main-link inline spread'>
             <p className='mobile-nav-link'>
-              <Link to={"kategoria/dysheka"}>Dysheka</Link>
+              <Link to={"kategoria/dysheka"} onClick={props.click}>
+                Dysheka
+              </Link>
             </p>
           </div>
         </div>
@@ -92,28 +113,31 @@ const Sidebar = (props) => {
       <div className='sidebar-auth'>
         {userInfo ? (
           <div className='login-link-container'>
-            <Link to='/profili' className='login-link inline '>
-              <AiOutlineUser />
-              <p className='user-nav paragraph-text'>
-                {jwt_decode(userInfo.access).first_name}
-              </p>
+            <div className='sidebar-auth-loggedin-options'>
+              <Link
+                to='/profili'
+                className='login-link inline'
+                onClick={props.click}
+              >
+                <AiOutlineUser />
+                <p className='user-nav paragraph-text'>
+                  {jwt_decode(userInfo.access).first_name}
+                </p>
+              </Link>
+            </div>
+            <Link className='logout-button-sidebar' onClick={handleLogout}>
+              Ç'kyçu
             </Link>
           </div>
         ) : (
-          <div className='auth-navigations'>
-            <div className='login-link-container'>
-              <Link
-                onClick={props.showLoginModal}
-                className='mobile-login-link'
-              >
+          <div className='login-link-container'>
+            <div className='sidebar-auth-options'>
+              <Link onClick={props.showLoginModal} className='login-link'>
                 Kyqu
               </Link>
             </div>
-            <div className='login-link-container'>
-              <Link
-                onClick={props.showRegisterModal}
-                className='mobile-login-link'
-              >
+            <div className='sidebar-auth-options'>
+              <Link onClick={props.showRegisterModal} className='login-link'>
                 Regjistrohu
               </Link>
             </div>
