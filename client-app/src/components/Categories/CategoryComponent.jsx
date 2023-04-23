@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { BsCartPlusFill } from "react-icons/bs";
 import { listCategory } from "../../actions/categoryActions";
 import "./styles/_category-component.scss";
 
@@ -21,11 +20,7 @@ const CategoryComponent = () => {
       <div className='category-container'>
         {loading ? (
           <p className='header-text'>Loading categories...</p>
-        ) : error ? (
-          <p className='header-text loadertext'>
-            Kemi hasur ne probleme teknike, ju lutem kthehuni me vone!
-          </p>
-        ) : (
+        ) : error ? null : (
           <>
             {category?.map((categoryData, i) => {
               return (
@@ -36,7 +31,7 @@ const CategoryComponent = () => {
                 >
                   <div className='categoryproduct-img-container'>
                     <img
-                      src={`http://127.0.0.1:8000/${categoryData.image.original.src}`}
+                      src={`${import.meta.env.VITE_APP_API}${categoryData.image.original.src}`}
                       alt='Othman Home'
                       className='categoryproduct-img'
                       key={i}

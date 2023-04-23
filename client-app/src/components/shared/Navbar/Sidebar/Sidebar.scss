@@ -28,7 +28,7 @@
         color: #222e50;
       }
       .sidebar-icon {
-        width: max(75px, 1vw);
+        width: max(90px, 1vw);
         content: url("../../../../assets/othman.jpeg");
       }
     }
@@ -44,7 +44,7 @@
         }
         .mobile-nav-link {
           a {
-            color: #00081e;
+            color: var(--main-color);
             transition: 0.3s;
           }
           flex: 1;
@@ -68,8 +68,50 @@
   .sidebar-auth {
     display: flex;
     flex-direction: column;
-    padding: 1em 2em;
     gap: 25px;
+    .logout-button-sidebar {
+      color: #fff;
+      background-color: var(--main-color);
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 0.5em 0;
+    }
+    .sidebar-auth-loggedin-options {
+      color: var(--main-color);
+      font-weight: 500;
+      padding: 0.35em 1.7em;
+    }
+    .sidebar-auth-options {
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      border-bottom: 1px solid #fff;
+      a {
+        color: var(--main-color);
+        font-weight: 500;
+        padding: 0.5em 0;
+      }
+      h2 {
+        color: var(--main-color);
+        font-weight: 500;
+      }
+      .login-link {
+        color: #fff;
+        background-color: var(--main-color);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0.5em 0;
+        svg {
+          color: var(--main-color);
+        }
+        p {
+          color: var(--main-color);
+        }
+      }
+    }
     .login-link {
       svg {
         color: #222e50;
@@ -83,7 +125,7 @@
     }
     .auth-navigations {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       .login-link-container {
         .mobile-login-link {
           border-radius: 10px;

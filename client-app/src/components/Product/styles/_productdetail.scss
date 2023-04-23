@@ -90,6 +90,45 @@
       }
     }
   }
+  .product-suggestions-container {
+    .maylike-products-wrapper {
+      margin-top: 100px;
+      overflow: hidden;
+    }
+    .maylike-products-wrapper h2 {
+      text-align: center;
+    }
+    .maylike-products-container {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .track {
+      height: fit-content;
+      white-space: nowrap;
+      will-change: transform;
+      animation: marquee 10s linear infinite;
+    }
+    .track:hover {
+      animation-play-state: paused;
+    }
+    .marquee {
+      height: fit-content;
+      position: relative;
+    }
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+      75% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+  }
 }
 
 @media (max-width: 1030px) {

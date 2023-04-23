@@ -35,7 +35,7 @@ const SliderComponent = () => {
     <>
       {loading ? (
         <p className='paragraph-text'>Loading...</p>
-      ) : (
+      ) : bannerAd ? (
         <div className='banner-component'>
           <Carousel
             className='slider'
@@ -52,13 +52,15 @@ const SliderComponent = () => {
                     className='img'
                     alt=''
                     height='350px'
-                    src={`http://127.0.0.1:8000/${img.value.image.original.src}`}
+                    src={`${import.meta.env.VITE_APP_API}${img.value.image.original.src}`}
                   />
                 </div>
               );
             })}
           </Carousel>
         </div>
+      ) : (
+        <h1 className='paragraph-text'>Something went wrong!</h1>
       )}
     </>
   );

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import cogoToast from "cogo-toast";
 import { BsCartPlusFill } from "react-icons/bs";
-import { listProductDetails, listProducts } from "../../actions/productActions";
-import "./styles/_productdetail.scss";
+import axios from "axios";
+import cogoToast from "cogo-toast";
+import { listProducts } from "../../actions/productActions";
 import { addToCart } from "../../actions/cartActions";
-import Product from "../shared/ProductComponent/Product";
 import ImageSlider from "../shared/ProductComponent/ImageSlider";
 import OtherProducts from "../shared/ProductComponent/OtherProducts";
 import {
@@ -15,6 +13,7 @@ import {
   PRODUCT_DETAIL_SUCCESS,
   PRODUCT_DETAIL_FAIL,
 } from "../../constants/productConstants";
+import "./styles/_productdetail.scss";
 
 const ProductDetail = () => {
   // const product = productsData.find((p) => p.id == productParam.id);
@@ -53,7 +52,7 @@ const ProductDetail = () => {
       dispatch({ type: PRODUCT_DETAIL_REQUEST });
 
       const { data } = await axios.get(
-        `http://127.0.0.1:8000/api/v2/pages/${slug}/`
+        `${import.meta.env.VITE_APP_API}api/v2/pages/${slug}/`
       );
       setProduct(data);
       setLoading(false);

@@ -6,7 +6,7 @@ export const faqData = [
   {
     question: "Cilat jane mundesite e pagesave ne platformen othmanhome.com ?",
     answer:
-      "Mundesite e pageses jane: transferi bankar, pagesa me kredit kartele dhe me PayPal",
+      "Mundesite e pageses jane: transferi bankar dhe cash on delivery.",
   },
   {
     question: "Per sa kohe do te mberrije porosia ime ?",

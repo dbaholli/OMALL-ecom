@@ -7,7 +7,7 @@ import {
 
 export const addToCart = (slug, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(
-    `http://127.0.0.1:8000/api/v2/pages/${slug}/`
+    `${import.meta.env.VITE_APP_API}api/v2/pages/${slug}/`
   );
   console.log("shporta me produkte", data);
   dispatch({

@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./styles/ImageSlider.scss";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 function ImageSlider({ images }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   function goToSlide(n) {
-    setCurrentSlide(prev => prev = (n + images?.length) % images?.length);
+    setCurrentSlide((prev) => (prev = (n + images?.length) % images?.length));
   }
 
   return (
     <div className='sliderBlock'>
       <div className='sliderBlock_mainImageContainer'>
         <img
-          src={`http://127.0.0.1:8000/${images[currentSlide]?.value.image.url}`}
+          src={`${import.meta.env.VITE_APP_API}${
+            images[currentSlide]?.value.image.url
+          }`}
           //   alt={images[currentSlide].value.image.original.src}
           className='sliderBlock_mainImage'
         />
@@ -29,7 +30,9 @@ function ImageSlider({ images }) {
             }`}
           >
             <img
-              src={`http://127.0.0.1:8000/${image?.value.image.thumbnail.src}`}
+              src={`${import.meta.env.VITE_APP_API}${
+                image?.value.image.thumbnail.src
+              }`}
               alt={image?.value.image.original.src}
               className='sliderBlock_thumbnailImages__image'
               onClick={() => goToSlide(index)}

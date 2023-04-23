@@ -85,7 +85,7 @@ const TrendingProducts = () => {
                           <div className='product-badge'>ZBRITJE</div>
                           <div className='trending-image-container'>
                             <img
-                              src={`http://127.0.0.1:8000/${props.value.product.image[0].url.src}`}
+                              src={`${import.meta.env.VITE_APP_API}${props.value.product.image[0].url.src}`}
                               alt=''
                               height='350px'
                             />

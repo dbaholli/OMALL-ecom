@@ -3,6 +3,7 @@
   justify-content: space-between;
   padding: 0 5%;
   width: 100%;
+  gap: 20px;
   .profile-header {
     font-weight: 500;
     margin-bottom: 5%;
@@ -125,7 +126,7 @@
   }
 
   .profile-component-right {
-    width: 75%;
+    width: 100%;
     table {
       width: 100%;
       border-collapse: collapse;
@@ -171,7 +172,6 @@
     .profile-component-left {
       display: flex;
       flex-direction: column;
-      //   width: clamp(1%, 700px, 100%);
       width: 100%;
       .profile-form {
         width: 80%;
@@ -194,6 +194,16 @@
             color: #323e64;
           }
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 385px) {
+  .profile-page .profile-component {
+    .profile-component-right {
+      .myorders-component {
+        width: 100%;
       }
     }
   }

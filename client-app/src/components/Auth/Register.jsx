@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import cogoToast from "cogo-toast";
 import {
   AiOutlineMail,
   AiOutlinePhone,
@@ -9,6 +10,7 @@ import {
 import { BiLock } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { register } from "../../actions/userAction";
+import { cityNamesAl, cityNamesKs, cityNamesMk } from "../data";
 import "./styles/register.scss";
 
 const Register = (props) => {
@@ -22,13 +24,22 @@ const Register = (props) => {
   const [cityDropdown, setCityDropdown] = useState([]);
   const [stateDropdown, setStateDropdown] = useState([]);
   const [validateError, setValidateError] = useState(false);
+  const [hasAcceptedTerms, sethasAcceptedTerms] = useState(false);
 
   const dispatch = useDispatch();
   const userRegister = useSelector((state) => state.userRegister);
-  const { error, loading, userInfo } = userRegister;
+  const { userInfo } = userRegister;
 
   const handleRegister = async (event) => {
     event.preventDefault();
+
+    if (!hasAcceptedTerms) {
+      cogoToast.error(``, {
+        position: "top-right",
+        heading: "Duhet te pranoni kushtet!",
+      });
+      return;
+    }
 
     if (
       !name ||
@@ -41,7 +52,6 @@ const Register = (props) => {
       !cityDropdown ||
       !stateDropdown
     ) {
-      console.log("validate");
       setValidateError(true);
     } else {
       dispatch(
@@ -64,20 +74,18 @@ const Register = (props) => {
     props.setRegisterModal();
   }
 
-  const [cities] = useState([
-    {
-      label: "Prishtine",
-      value: "pr",
-    },
-    {
-      label: "Peja",
-      value: "pj",
-    },
-    {
-      label: "Ferizaj",
-      value: "fr",
-    },
-  ]);
+  const [cityNames] = useState({
+    ks: cityNamesKs,
+    al: cityNamesAl,
+    mk: cityNamesMk,
+  });
+
+  const [cities, setCities] = useState(
+    cityNames[stateDropdown]?.map((city) => ({
+      label: city,
+      value: city,
+    })) || []
+  );
 
   const [states] = useState([
     {
@@ -93,6 +101,21 @@ const Register = (props) => {
       value: "mk",
     },
   ]);
+
+  const handleCheckboxChange = (event) => {
+    sethasAcceptedTerms(event.target.checked);
+  };
+
+  const handleStateChange = (e) => {
+    const selectedState = e.target.value;
+    setStateDropdown(selectedState);
+
+    const selectedCities = cityNames[selectedState]?.map((city) => ({
+      label: city,
+      value: city,
+    }));
+    setCities(selectedCities);
+  };
 
   return (
     <div style={{ zIndex: props.zIndex }} className='register-form-container'>
@@ -214,10 +237,7 @@ const Register = (props) => {
           </div>
 
           <div className='select-input'>
-            <select
-              defaultValue={"default"}
-              onChange={(e) => setStateDropdown(e.target.value)}
-            >
+            <select defaultValue={"default"} onChange={handleStateChange}>
               <option value={"default"} disabled>
                 Shteti
               </option>
@@ -246,8 +266,15 @@ const Register = (props) => {
           </div>
 
           <div className='remember-me-login'>
-            <input type='checkbox' id='remember-checkbox' />
-            <label htmlFor='remember-checkbox'>I pranoj Kushtet</label>
+            <input
+              type='checkbox'
+              id='remember-checkbox'
+              checked={hasAcceptedTerms}
+              onChange={handleCheckboxChange}
+            />
+            <p className='paragraph-text accept-terms'>
+              I pranoj <Link to='/termat'>Termet dhe Kushtet</Link>
+            </p>
           </div>
 
           {validateError ? (
