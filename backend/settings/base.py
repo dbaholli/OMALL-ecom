@@ -191,8 +191,8 @@ CORS_REPLACE_HTTPS_REFERER = True
 CORS_ALLOW_ALL_ORIGINS = True
 CSRF_COOKIE_DOMAIN = "*"
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = ["https://localhost:8000", "https://othmanhome.herokuapp.com/"]
-CSRF_TRUSTED_ORIGINS = ["https://localhost:8000", "https://othmanhome.herokuapp.com/"]
+CORS_ORIGIN_WHITELIST = ["https://localhost:8000", "https://othmanhome.herokuapp.com"]
+CSRF_TRUSTED_ORIGINS = ["https://localhost:8000", "https://othmanhome.herokuapp.com"]
 
 # Simple JWT Configuration
 SIMPLE_JWT = {
