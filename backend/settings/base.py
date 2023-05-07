@@ -1,6 +1,9 @@
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from datetime import timedelta
+from decouple import config
+import dj_database_url
+import django_heroku
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     "wagtail.contrib.styleguide",
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
+    "whitenoise.runserver_nostatic"
 ]
 
 SITE_ID = 1
@@ -74,6 +78,7 @@ REST_FRAMEWORK = {
 # Django backend authentication & Axes
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -91,7 +96,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            os.path.join(PROJECT_DIR, "templates"),
+            os.path.join(PROJECT_DIR, "build"),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -109,15 +114,17 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 # Database
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "othmanmall",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "localhost",
-        "PORT": "",
-    }
+     'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+        'NAME': config('DB_NAME'),
+        'USER': config('USER_NAME'),
+        'PASSWORD': config('PASSWORD'),
+        'HOST': config('HOST'),
+        'PORT': '5432',
+        }
 }
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES ['default'].update(db_from_env)
 
 # Password Validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -153,19 +160,17 @@ STATICFILES_FINDERS = [
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, "static"),
+    os.path.join(PROJECT_DIR, "build/static"),
 ]
 
-# ManifestStaticFilesStorage is recommended in production, to prevent outdated
-# JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "build", "static")
 STATIC_URL = "/static/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+django_heroku.settings(locals())
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = "Othman Mall CMS"
@@ -186,8 +191,8 @@ CORS_REPLACE_HTTPS_REFERER = True
 CORS_ALLOW_ALL_ORIGINS = True
 CSRF_COOKIE_DOMAIN = "*"
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = ["https://localhost:8000"]
-CSRF_TRUSTED_ORIGINS = ["https://localhost:8000"]
+CORS_ORIGIN_WHITELIST = ["https://localhost:8000", "https://othmanhome.herokuapp.com/"]
+CSRF_TRUSTED_ORIGINS = ["https://localhost:8000", "https://othmanhome.herokuapp.com/"]
 
 # Simple JWT Configuration
 SIMPLE_JWT = {
