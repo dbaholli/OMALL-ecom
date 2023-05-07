@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import cogoToast from "cogo-toast";
+import { toast } from "react-toastify";
 import jwt_decode from "jwt-decode";
 import {
   AiOutlineMail,
@@ -112,10 +112,7 @@ const ShippingComponent = () => {
       !postalCode ||
       !stateDropdown
     ) {
-      cogoToast.error(``, {
-        position: "top-right",
-        heading: "Ju lutem plotsoni fushat e nevojshme per dergesen!",
-      });
+      toast.error("Ju lutem plotsoni fushat e nevojshme per dergesen!");
       // if the fields are filled dispatch the saveShippingAddress action and display success toast message
     } else {
       dispatch(
@@ -130,10 +127,7 @@ const ShippingComponent = () => {
           phone,
         })
       );
-      cogoToast.success(``, {
-        position: "top-right",
-        heading: "Te dhenat e dorezimit u ruan me sukses!",
-      });
+      toast.success("Te dhenat e dorezimit u ruan me sukses!");
     }
   };
 
@@ -142,20 +136,12 @@ const ShippingComponent = () => {
     // this conditional validates the order function response
     // if the order has been sent successfully it displays the toast success message
     if (success) {
-      cogoToast.success(``, {
-        position: "top-right",
-        heading: "Porosia juaj eshte derguar!",
-      });
+      toast.success("Porosia juaj eshte derguar!");
       // this dispatcher calls the reset order type which clears the state of the order
       dispatch({ type: ORDER_CREATE_RESET });
       // this conditional shows a toast failed message if the order has failed
     } else {
-      error
-        ? cogoToast.error(``, {
-            position: "top-right",
-            heading: "Porosia e produktit deshtoi!",
-          })
-        : null;
+      error ? toast.error("Porosia e produktit deshtoi!") : null;
     }
   }, [success, error]);
 
@@ -172,20 +158,15 @@ const ShippingComponent = () => {
       !postalCode ||
       !stateDropdown
     ) {
-      cogoToast.error(``, {
-        position: "top-right",
-        heading: "Ju lutem plotsoni fushat e nevojshme per dergesen!",
-      });
+      toast.error("Ju lutem plotsoni fushat e nevojshme per dergesen!");
       return;
     }
 
     // Validate payment and terms
     if (isChecked === false || !hasAcceptedTerms) {
-      cogoToast.error(``, {
-        position: "top-right",
-        heading:
-          "Duhet te zgjedhni nje menyre te pageses dhe te pranoni kushtet!",
-      });
+      toast.error(
+        "Duhet te zgjedhni nje menyre te pageses dhe te pranoni kushtet!"
+      );
       return;
     }
 
@@ -205,10 +186,7 @@ const ShippingComponent = () => {
     });
     // dispatch the createOrder action which sends the order data to the api
     if (cartItems.length === 0) {
-      cogoToast.error(``, {
-        position: "top-right",
-        heading: "Nuk keni produkte ne shporte!",
-      });
+      toast.error("Nuk keni produkte ne shporte!");
       return;
     } else {
       dispatch(
@@ -226,7 +204,7 @@ const ShippingComponent = () => {
           postal_code: cart.shippingAddress.postalCode || postalCode,
           payment_type: paymentMethod,
           selected_coupon: discountCoupon ? discountCoupon : null,
-          additional_info: message
+          additional_info: message,
         })
       );
     }

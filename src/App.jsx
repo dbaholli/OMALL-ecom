@@ -6,6 +6,8 @@ import ScrollToTop from "./scrollToTop";
 import PrivateRoute from "./routes/PrivateRoute";
 import "./App.scss";
 import Loader from "./components/shared/Loader/Loader";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const HomePage = lazy(() => import("./pages/Home/Home"));
 const ProductPage = lazy(() => import("./pages/Product/ProductPage"));
@@ -23,6 +25,7 @@ const App = () => {
     <Router>
       <Suspense fallback={<Loader />}>
         <ScrollToTop />
+        <ToastContainer />
         <Nav />
         <Routes>
           <Route element={<PrivateRoute />}>

@@ -5,8 +5,8 @@ import {
   AiOutlinePhone,
 } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
-import cogoToast from "cogo-toast";
-import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 import { contact } from "../../actions/userAction";
 import "./styles/_contact-component.scss";
 
@@ -35,10 +35,7 @@ const ContactUsComponent = () => {
       setFullName("");
       setMessage("");
       setMobileNumber("");
-      cogoToast.success(``, {
-        position: "top-right",
-        heading: "Faleminderit per mesazhin, ju kontaktojme se shpejti!",
-      });
+      toast.success("Faleminderit per mesazhin, ju kontaktojme se shpejti!");
       // setSuccessMsg("Faleminderit per mesazhin, ju kontaktojme se shpejti!");
     }
   };

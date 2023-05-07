@@ -6,7 +6,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import cogoToast from "cogo-toast";
+import { toast } from "react-toastify";
 import { BsFillTrashFill } from "react-icons/bs";
 import { addToCart, removeFromCart } from "../../actions/cartActions";
 import "./styles/_cartcomponent.scss";
@@ -40,10 +40,7 @@ const CartComponent = () => {
 
   const removeFromCartHandler = (slug) => {
     dispatch(removeFromCart(slug));
-    cogoToast.error(``, {
-      position: "top-right",
-      heading: "Produkti u largua nga shporta!",
-    });
+    toast.error("Produkti u largua nga shporta!");
   };
 
   const checkoutHandler = () => {
@@ -63,7 +60,9 @@ const CartComponent = () => {
             {cartItems.map((item) => (
               <div key={item.id} className='cart-product-rows'>
                 <img
-                  src={`${import.meta.env.VITE_APP_API}${item.image[0].value.image.original.src}`}
+                  src={`${import.meta.env.VITE_APP_API}${
+                    item.image[0].value.image.original.src
+                  }`}
                   alt='Othman'
                   className='cartproduct-image'
                 />

@@ -5,7 +5,7 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom";
-import cogoToast from "cogo-toast";
+import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../actions/cartActions";
 import { BsCartPlusFill } from "react-icons/bs";
@@ -41,10 +41,7 @@ const Product = (product, i) => {
     // console.log("add to cart", productParam.slug);
     // navigate(`/shporta/${product.product.slug}?qty=${qty}`);
     dispatch(addToCart(product.product.meta.slug, 1));
-    cogoToast.success(`${product?.product.title}`, {
-      position: "top-right",
-      heading: "Produkti u shtua ne shporte!",
-    });
+    toast.success("Produkti u shtua ne shporte!");
   };
 
   return (
