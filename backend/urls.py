@@ -25,7 +25,7 @@ urlpatterns = [
     path("order/", include("orders.urls")),
     path("token/", MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    re_path('', TemplateView.as_view(template_name='index.html')),
+    re_path('/', TemplateView.as_view(template_name='index.html')),
 ]
 
 
