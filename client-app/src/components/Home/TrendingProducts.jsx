@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listTrendingProducts } from "../../actions/productActions";
-import "./styles/_trending-products.scss";
 import Carousel from "react-elastic-carousel";
 import { Link } from "react-router-dom";
+import { listTrendingProducts } from "../../actions/productActions";
+import "./styles/_trending-products.scss";
 
 const TrendingProducts = () => {
   const dispatch = useDispatch();
@@ -85,7 +85,9 @@ const TrendingProducts = () => {
                           <div className='product-badge'>ZBRITJE</div>
                           <div className='trending-image-container'>
                             <img
-                              src={`${import.meta.env.VITE_APP_API}${props.value.product.image[0].url.src}`}
+                              src={`${import.meta.env.VITE_APP_API}${
+                                props.value.product.image[0].url.src
+                              }`}
                               alt=''
                               height='350px'
                             />
