@@ -174,7 +174,7 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesSto
 django_heroku.settings(locals())
 
 # Wagtail settings
-WAGTAIL_SITE_NAME = "Othman Mall CMS"
+WAGTAIL_SITE_NAME = "OthmanHome"
 
 # Search
 WAGTAILSEARCH_BACKENDS = {
