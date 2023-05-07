@@ -230,7 +230,7 @@ AXES_COOLOFF_TIME = 3
 AXES_RESET_ON_SUCCESS = True
 AXES_ONLY_ADMIN_SITE = True
 
-# Email Configuration
+# Email Configuration 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
