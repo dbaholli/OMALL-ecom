@@ -96,7 +96,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            os.path.join(PROJECT_DIR, "build"),
+            os.path.join(BASE_DIR, "templates"),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -123,8 +123,6 @@ DATABASES = {
         'PORT': '5432',
         }
 }
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES ['default'].update(db_from_env)
 
 # Password Validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -160,10 +158,13 @@ STATICFILES_FINDERS = [
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, "build/static"),
+    os.path.join(BASE_DIR, "dist/static"),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "build", "static")
+# ManifestStaticFilesStorage is recommended in production, to prevent outdated
+# JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
+
+STATIC_ROOT = os.path.join(BASE_DIR, "dist", "staticfiles",)
 STATIC_URL = "/static/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
