@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm install --legacy-peer-deps && vite build",
-    "start": "vite --port $PORT",
+    "start": "npm run dev --port $PORT",
     "preview": "vite preview"
   },
   "dependencies": {
