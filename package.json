@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm install --legacy-peer-deps && vite build",
+    "start": "vite --port $PORT",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -29,9 +30,5 @@
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^3.0.0",
     "vite": "^4.0.0"
-  },
-  "engines": {
-    "node": "18.16.0",
-    "npm": "9.6.6"
   }
 }
