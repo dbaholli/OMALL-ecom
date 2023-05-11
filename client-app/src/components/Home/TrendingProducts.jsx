@@ -61,7 +61,7 @@ const TrendingProducts = () => {
             return (
               <>
                 <div className='trending-product-header'>
-                  <h1 className='header-text'>{trendingData.title}</h1>
+                  <h1 className='header-text'>{trendingData?.title}</h1>
                 </div>
 
                 <div className='trending-slider' key={i}>
@@ -75,18 +75,18 @@ const TrendingProducts = () => {
                     enableAutoPlay={true}
                     autoPlaySpeed={1500}
                   >
-                    {trendingData.trending_products.map((props, i) => {
+                    {trendingData?.trending_products?.map((props, i) => {
                       return (
                         <Link
                           className='trending-item'
                           key={i}
-                          to={`/produkti/${props?.value.product.product_slug}`}
+                          to={`/produkti/${props?.value?.product?.product_slug}`}
                         >
                           <div className='product-badge'>ZBRITJE</div>
                           <div className='trending-image-container'>
                             <img
                               src={`${import.meta.env.VITE_APP_API}${
-                                props.value.product.image[0].url.src
+                                props?.value?.product?.image[0]?.url?.src
                               }`}
                               alt=''
                               height='350px'
@@ -94,30 +94,30 @@ const TrendingProducts = () => {
                           </div>
                           <div className='trending-info'>
                             <h1 className='paragraph-text'>
-                              {props.value.product.title}
+                              {props?.value?.product?.title}
                             </h1>
                             <div className='paragraph-text price-sale-amount'>
-                              {props.value.product.price_with_sale
+                              {props?.value?.product?.price_with_sale
                                 ? calculatePriceChangePercentage(
-                                    props?.value.product.price,
-                                    props?.value.product.price_with_sale
+                                    props?.value?.product?.price,
+                                    props?.value?.product?.price_with_sale
                                   )
                                 : null}
                             </div>
                             <p
                               className={`product-price paragraph-text ${
-                                props?.value.product.price_with_sale
+                                props?.value?.product?.price_with_sale
                                   ? "active-sale"
                                   : ""
                               }`}
                             >
-                              €{props?.value.product.price}
+                              €{props?.value?.product?.price}
                             </p>
-                            {props?.value.product.price_with_sale != null ||
+                            {props?.value?.product?.price_with_sale != null ||
                             0 ? (
                               <p className='product-sale-price paragraph-text'>
                                 <span className='price sale-price'>
-                                  €{props?.value.product.price_with_sale}
+                                  €{props?.value?.product?.price_with_sale}
                                 </span>
                               </p>
                             ) : null}

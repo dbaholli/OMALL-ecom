@@ -1,5 +1,5 @@
 import axios from "axios";
-import cogoToast from "cogo-toast";
+import { toast } from "react-toastify";
 import {
   USER_REGISTER_REQUEST,
   USER_LOGIN_REQUEST,
@@ -36,36 +36,32 @@ export const register =
       dispatch({
         type: USER_REGISTER_REQUEST,
       });
-      const { data } = await axios.post(`${import.meta.env.VITE_APP_API}register/`, {
-        address: address,
-        postal_code: postalCode,
-        city: cityDropdown,
-        email: email,
-        first_name: name,
-        last_name: lastName,
-        phone_number: phone,
-        state: stateDropdown,
-        password: password,
-      });
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_APP_API}register/`,
+        {
+          address: address,
+          postal_code: postalCode,
+          city: cityDropdown,
+          email: email,
+          first_name: name,
+          last_name: lastName,
+          phone_number: phone,
+          state: stateDropdown,
+          password: password,
+        }
+      );
 
       dispatch({
         type: USER_REGISTER_SUCCESS,
         payload: data,
       });
-      console.log("Register success: ", data);
-      cogoToast.success(``, {
-        position: "top-right",
-        heading: "Jeni regjistruar me sukses!",
-      });
+      toast.success("Jeni regjistruar me sukses!");
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
         payload: error.message,
       });
-      cogoToast.error(``, {
-        position: "top-right",
-        heading: "Gabim!",
-      });
+      toast.error("Regjistrimi ka deshtuar!");
     }
   };
 
@@ -85,19 +81,13 @@ export const login = (email, password) => async (dispatch) => {
     });
 
     localStorage.setItem("userInfo", JSON.stringify(data));
-    cogoToast.success(``, {
-      position: "top-right",
-      heading: "Jeni kyqur me sukses!",
-    });
+    toast.success("Jeni kyqur me sukses!");
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
       payload: error.message,
     });
-    cogoToast.error(``, {
-      position: "top-right",
-      heading: "Gabim!",
-    });
+    toast.error("Gabim!");
   }
 };
 
@@ -106,11 +96,14 @@ export const getUserDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: USER_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`${import.meta.env.VITE_APP_API}profile/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token.access}`,
-      },
-    });
+    const { data } = await axios.get(
+      `${import.meta.env.VITE_APP_API}profile/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token.access}`,
+        },
+      }
+    );
 
     dispatch({
       type: USER_DETAILS_SUCCESS,
@@ -176,7 +169,6 @@ export const updateUserDetails =
       });
 
       // localStorage.setItem("userInfo", JSON.stringify(data));
-      console.log("update successful", data);
     } catch (error) {
       dispatch({
         type: USER_UPDATE_FAIL,
@@ -201,12 +193,15 @@ export const contact =
         type: USER_CONTACT_REQUEST,
       });
 
-      const { data } = await axios.post(`${import.meta.env.VITE_APP_API}contactus/`, {
-        email: email,
-        full_name: fullName,
-        message: message,
-        phone_number: mobileNumber,
-      });
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_APP_API}contactus/`,
+        {
+          email: email,
+          full_name: fullName,
+          message: message,
+          phone_number: mobileNumber,
+        }
+      );
 
       dispatch({
         type: USER_CONTACT_SUCCESS,

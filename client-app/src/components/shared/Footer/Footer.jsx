@@ -54,10 +54,10 @@ const Footer = () => {
           <div className='footer-list'>
             <h6>Keni pyetje ?</h6>
             <div className='links'>
-              <Link className='footer-item'>+383 48 55 55 55</Link>
+              <Link className='footer-item'>+383 49 325 154</Link>
               <Link className='footer-item'>info@othmanhome.com</Link>
               <Link className='footer-item'>Prishtine, Kosove</Link>
-              <Link className='footer-item'>Central Park</Link>
+              <Link className='footer-item'>Prishtina Mall, Central Park</Link>
             </div>
           </div>
           <div className='footer-list'>

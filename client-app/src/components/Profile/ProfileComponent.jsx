@@ -10,6 +10,7 @@ import { getUserDetails, updateUserDetails } from "../../actions/userAction";
 import { USER_UPDATE_RESET } from "../../constants/userConstants";
 import "./styles/_profile-component.scss";
 import MyOrders from "./MyOrders";
+import { cityNamesAl, cityNamesKs, cityNamesMk } from "../data";
 
 const ProfileComponent = () => {
   const [name, setName] = useState("");
@@ -21,6 +22,11 @@ const ProfileComponent = () => {
   const [cityDropdown, setCityDropdown] = useState([]);
   const [stateDropdown, setStateDropdown] = useState([]);
   const [validateError, setValidateError] = useState(false);
+  const [cityNames] = useState({
+    ks: cityNamesKs,
+    al: cityNamesAl,
+    mk: cityNamesMk,
+  });
 
   const dispatch = useDispatch();
 
@@ -39,16 +45,16 @@ const ProfileComponent = () => {
     } else {
       if (!user || !user.first_name || success) {
         dispatch({ type: USER_UPDATE_RESET });
-        dispatch(getUserDetails(jwt_decode(userInfo.access).user_id));
+        dispatch(getUserDetails(jwt_decode(userInfo?.access).user_id));
       } else {
-        setName(user.first_name);
-        setLastName(user.last_name);
-        setAddress(user.address);
-        setPhone(user.phone_number);
-        setEmail(user.email);
-        setPostalCode(user.postal_code);
-        setCityDropdown(user.city);
-        setStateDropdown(user.state);
+        setName(user?.first_name);
+        setLastName(user?.last_name);
+        setAddress(user?.address);
+        setPhone(user?.phone_number);
+        setEmail(user?.email);
+        setPostalCode(user?.postal_code);
+        setCityDropdown(user?.city);
+        setStateDropdown(user?.state);
       }
     }
   }, [dispatch, userInfo, user, success]);
@@ -71,35 +77,38 @@ const ProfileComponent = () => {
     );
   };
 
-  const [cities] = useState([
-    {
-      label: "Prishtine",
-      value: "Prishtine",
-    },
-    {
-      label: "Peja",
-      value: "Peja",
-    },
-    {
-      label: "Ferizaj",
-      value: "Ferizaj",
-    },
-  ]);
+  const [cities, setCities] = useState(
+    cityNames[stateDropdown]?.map((city) => ({
+      label: city,
+      value: city,
+    })) || []
+  );
 
   const [states] = useState([
     {
       label: "Kosova",
-      value: "Kosova",
+      value: "ks",
     },
     {
       label: "Shqiperia",
-      value: "Shqiperia",
+      value: "al",
     },
     {
       label: "Maqedonia",
-      value: "Maqedonia",
+      value: "mk",
     },
   ]);
+
+  const handleStateChange = (e) => {
+    const selectedState = e.target.value;
+    setStateDropdown(selectedState);
+
+    const selectedCities = cityNames[selectedState]?.map((city) => ({
+      label: city,
+      value: city,
+    }));
+    setCities(selectedCities);
+  };
 
   return (
     <div className='component-layout profile-component'>
@@ -119,7 +128,7 @@ const ProfileComponent = () => {
                   id='name'
                   type='text'
                   placeholder='Shkruaj emrin tuaj'
-                  defaultValue={name}
+                  defaultValue={name ? name : ""}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
@@ -134,7 +143,7 @@ const ProfileComponent = () => {
                   id='lastname'
                   type='text'
                   placeholder='Shkruaj mbiemrin tuaj'
-                  value={lastName}
+                  value={lastName ? lastName : ""}
                   onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
@@ -150,7 +159,7 @@ const ProfileComponent = () => {
                 id='adress'
                 type='text'
                 placeholder='Shkruaj adresen tuaj'
-                value={address}
+                value={address ? address : ""}
                 onChange={(e) => setAddress(e.target.value)}
               />
             </div>
@@ -165,7 +174,7 @@ const ProfileComponent = () => {
                 id='postal'
                 type='text'
                 placeholder='Shkruaj kodin postal tuaj'
-                defaultValue={postalCode}
+                defaultValue={postalCode ? postalCode : ""}
                 onChange={(e) => setPostalCode(e.target.value)}
               />
             </div>
@@ -180,7 +189,7 @@ const ProfileComponent = () => {
                 id='email'
                 type='text'
                 placeholder='Shkruaj email adresen tuaj'
-                value={email}
+                value={email ? email : ""}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -195,15 +204,30 @@ const ProfileComponent = () => {
                 id='number'
                 type='text'
                 placeholder='Shkruani numrin e telefonit tuaj'
-                defaultValue={phone}
+                defaultValue={phone ? phone : ""}
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>
           </div>
+
+          <p>Shteti</p>
+          <div className='select-input'>
+            <select defaultValue={"default"} onChange={handleStateChange}>
+              <option value={"default"} disabled>
+                Shteti
+              </option>
+              {states.map((state) => (
+                <option key={state.value} value={state.value}>
+                  {state.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
           <p>Qyteti</p>
           <div className='select-input'>
             <select
-              value={cityDropdown}
+              value={cityDropdown ? cityDropdown : "default"}
               onChange={(e) => setCityDropdown(e.target.value)}
             >
               <option value={"default"} disabled>
@@ -212,23 +236,6 @@ const ProfileComponent = () => {
               {cities.map((city) => (
                 <option key={city.value} value={city.value}>
                   {city.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <p>Shteti</p>
-          <div className='select-input'>
-            <select
-              value={stateDropdown}
-              onChange={(e) => setStateDropdown(e.target.value)}
-            >
-              <option value={"default"} disabled>
-                Shteti
-              </option>
-              {states.map((state) => (
-                <option key={state.value} value={state.value}>
-                  {state.label}
                 </option>
               ))}
             </select>

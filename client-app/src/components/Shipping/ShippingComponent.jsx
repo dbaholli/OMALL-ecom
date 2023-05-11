@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import cogoToast from "cogo-toast";
+import { toast } from "react-toastify";
 import jwt_decode from "jwt-decode";
 import {
   AiOutlineMail,
@@ -86,14 +86,14 @@ const ShippingComponent = () => {
       if (!user || !user.first_name) {
         dispatch(getUserDetails(jwt_decode(userInfo.access).user_id));
       } else {
-        setName(user.first_name);
-        setLastName(user.last_name);
-        setAddress(user.address);
-        setPhone(user.phone_number);
-        setPostalCode(user.postal_code);
-        setEmail(user.email);
-        setCityDropdown(user.city);
-        setStateDropdown(user.state);
+        setName(user?.first_name);
+        setLastName(user?.last_name);
+        setAddress(user?.address);
+        setPhone(user?.phone_number);
+        setPostalCode(user?.postal_code);
+        setEmail(user?.email);
+        setCityDropdown(user?.city);
+        setStateDropdown(user?.state);
       }
     }
   }, [dispatch, userInfo, user]);
@@ -112,10 +112,7 @@ const ShippingComponent = () => {
       !postalCode ||
       !stateDropdown
     ) {
-      cogoToast.error(``, {
-        position: "top-right",
-        heading: "Ju lutem plotsoni fushat e nevojshme per dergesen!",
-      });
+      toast.error("Ju lutem plotsoni fushat e nevojshme per dergesen!");
       // if the fields are filled dispatch the saveShippingAddress action and display success toast message
     } else {
       dispatch(
@@ -130,10 +127,7 @@ const ShippingComponent = () => {
           phone,
         })
       );
-      cogoToast.success(``, {
-        position: "top-right",
-        heading: "Te dhenat e dorezimit u ruan me sukses!",
-      });
+      toast.success("Te dhenat e dorezimit u ruan me sukses!");
     }
   };
 
@@ -142,20 +136,12 @@ const ShippingComponent = () => {
     // this conditional validates the order function response
     // if the order has been sent successfully it displays the toast success message
     if (success) {
-      cogoToast.success(``, {
-        position: "top-right",
-        heading: "Porosia juaj eshte derguar!",
-      });
+      toast.success("Porosia juaj eshte derguar!");
       // this dispatcher calls the reset order type which clears the state of the order
       dispatch({ type: ORDER_CREATE_RESET });
       // this conditional shows a toast failed message if the order has failed
     } else {
-      error
-        ? cogoToast.error(``, {
-            position: "top-right",
-            heading: "Porosia e produktit deshtoi!",
-          })
-        : null;
+      error ? toast.error("Porosia e produktit deshtoi!") : null;
     }
   }, [success, error]);
 
@@ -172,20 +158,15 @@ const ShippingComponent = () => {
       !postalCode ||
       !stateDropdown
     ) {
-      cogoToast.error(``, {
-        position: "top-right",
-        heading: "Ju lutem plotsoni fushat e nevojshme per dergesen!",
-      });
+      toast.error("Ju lutem plotsoni fushat e nevojshme per dergesen!");
       return;
     }
 
     // Validate payment and terms
     if (isChecked === false || !hasAcceptedTerms) {
-      cogoToast.error(``, {
-        position: "top-right",
-        heading:
-          "Duhet te zgjedhni nje menyre te pageses dhe te pranoni kushtet!",
-      });
+      toast.error(
+        "Duhet te zgjedhni nje menyre te pageses dhe te pranoni kushtet!"
+      );
       return;
     }
 
@@ -205,10 +186,7 @@ const ShippingComponent = () => {
     });
     // dispatch the createOrder action which sends the order data to the api
     if (cartItems.length === 0) {
-      cogoToast.error(``, {
-        position: "top-right",
-        heading: "Nuk keni produkte ne shporte!",
-      });
+      toast.error("Nuk keni produkte ne shporte!");
       return;
     } else {
       dispatch(
@@ -226,7 +204,7 @@ const ShippingComponent = () => {
           postal_code: cart.shippingAddress.postalCode || postalCode,
           payment_type: paymentMethod,
           selected_coupon: discountCoupon ? discountCoupon : null,
-          additional_info: message
+          additional_info: message,
         })
       );
     }
@@ -402,11 +380,11 @@ const ShippingComponent = () => {
       <div className='shipping-right'>
         <h1 className='header-text shipping-header'>Porosia juaj</h1>
         <div className='payment-products-container'>
-          {cartItems.map((item) => (
+          {cartItems?.map((item) => (
             <>
               <div key={item.id} className='payment-products-rows'>
                 <img
-                  src={`http://127.0.0.1:8000/${item.image[0].value?.image.original.src}`}
+                  src={`${import.meta.env.VITE_APP_API}${item?.image[0]?.value?.image?.original?.src}`}
                   alt='Othman'
                   className='cartproduct-image'
                   height='100px'
@@ -414,28 +392,28 @@ const ShippingComponent = () => {
                 />
                 <div className='product-final-details'>
                   <p className='product-final-text paragraph-text'>
-                    Produkti: {item.name}
+                    Produkti: {item?.name}
                   </p>
                   <p className='product-final-text paragraph-text'>
-                    Sasia: {item.qty}
+                    Sasia: {item?.qty}
                   </p>
                   <p className='product-final-text paragraph-text'>
-                    Nentotali: €{item.price * item.qty}
+                    Nentotali: €{item?.price * item?.qty}
                   </p>
                 </div>
               </div>
             </>
           ))}
-          {cartItems.slice(0, 1).map((item) => (
+          {cartItems?.slice(0, 1).map((item) => (
             <p className='product-final-text paragraph-text'>
-              Transporti: {item.shipping}€
+              Transporti: {item?.shipping}€
             </p>
           ))}
           <p className='product-final-text paragraph-text'>
             Totali:&nbsp;
-            {cartItems.reduce((finalPrice, item, idx) => {
-              if (idx === 0) finalPrice += Number(item.shipping);
-              finalPrice += item.price * item.qty;
+            {cartItems?.reduce((finalPrice, item, idx) => {
+              if (idx === 0) finalPrice += Number(item?.shipping);
+              finalPrice += item?.price * item?.qty;
 
               return finalPrice;
             }, 0)}

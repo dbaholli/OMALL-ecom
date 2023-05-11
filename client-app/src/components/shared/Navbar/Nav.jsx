@@ -26,8 +26,6 @@ const Nav = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  let navigate = useNavigate();
-
   const showDropdown = () => {
     setDropdown(!dropdown);
   };

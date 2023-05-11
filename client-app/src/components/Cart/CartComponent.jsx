@@ -6,7 +6,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import cogoToast from "cogo-toast";
+import { toast } from "react-toastify";
 import { BsFillTrashFill } from "react-icons/bs";
 import { addToCart, removeFromCart } from "../../actions/cartActions";
 import "./styles/_cartcomponent.scss";
@@ -40,10 +40,7 @@ const CartComponent = () => {
 
   const removeFromCartHandler = (slug) => {
     dispatch(removeFromCart(slug));
-    cogoToast.error(``, {
-      position: "top-right",
-      heading: "Produkti u largua nga shporta!",
-    });
+    toast.error("Produkti u largua nga shporta!");
   };
 
   const checkoutHandler = () => {
@@ -60,24 +57,26 @@ const CartComponent = () => {
           </h2>
         ) : (
           <div className='cart-products'>
-            {cartItems.map((item) => (
-              <div key={item.id} className='cart-product-rows'>
+            {cartItems?.map((item) => (
+              <div key={item?.id} className='cart-product-rows'>
                 <img
-                  src={`${import.meta.env.VITE_APP_API}${item.image[0].value.image.original.src}`}
+                  src={`${import.meta.env.VITE_APP_API}${
+                    item?.image[0]?.value?.image?.original?.src
+                  }`}
                   alt='Othman'
                   className='cartproduct-image'
                 />
                 <Link
                   className='product-name paragraph-text'
-                  to={`/produkti/${item.product}`}
+                  to={`/produkti/${item?.product}`}
                 >
                   {item.name}
                 </Link>
-                <p className='paragraph-text'>{item.price}€</p>
-                <div className='paragraph-text'>Sasia: {item.qty}</div>
+                <p className='paragraph-text'>{item?.price}€</p>
+                <div className='paragraph-text'>Sasia: {item?.qty}</div>
                 <BsFillTrashFill
                   color='blue'
-                  onClick={() => removeFromCartHandler(item.product)}
+                  onClick={() => removeFromCartHandler(item?.product)}
                 />
               </div>
             ))}
@@ -87,17 +86,17 @@ const CartComponent = () => {
       <div className='cart-layout'>
         <h1 className='header-text'>Shporta</h1>
         <p className='cart-text paragraph-text'>
-          Sasia: ({cartItems.reduce((acc, item) => acc + Number(item.qty), 0)})
+          Sasia: ({cartItems?.reduce((acc, item) => acc + Number(item?.qty), 0)})
         </p>
 
-        {cartItems.slice(0, 1).map((item) => (
+        {cartItems?.slice(0, 1).map((item) => (
           <p className='cart-text paragraph-text'>
-            Transporti: {item.shipping}€
+            Transporti: {item?.shipping}€
           </p>
         ))}
         <p className='cart-total paragraph-text'>
-          Totali:{" "}
-          {cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}€
+          Totali:
+          {cartItems?.reduce((acc, item) => acc + item?.qty * item?.price, 0)}€
         </p>
         <div className='cart-buttons'>
           <button

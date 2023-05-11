@@ -89,9 +89,6 @@ export const getOrderDetails = (id) => async (dispatch) => {
         Authorization: `Bearer ${token.access}`,
       },
     });
-    if (data) {
-      console.log("porosite e klientit", data);
-    }
     dispatch({
       type: ORDER_DETAILS_SUCCESS,
       payload: data,

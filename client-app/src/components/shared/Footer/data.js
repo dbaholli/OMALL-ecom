@@ -3,7 +3,7 @@ export const FooterData = [
     category: "Keni pyetje ?",
     links: [
       {
-        link: "+383 48 05 55 55",
+        link: "+383 49 325 154",
         to: "/",
       },
       {

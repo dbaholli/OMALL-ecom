@@ -239,6 +239,5 @@ export const cityNamesMk = [
   "Vinica",
   "Vitoliste",
   "Zajas",
-  "Zelenikovo",
   "Zrnovci",
 ];

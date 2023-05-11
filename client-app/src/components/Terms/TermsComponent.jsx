@@ -11,8 +11,8 @@ const TermsComponent = () => {
         shfrytëzimin e platformës <Link>www.othmanhome.com</Link> - OTHMAN
         SH.P.K Në momentin e pranimit të tyre ju pajtoheni që ky pëlqim të
         pranohet si kontratë e lidhur në mes Blerësit (Konsumatori) dhe Shitësit
-        (<Link>www.othmanhome.com</Link>, OTHMAN SH.P.K) me lokacion ne Central
-        park, Prishtinë.
+        (<Link>www.othmanhome.com</Link>, OTHMAN SH.P.K) me lokacion ne Prishtina Mall dhe Central
+        Park, Prishtinë.
       </h3>
       <br />
       <h3 className='terms-paragraph paragraph-text'>

@@ -5,7 +5,7 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom";
-import cogoToast from "cogo-toast";
+import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../actions/cartActions";
 import { BsCartPlusFill } from "react-icons/bs";
@@ -40,38 +40,35 @@ const Product = (product, i) => {
     e.preventDefault();
     // console.log("add to cart", productParam.slug);
     // navigate(`/shporta/${product.product.slug}?qty=${qty}`);
-    dispatch(addToCart(product.product.meta.slug, 1));
-    cogoToast.success(`${product?.product.title}`, {
-      position: "top-right",
-      heading: "Produkti u shtua ne shporte!",
-    });
+    dispatch(addToCart(product?.product?.meta?.slug, 1));
+    toast.success("Produkti u shtua ne shporte!");
   };
 
   return (
     <Link
       className='product-card hvr-float'
       key={i}
-      to={`/produkti/${product.product.meta.slug}`}
+      to={`/produkti/${product?.product?.meta?.slug}`}
     >
       <div className='product-badge paragraph-text'>
-        {product.product.category.title}
+        {product?.product?.category?.title}
       </div>
       <div className='productimage-container'>
         <img
           className='featuredproduct-image'
           height='350px'
           src={`${import.meta.env.VITE_APP_API}${
-            product.product.image[0].value.image.url
+            product?.product?.image[0]?.value?.image?.url
           }`}
         ></img>
       </div>
       <div className='featuredproduct-info'>
-        <h3 className='paragraph-text'>{product.product.title}</h3>
-        <p className='price paragraph-text'>{product.product.price}€</p>
-        <p className='paragraph-text'>Sasia: {product.product.quantity}</p>
+        <h3 className='paragraph-text'>{product?.product.title}</h3>
+        <p className='price paragraph-text'>{product?.product.price}€</p>
+        <p className='paragraph-text'>Sasia: {product?.product.quantity}</p>
       </div>
       <div className='product-actions'>
-        <Link to={`/produkti/${product.product.meta.slug}`}>Shiko detajet</Link>
+        <Link to={`/produkti/${product?.product?.meta?.slug}`}>Shiko detajet</Link>
         <BsCartPlusFill fontSize={20} onClick={addToCartHandler} />
       </div>
     </Link>

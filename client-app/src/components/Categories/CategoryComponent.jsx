@@ -27,20 +27,22 @@ const CategoryComponent = () => {
                 <Link
                   className='category-categories'
                   key={i}
-                  to={`/produkti/${categoryData.slug}/`}
+                  to={`/produkti/${categoryData?.slug}/`}
                 >
                   <div className='categoryproduct-img-container'>
                     <img
-                      src={`${import.meta.env.VITE_APP_API}${categoryData.image.original.src}`}
+                      src={`${import.meta.env.VITE_APP_API}${
+                        categoryData?.image?.original?.src
+                      }`}
                       alt='Othman Home'
                       className='categoryproduct-img'
                       key={i}
                     />
                   </div>
-                  <p className='paragraph-text'>{categoryData.title}</p>
-                  <p className='price paragraph-text'>{categoryData.price}€</p>
+                  <p className='paragraph-text'>{categoryData?.title}</p>
+                  <p className='price paragraph-text'>{categoryData?.price}€</p>
                   <div className='product-actions'>
-                    <Link to={`/produkti/${categoryData.slug}/`}>
+                    <Link to={`/produkti/${categoryData?.slug}/`}>
                       Shiko detajet
                     </Link>
                   </div>

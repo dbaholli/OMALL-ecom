@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import cogoToast from "cogo-toast";
+import { toast } from "react-toastify";
 import {
   AiOutlineMail,
   AiOutlinePhone,
@@ -34,10 +34,7 @@ const Register = (props) => {
     event.preventDefault();
 
     if (!hasAcceptedTerms) {
-      cogoToast.error(``, {
-        position: "top-right",
-        heading: "Duhet te pranoni kushtet!",
-      });
+      toast.error("Duhet te pranoni kushtet!");
       return;
     }
 
@@ -251,7 +248,7 @@ const Register = (props) => {
 
           <div className='select-input'>
             <select
-              defaultValue={"default"}
+              value={cityDropdown ? cityDropdown : "default"}
               onChange={(e) => setCityDropdown(e.target.value)}
             >
               <option value={"default"} disabled>

@@ -27,15 +27,15 @@ const CategoryBoxes = () => {
                 <Link
                   className='categorybox-item hvr-float'
                   key={i}
-                  to={`kategoria/${category.full_url}`}
+                  to={`kategoria/${category?.full_url}`}
                 >
                   <div className='categorybox-img'>
                     <img
-                      src={`http://127.0.0.1:8000/${category.icon}`}
+                      src={`${import.meta.env.VITE_APP_API}${category?.icon}`}
                       height='200px'
                     />
                     <h1 className='category-title paragraph-text'>
-                      {category.name}
+                      {category?.name}
                     </h1>
                   </div>
                 </Link>

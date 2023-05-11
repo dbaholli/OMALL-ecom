@@ -52,7 +52,7 @@ const SliderComponent = () => {
                     className='img'
                     alt=''
                     height='350px'
-                    src={`${import.meta.env.VITE_APP_API}${img.value.image.original.src}`}
+                    src={`${import.meta.env.VITE_APP_API}${img?.value?.image?.original?.src}`}
                   />
                 </div>
               );
@@ -60,7 +60,7 @@ const SliderComponent = () => {
           </Carousel>
         </div>
       ) : (
-        <h1 className='paragraph-text'>Something went wrong!</h1>
+        <h1 className='paragraph-text'>Kemi hasur ne probleme teknike!</h1>
       )}
     </>
   );

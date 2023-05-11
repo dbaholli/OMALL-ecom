@@ -20,9 +20,6 @@ export const listProducts = (offset, limit) => async (dispatch) => {
         import.meta.env.VITE_APP_API
       }api/v2/pages/?type=products.Product&fields=_,id,slug,title,description,price,price_with_sale,quantity,currency,shipping,color,brand,rating,category,image&offset=${offset}&limit=${limit}`
     );
-    if (data) {
-      console.log("listProducts", data);
-    }
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data,
@@ -47,9 +44,6 @@ export const listTrendingProducts = () => async (dispatch) => {
         import.meta.env.VITE_APP_API
       }api/v2/pages/?type=home.HomePage&fields=_,id,title,trending_products`
     );
-    if (data) {
-      console.log("TRENDING PRODUCTS: ", data.items);
-    }
     dispatch({
       type: TRENDING_PRODUCTS_SUCCESS,
       payload: data.items,

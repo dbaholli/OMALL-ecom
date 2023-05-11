@@ -12,9 +12,6 @@ export const displayBannerAds = () => async (dispatch) => {
     const { data } = await axios.get(
       `${import.meta.env.VITE_APP_API}api/v2/pages/?type=home.BannerPage&fields=_,title,banner`
     );
-    if (data) {
-      console.log("Banner: ", data.items);
-    }
     dispatch({
       type: BANNER_AD_SUCCESS,
       payload: data.items,

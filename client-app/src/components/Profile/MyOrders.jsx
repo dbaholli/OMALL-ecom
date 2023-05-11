@@ -16,7 +16,7 @@ const MyOrders = () => {
     if (userInfo) {
       dispatch(getOrderDetails(jwt_decode(userInfo.access).user_id));
     }
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className='myorders-component'>
@@ -31,26 +31,23 @@ const MyOrders = () => {
           </tr>
         </thead>
         <tbody>
-          {order?.map((orderData, i) => {
-            return (
-              <>
-                <tr key={i}>
-                  <td className='table-data'>{orderData.order_id}</td>
-                  <td className='table-data'>{orderData.order_status}</td>
-                  <td className='table-data'>{orderData.address}</td>
-                  <td className='table-data'>{orderData.payment_type}</td>
-                  <td className='table-data'>
-                    {orderData?.products.reduce(
-                      (total, product) =>
-                        total + product.quantity * product.price,
-                      0
-                    )}
-                    €
-                  </td>
-                </tr>
-              </>
-            );
-          })}
+          {Array.isArray(order) && order.length > 0
+            ? order.map((orderData, i) => {
+                return (
+                  <tr key={i}>
+                    <td className='table-data'>{orderData.order_id}</td>
+                    <td className='table-data'>{orderData.order_status}</td>
+                    <td className='table-data'>{orderData.address}</td>
+                    <td className='table-data'>{orderData.payment_type}</td>
+                    <td className='table-data'>
+                      {orderData?.products.reduce((total, product) => {
+                        return total + product.price * product.quantity;
+                      }, 0)}
+                    </td>
+                  </tr>
+                );
+              })
+            : null}
         </tbody>
       </table>
     </div>

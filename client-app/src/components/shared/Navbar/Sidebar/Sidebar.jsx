@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import "./Sidebar.scss";
-import "../../styles/shared-styles.scss";
-
-// import { ReactComponent as Logo } from '../../../../assets/shared/logo-no-text.svg';
+import jwt_decode from "jwt-decode";
+import { useDispatch, useSelector } from "react-redux";
 import { CgClose } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import Login from "../../../Auth/Login";
-import Backdrop from "../Backdrop/Backdrop";
-import jwt_decode from "jwt-decode";
-import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../actions/userAction";
+import Backdrop from "../Backdrop/Backdrop";
+import "./Sidebar.scss";
+import "../../styles/shared-styles.scss";
 
 const Sidebar = (props) => {
   const [modal, setShowModal] = useState(false);

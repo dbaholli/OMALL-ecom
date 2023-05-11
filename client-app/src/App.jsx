@@ -1,11 +1,13 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Nav from "./components/shared/Navbar/Nav";
 import Footer from "./components/shared/Footer/Footer";
-import ScrollToTop from "./scrollToTop";
-import PrivateRoute from "./routes/PrivateRoute";
-import "./App.scss";
 import Loader from "./components/shared/Loader/Loader";
+import PrivateRoute from "./routes/PrivateRoute";
+import ScrollToTop from "./scrollToTop";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.scss";
 
 const HomePage = lazy(() => import("./pages/Home/Home"));
 const ProductPage = lazy(() => import("./pages/Product/ProductPage"));
@@ -23,6 +25,7 @@ const App = () => {
     <Router>
       <Suspense fallback={<Loader />}>
         <ScrollToTop />
+        <ToastContainer />
         <Nav />
         <Routes>
           <Route element={<PrivateRoute />}>

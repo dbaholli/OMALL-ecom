@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { BsCartPlusFill } from "react-icons/bs";
 import axios from "axios";
-import cogoToast from "cogo-toast";
+import { toast } from "react-toastify";
 import { listProducts } from "../../actions/productActions";
 import { addToCart } from "../../actions/cartActions";
 import ImageSlider from "../shared/ProductComponent/ImageSlider";
@@ -41,10 +41,7 @@ const ProductDetail = () => {
     if (productParam.slug) {
       dispatch(addToCart(productParam.slug, qty));
     }
-    cogoToast.success(`${product?.title}`, {
-      position: "top-right",
-      heading: "Produkti u shtua ne shporte!",
-    });
+    toast.success("Produkti u shtua ne shporte!");
   };
 
   const getProduct = (slug) => async (dispatch) => {
@@ -68,7 +65,6 @@ const ProductDetail = () => {
             ? error.response.data.message
             : error.message,
       });
-      console.log("Error get product:", error);
     }
   };
 
