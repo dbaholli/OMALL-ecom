@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Carousel from "react-elastic-carousel";
-import { topOffers } from "./data";
+import { displayBannerAds } from "../../actions/bannerAdsActions";
 import "./styles/_slider-component.scss";
 
 const SliderComponent = () => {
@@ -21,26 +22,47 @@ const SliderComponent = () => {
     { width: 550, itemsToShow: 1 },
   ];
 
+  const dispatch = useDispatch();
+
+  const bannerAds = useSelector((state) => state.bannerAds);
+  const { loading, error, bannerAd } = bannerAds;
+
+  useEffect(() => {
+    dispatch(displayBannerAds());
+  }, [dispatch]);
+
   return (
-    <div className='banner-component'>
-      <Carousel
-        className='slider'
-        breakPoints={breakPoints}
-        ref={carouselRef}
-        onPrevStart={onPrevStart}
-        onNextStart={onNextStart}
-        disableArrowsOnEnd={false}
-      >
-        {topOffers.map((img, i) => {
-          return (
-            <div className='img-cont' key={i}>
-              <div className='img' style={{ content: `url(${img.img})` }}></div>
-              <div className='bg'></div>
-            </div>
-          );
-        })}
-      </Carousel>
-    </div>
+    <>
+      {loading ? (
+        <p className='paragraph-text'>Loading...</p>
+      ) : bannerAd ? (
+        <div className='banner-component'>
+          <Carousel
+            className='slider'
+            breakPoints={breakPoints}
+            ref={carouselRef}
+            onPrevStart={onPrevStart}
+            onNextStart={onNextStart}
+            disableArrowsOnEnd={false}
+          >
+            {bannerAd[0]?.banner?.map((img, i) => {
+              return (
+                <div className='img-cont' key={i}>
+                  <img
+                    className='img'
+                    alt=''
+                    height='350px'
+                    src={`${import.meta.env.VITE_APP_API}${img?.value?.image?.original?.src}`}
+                  />
+                </div>
+              );
+            })}
+          </Carousel>
+        </div>
+      ) : (
+        <h1 className='paragraph-text'>Kemi hasur ne probleme teknike!</h1>
+      )}
+    </>
   );
 };
 

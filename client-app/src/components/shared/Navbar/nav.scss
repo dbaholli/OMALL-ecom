@@ -3,81 +3,144 @@
   top: 0;
   left: 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   z-index: 2000;
-  box-shadow: rgba(60, 64, 67, 0.25) 0px 1px 3px 0px,
-    rgba(60, 64, 67, 0.125) 0px 2px 6px 2px;
-    background-color: #373435;
-  .navbar-content {
-    padding: 0 12.5%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px;
+  background-color: #fff;
+  padding: 10px 0;
+  .mobile-icon {
+    display: none;
+  }
+  .top-navbar {
+    padding: 0 2%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    border-bottom: 1px solid #f3f3f3;
     .title-icon {
-      width: fit-content;
-      width: max(100px, 5vw);
       .nav-icon {
-        width: max(110px, 5vw);
-        content: url("../../../assets/othmanlogo.png");
+        height: 35px;
+        content: url("../../../assets/othman.jpeg");
       }
     }
+    .nav-link-actions {
+      margin: 0 max(12.5px, 1vw);
+      padding: 0 max(4px, 0.3vw);
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        a {
+          color: var(--main-color);
+          font-size: max(0.55rem, 0.8vw);
+          font-weight: 500;
+        }
+        p {
+          color: var(--main-color);
+          font-size: max(0.55rem, 0.8vw);
+          font-weight: 500;
+        }
+      }
+      svg {
+        font-size: max(0.85rem, 1.2vw);
+        color: var(--main-color);
+        cursor: pointer;
+      }
+    }
+  }
+  .navbar-content {
+    padding: 0 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     .navigation {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
+      width: 100%;
       .nav-link-container {
         margin: 0 max(12.5px, 1vw);
         padding: 0 max(4px, 0.3vw);
         a {
-          padding: max(22.5px, 1.5vw) 0;
+          padding: max(10px, 0.8vw) 0;
         }
         .nav-link {
-          font-size: max(0.85rem, 1vw);
-          color: #fff;
+          font-size: max(0.85rem, 0.9vw);
+          font-weight: 500;
+          color: var(--main-color);
           position: relative;
         }
-      }
-      .nav-link-actions {
-        margin: 0 max(12.5px, 1vw);
-        padding: 0 max(4px, 0.3vw);
-        display: flex;
-        gap: 15px;
-        a {
-          padding: max(22.5px, 1.5vw) 0;
-        }
-        svg {
-          font-size: max(0.85rem, 1.5vw);
-          color: #fff;
-          cursor: pointer;
+        &:hover {
+          .navbar-megamenu {
+            display: block;
+          }
         }
       }
     }
     .hamburger-menu {
       display: none;
-      flex-direction: column;
-      gap: 6px;
-      width: 33px;
+      width: 100%;
+      align-items: center;
+      gap: 15px;
+      // justify-content: space-between;
       cursor: pointer;
-      .hamburger-line {
-        align-self: flex-end;
-        width: 100%;
-        height: 5px;
-        background-color: #fff;
+      .hamburger-menu-actions {
+        margin: 0 max(12.5px, 1vw);
+        padding: 0 max(4px, 0.3vw);
+        display: flex;
+        gap: 10px;
+        a {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          a {
+            color: var(--main-color);
+            font-size: max(0.55rem, 0.8vw);
+            font-weight: 500;
+          }
+          p {
+            color: var(--main-color);
+            font-size: max(0.55rem, 0.8vw);
+            font-weight: 500;
+          }
+        }
+        svg {
+          font-size: max(0.85rem, 1.2vw);
+          color: var(--main-color);
+          cursor: pointer;
+        }
       }
-      &:hover {
+      .hamburger-lines {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        width: 33px;
         .hamburger-line {
-          animation: grow 1s infinite alternate;
-          &:nth-child(1) {
-            animation-delay: 0.1s;
-          }
-          &:nth-child(2) {
-            animation-delay: 0.2s;
-          }
-          &:nth-child(3) {
-            animation-delay: 0.3s;
+          align-self: flex-end;
+          width: 100%;
+          height: 5px;
+          background-color: var(--main-color);
+        }
+        &:hover {
+          .hamburger-line {
+            animation: grow 1s infinite alternate;
+            &:nth-child(1) {
+              animation-delay: 0.1s;
+            }
+            &:nth-child(2) {
+              animation-delay: 0.2s;
+            }
+            &:nth-child(3) {
+              animation-delay: 0.3s;
+            }
           }
         }
       }
@@ -88,7 +151,7 @@
   }
 }
 .sticky {
-  background-color: #373435;
+  background-color: #fff;
 }
 .sticky-nav-colors {
   color: #153131 !important;
@@ -120,7 +183,7 @@
   }
 }
 
-@media (max-width: 1025px) {
+@media (max-width: 1203px) {
   .navbar {
     .navbar-content {
       padding: 0 5%;
@@ -141,8 +204,33 @@
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 921px) {
   .navbar {
+    .navbar-content {
+      padding: 0 2.5%;
+      .title-icon {
+        width: 120px;
+        margin-top: 2px;
+        .nav-icon {
+          width: 120px;
+        }
+      }
+      .navigation {
+        .nav-link-container {
+          margin: 0 10px;
+          padding: 0 3px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 872px) {
+  .navbar {
+    padding: 20px 0;
+    .top-navbar {
+      display: none;
+    }
     .navbar-content {
       .title-icon {
         width: 140px;
@@ -152,6 +240,17 @@
       }
       .hamburger-menu {
         display: flex;
+        width: 100%;
+        .mobile-icon {
+          display: flex;
+          .nav-mobile-icon {
+            width: max(90px, 7vw);
+            content: url("../../../assets/othman.jpeg");
+          }
+        }
+        .hamburger-menu-actions {
+          display: none;
+        }
       }
     }
     .backdrop {

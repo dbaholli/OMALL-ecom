@@ -1,27 +1,51 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/Home/Home";
-import ProductPage from "./pages/Product/ProductPage";
-import ContactPage from "./pages/ContactUs/Contact";
-import "./App.scss";
+import { ToastContainer } from "react-toastify";
 import Nav from "./components/shared/Navbar/Nav";
 import Footer from "./components/shared/Footer/Footer";
-import Footer3 from "./components/shared/Footer/Footer3";
+import Loader from "./components/shared/Loader/Loader";
+import PrivateRoute from "./routes/PrivateRoute";
+import ScrollToTop from "./scrollToTop";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.scss";
+
+const HomePage = lazy(() => import("./pages/Home/Home"));
+const ProductPage = lazy(() => import("./pages/Product/ProductPage"));
+const ContactPage = lazy(() => import("./pages/ContactUs/Contact"));
+const FaqPage = lazy(() => import("./pages/FAQ/FaqPage"));
+const TermsPage = lazy(() => import("./pages/Terms/TermsPage"));
+const SecurityPage = lazy(() => import("./pages/Security/SecurityPage"));
+const ProfilePage = lazy(() => import("./pages/Profile/ProfilePage"));
+const CartPage = lazy(() => import("./pages/Cart/CartPage"));
+const CategoryPage = lazy(() => import("./pages/Category/CategoryPage"));
+const ShippingPage = lazy(() => import("./pages/Shipping/ShippingPage"));
 
 const App = () => {
   return (
-    <div className='app'>
-      <Router>
+    <Router>
+      <Suspense fallback={<Loader />}>
+        <ScrollToTop />
+        <ToastContainer />
         <Nav />
         <Routes>
+          <Route element={<PrivateRoute />}>
+            <Route exact path='/profili' element={<ProfilePage />} />
+          </Route>
           <Route exact path='/' element={<HomePage />} />
-          <Route exact path='/produkti/:id' element={<ProductPage />} />
+          <Route exact path='/produkti/:slug' element={<ProductPage />} />
+          <Route exact path='/kategoria/:slug' element={<CategoryPage />} />
+          <Route exact path='/shporta/:slug' element={<CartPage />} />
+          <Route exact path='/shporta' element={<CartPage />} />
+          <Route exact path='/detajet-e-porosise' element={<ShippingPage />} />
+          <Route exact path='/pagesa' element={<CartPage />} />
           <Route exact path='/kontakto' element={<ContactPage />} />
+          <Route exact path='/faq' element={<FaqPage />} />
+          <Route exact path='/termat' element={<TermsPage />} />
+          <Route exact path='/siguria' element={<SecurityPage />} />
         </Routes>
-        {/* <Footer /> */}
-        <Footer3 />
-      </Router>
-    </div>
+        <Footer />
+      </Suspense>
+    </Router>
   );
 };
 

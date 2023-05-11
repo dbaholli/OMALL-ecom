@@ -5,19 +5,39 @@ import {
   AiOutlinePhone,
 } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { contact } from "../../actions/userAction";
 import "./styles/_contact-component.scss";
 
 const ContactUsComponent = () => {
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [lastname, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [message, setMessage] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
+  const [validateError, setValidateError] = useState(false);
+  const [successMsg, setSuccessMsg] = useState(false);
+
+  const dispatch = useDispatch();
+
+  // const userContact = useSelector((state) => state.userContact);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Contact us submitted");
-    // clear states when request 200 ok
+    if (!email && !fullName && !message && !mobileNumber) {
+      console.log("validate");
+      setValidateError(true);
+    }
+    if ((email, fullName, message, mobileNumber)) {
+      dispatch(contact(email, fullName, message, mobileNumber));
+      setEmail("");
+      setFullName("");
+      setMessage("");
+      setMobileNumber("");
+      toast.success("Faleminderit per mesazhin, ju kontaktojme se shpejti!");
+      // setSuccessMsg("Faleminderit per mesazhin, ju kontaktojme se shpejti!");
+    }
   };
   return (
     <div className='contact-component'>
@@ -29,7 +49,7 @@ const ContactUsComponent = () => {
           loading='lazy'
           style={{ border: "none" }}
           allowFullScreen
-          src='https://www.google.com/maps/embed/v1/place?q=place_id:ChIJR8PpzBifVBMRWNaUBYCD3pk&key=AIzaSyBjBVR3lLPn8iDQ7SpC92FO4HftXQyOMeg'
+          src={`https://www.google.com/maps/embed/v1/place?q=place_id:ChIJR8PpzBifVBMRWNaUBYCD3pk&key=${import.meta.env.GOOGLE_MAP}`}
         ></iframe>
       </div>
       <div className='contactform-container'>
@@ -37,40 +57,21 @@ const ContactUsComponent = () => {
           <div className='contact-name-inputs'>
             <div className='contactname-container'>
               <label htmlFor='first-name'>
-                <p>Emri</p>
+                <p>Emri dhe Mbiemri</p>
               </label>
               <div className='contact-input-container'>
                 <div className='contact-input'>
-                  <label htmlFor='first-name'>
+                  <label htmlFor='fullname'>
                     <BsPerson />
                   </label>
                   <input
-                    required
                     type='text'
-                    id='first-name'
-                    placeholder='Enter your first name'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    id='fullname'
+                    placeholder='Shkruani emrin dhe mbiemrin tuaj'
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
                   />
                 </div>
-              </div>
-            </div>
-            <div className='contact-input-container'>
-              <label htmlFor='last-name'>
-                <p>Mbiemri</p>
-              </label>
-              <div className='contact-input'>
-                <label htmlFor='last-name'>
-                  <BsPerson />
-                </label>
-                <input
-                  required
-                  type='text'
-                  id='last-name'
-                  placeholder='Enter your last name'
-                  value={lastname}
-                  onChange={(e) => setLastName(e.target.value)}
-                />
               </div>
             </div>
           </div>
@@ -83,10 +84,9 @@ const ContactUsComponent = () => {
                 <AiOutlineMail />
               </label>
               <input
-                required
                 id='email'
                 type='email'
-                placeholder='Shkruaj email adresen tuaj'
+                placeholder='Shkruani email adresen tuaj'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -101,10 +101,9 @@ const ContactUsComponent = () => {
                 <AiOutlinePhone />
               </label>
               <input
-                required
                 id='number'
                 type='tel'
-                placeholder='Shkruaj numrin tuaj mobil'
+                placeholder='Shkruani numrin tuaj mobil'
                 value={mobileNumber}
                 onChange={(e) => setMobileNumber(e.target.value)}
               />
@@ -115,20 +114,23 @@ const ContactUsComponent = () => {
               <p>Mesazhi</p>
             </label>
             <div className='contact-input'>
-              <label htmlFor='email'>
+              <label htmlFor='message'>
                 <AiOutlineMessage />
               </label>
               <textarea
-                required
                 id='message'
                 type='text'
-                placeholder='Shkruaj mesazhin tuaj'
+                placeholder='Shkruani mesazhin tuaj'
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               ></textarea>
             </div>
           </div>
-          <input type='submit' value='Dergo mesazhin' />
+          {validateError ? (
+            <p className='error-text'>Ju lutem plotesoni te gjitha fushat!</p>
+          ) : null}
+          {successMsg ? <p className='success-text'>{successMsg}</p> : null}
+          <input type='submit' value='DERGO MESAZHIN' />
         </form>
       </div>
     </div>

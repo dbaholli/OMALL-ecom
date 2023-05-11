@@ -1,0 +1,14 @@
+.nav-backdrop{
+    width: 100%;
+    min-height: 100vh;
+    height: -moz-available;
+    height: -webkit-fill-available;  
+    height: -ms-fill-available;  
+    height: -o-fill-available;  
+    height: fill-available;
+    background: rgba(0,0,0,0.85);
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 2100;
+}

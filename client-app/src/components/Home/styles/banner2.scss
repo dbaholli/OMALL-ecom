@@ -1,0 +1,33 @@
+.bannercomponent2 {
+  margin: 5% auto;
+  padding: 0 5%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 15px;
+  .bannercomponent-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .bannercomponent-icon {
+      font-size: 40px;
+      color: #001733;
+    }
+    .bannercomponent-box-title {
+      // font-size: 19px;
+      font-size: max(0.85rem, 1vw);
+      font-weight: 500;
+      color: #001733;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .bannercomponent2 {
+    flex-direction: column;
+    flex-wrap: unset;
+    gap: 25px;
+  }
+}

@@ -1,12 +1,9 @@
 from django.contrib import admin
+from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
 
-# Register your models here.
 from .models import CustomUser
-from django.contrib.auth.models import User
-from wagtail.contrib.modeladmin.options import (
-    ModelAdmin,
-    modeladmin_register,
-)
+
+
 # Register your models here.
 class CustomUsers(ModelAdmin):
 

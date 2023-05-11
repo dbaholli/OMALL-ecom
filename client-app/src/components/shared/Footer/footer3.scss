@@ -1,0 +1,307 @@
+.shared-footer2 {
+  background-color: #076ae3;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  padding: 2% 7.5% 2%;
+  .row1 {
+    border-bottom: 1px solid rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    .col1 {
+      .logo-container {
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        margin: 0 auto 10px;
+        .logo {
+          content: url("../../../assets/othmanlogo.png");
+          width: max(130px, 8vw);
+        }
+      }
+    }
+    .col2 {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      .second {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        div a {
+          backdrop-filter: blur(30px);
+          width: 55px;
+          height: 55px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 25px;
+          color: #fff;
+          border-radius: 5px;
+          &:hover {
+            background: linear-gradient(
+              rgba(255, 255, 255, 0.1),
+              rgba(255, 255, 255, 0.1)
+            );
+          }
+        }
+      }
+    }
+  }
+  .main-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 85px 0 50px;
+    width: 100%;
+    .logo-container {
+      display: flex;
+      align-items: center;
+      width: fit-content;
+      .logo {
+        content: url("../../../assets/othmanlogo.png");
+        width: max(130px, 8vw);
+      }
+    }
+    .footer-list {
+      margin: 20px 10px;
+      width: fit-content;
+      h6 {
+        font-size: 18px;
+        color: #fff;
+        margin-bottom: 7.5%;
+        &:hover {
+          color: #001733;
+        }
+      }
+      .links {
+        display: flex;
+        flex-direction: column;
+        a {
+          font-size: 16.5px;
+          color: #eee;
+          margin: 7.5px 0;
+          &:hover {
+            color: #001733;
+          }
+        }
+      }
+    }
+  }
+
+  .last-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(95, 95, 95);
+    width: 100%;
+    .second {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      .second {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        div a {
+          backdrop-filter: blur(30px);
+          width: 55px;
+          height: 55px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 25px;
+          color: #fff;
+          border-radius: 5px;
+          &:hover {
+            background: linear-gradient(
+              rgba(255, 255, 255, 0.1),
+              rgba(255, 255, 255, 0.1)
+            );
+          }
+        }
+      }
+    }
+    .copyright {
+      color: #fff;
+      p {
+        font-size: 16px;
+      }
+    }
+    .select-container {
+      display: flex;
+      margin: 1% 0;
+      p {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        margin: 7.5px 10px;
+        svg {
+          font-size: 20px;
+          margin-right: 3.5px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .shared-footer2 {
+    .main-row {
+      margin: 80px 0 45px;
+      .footer-list {
+        h6 {
+          font-size: 16px;
+        }
+        .links {
+          a {
+            font-size: 15.5px;
+            margin: 7px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1450px) {
+  .shared-footer2 {
+    background-attachment: fixed;
+    padding: 5% 7.5% 2%;
+
+    .row1 {
+      .col2 {
+        .second {
+          div {
+            margin: 5px;
+            a {
+              width: 37.5px;
+              height: 37.5px;
+              font-size: 30px;
+            }
+          }
+        }
+      }
+    }
+
+    .main-row {
+      margin: 65px 0 40px;
+      .footer-list {
+        margin: 20px 7.5px;
+        width: fit-content;
+        h6 {
+          font-size: 14px;
+        }
+        .links {
+          a {
+            font-size: 14px;
+            margin: 6px 0;
+          }
+        }
+      }
+    }
+
+    .last-row {
+      padding-top: 10px;
+      .copyright {
+        p {
+          font-size: 13.5px;
+        }
+      }
+    }
+    .select-container {
+      p {
+        font-size: 13.5px;
+        margin: 6px 10px;
+        svg {
+          font-size: 17.5px;
+          margin-right: 2.5px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .shared-footer2 {
+    .row1 {
+      .main-row {
+        display: flex;
+        .logo-container {
+          flex-direction: column;
+        }
+        .footer-list {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 625px) {
+  .shared-footer2 {
+    padding: 20% 5% 20px;
+    .row1 {
+      flex-direction: column;
+    }
+
+    .main-row {
+      margin: 35px 0 25px;
+      justify-content: center;
+      .footer-list {
+        margin: 20px 2%;
+        width: 75%;
+        text-align: center;
+        .links {
+          a {
+            font-size: 12px;
+            margin: 5px 0;
+          }
+        }
+      }
+    }
+
+    .last-row {
+      padding: 15px 0;
+      flex-direction: column;
+      .copyright {
+        p {
+          width: 100%;
+          text-align: center;
+          margin: 7.5px 0;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .shared-footer2 {
+    .row1 {
+      .col1 {
+        width: fit-content;
+      }
+      .download-on {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .col2 {
+        .second {
+          justify-content: center;
+        }
+      }
+    }
+    .last-row {
+      .select-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+}

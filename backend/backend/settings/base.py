@@ -8,7 +8,6 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 INSTALLED_APPS = [
     # Our apps
-    "cart",
     "categories",
     "coupons",
     "home",
@@ -16,6 +15,8 @@ INSTALLED_APPS = [
     "products",
     "search",
     "users",
+    "contact_us",
+    
     # Wagtail apps
     'wagtail.api.v2',
     "wagtail.contrib.modeladmin",
@@ -71,8 +72,6 @@ REST_FRAMEWORK = {
 }
 
 # Django backend authentication & Axes
-
-
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",

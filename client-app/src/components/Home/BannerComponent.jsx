@@ -27,7 +27,7 @@ export const bannerData = [
     icon: <IoIosCall />,
     title: "Na telefononi",
     paragraph:
-      "Per dergesa, anulime te porosive, garanci, reklamacione dhe ankesa ju lutem te na telefononi ne +383 48 555 5555",
+      "Per dergesa, anulime te porosive, garanci, reklamacione dhe ankesa ju lutem te na telefononi ne +383 49 325 154",
   },
 ];
 
@@ -39,13 +39,13 @@ const BannerComponent = () => {
         e produkteve tona
       </h1>
       <div className='bannercomponent-boxes'>
-        {bannerData.map((bData, i) => {
+        {bannerData?.map((bData, i) => {
           return (
             <div key={i} className='bannercomponent-box'>
-              <div className='bannercomponent-icon'>{bData.icon}</div>
+              <div className='bannercomponent-icon'>{bData?.icon}</div>
               <div className='bannercard-container'>
-                <h6 className='bannercomponent-box-title'>{bData.title}</h6>
-                <p className='bannercomponent-paragraph'>{bData.paragraph}</p>
+                <h6 className='bannercomponent-box-title'>{bData?.title}</h6>
+                <p className='bannercomponent-paragraph'>{bData?.paragraph}</p>
               </div>
             </div>
           );

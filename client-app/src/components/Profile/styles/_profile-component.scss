@@ -1,0 +1,210 @@
+.profile-page .profile-component {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+  width: 100%;
+  gap: 20px;
+  .profile-header {
+    font-weight: 500;
+    margin-bottom: 5%;
+  }
+  .profile-component-left {
+    display: flex;
+    flex-direction: column;
+    width: clamp(1%, 700px, 100%);
+    .select-input {
+      border: 1px solid #d8d8d8;
+      border-radius: 10px;
+      padding: 0 5px;
+      &:focus-within {
+        border: 1px solid var(--main-color);
+      }
+    }
+    p {
+      font-size: 14px;
+      color: #323e64;
+    }
+    select {
+      color: #7b7b7b;
+      background: none !important;
+      border: 0;
+      outline: none;
+      width: 100%;
+      padding: 10px 15px;
+      option {
+        color: #7b7b7b;
+      }
+    }
+    .profileupdate-title {
+      border-bottom: 1px solid #d8d8d8;
+      padding-bottom: 15px;
+      width: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .form-title {
+        font-size: max(1rem, 1.3vw);
+        color: #323e64;
+        font-weight: 500;
+      }
+      svg {
+        cursor: pointer;
+        color: #323e64;
+        font-size: 30px;
+      }
+    }
+    .profile-form {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      .inline-inputs {
+        display: flex;
+        gap: 10px;
+      }
+      .profileupdate-input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 10px;
+        p {
+          font-size: 14px;
+          color: #323e64;
+        }
+        .profileupdate-input {
+          width: 100%;
+          border: 1px solid #d8d8d8;
+          display: flex;
+          padding: 10px 15px;
+          gap: 10px;
+          border-radius: 10px;
+          svg {
+            flex-shrink: 0;
+            font-size: 22px;
+            fill: #7b7b7b;
+            align-self: center;
+          }
+          input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 0 0 0 5px;
+            &::placeholder {
+              font-size: 14px;
+              color: #7b7b7b;
+            }
+          }
+        }
+        &:focus-within {
+          .profileupdate-input {
+            outline: 2px solid var(--dark-blue);
+          }
+        }
+      }
+      .remember-me-login {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        label {
+          font-size: 14px;
+          color: var(--main-color);
+        }
+      }
+      input[type="submit"] {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 10px;
+        background-color: var(--dark-blue);
+        color: #fff;
+        font-size: 17px;
+        font-weight: 500;
+        padding: 7.5px 0;
+      }
+    }
+  }
+
+  .profile-component-right {
+    width: 100%;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      th,
+      td {
+        padding: 0.5rem;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+      .table-data-header {
+        color: #fff;
+        background-color: var(--dark-blue);
+      }
+      .table-data {
+        color: #14213d;
+        text-transform: capitalize;
+      }
+      tbody {
+        tr {
+          &:nth-child(2n) {
+            background-color: #e0e0e0;
+          }
+          &.confirmed {
+            background-color: #c9f9c9;
+          }
+          &.finished {
+            background-color: #f9c9c9;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1170px) {
+  .profile-page .profile-component {
+    display: flex;
+    flex-direction: column-reverse;
+    .profile-header {
+      font-weight: 500;
+      margin-bottom: 5%;
+    }
+    .profile-component-left {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .profile-form {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        .inline-inputs {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .profileupdate-input-container {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+          gap: 10px;
+          p {
+            font-size: 14px;
+            color: #323e64;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 385px) {
+  .profile-page .profile-component {
+    .profile-component-right {
+      .myorders-component {
+        width: 100%;
+      }
+    }
+  }
+}
